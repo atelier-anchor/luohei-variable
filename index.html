@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>可变字体 + 陀螺仪测试</title>
+  <style>
+    @font-face {
+      font-family: "Li Hei Variable Concept";
+      src: url("/fonts/LiHeiVariableConceptVF.woff2") format("woff2");
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      row-gap: 2rem;
+      width: 100vw;
+      height: 100vh;
+      font-family: -apple-system, sans-serif;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .text {
+      font-family: "Li Hei Variable Concept";
+      font-size: 16rem;
+    }
+
+    .caption {
+      display: flex;
+      column-gap: 2rem;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="text" class="text" contenteditable>永</div>
+  <ul class="caption">
+    <li>XWGT = <span id="xwgt">10</span></li>
+    <li>YWGT = <span id="ywgt">10</span></li>
+  </ul>
+</body>
+
+<script>
+const elemText = document.getElementById("text");
+const elemXwgt = document.getElementById("xwgt");
+const elemYwgt = document.getElementById("ywgt");
+
+  const handleOrientation = (e) => {
+    const beta = Math.max(Math.min(e.beta - 90, 90), -90);
+    const xwgt = Math.round((100 - Math.cos((beta * Math.PI) / 180) * 90) * 100) / 100;
+    const ywgt = Math.round((100 - Math.cos((e.gamma * Math.PI) / 180) * 90) * 100) / 100;
+    const varSettings = `'XWGT' ${xwgt},'YWGT' ${ywgt}`;
+    elemText.style.fontVariationSettings = varSettings;
+    elemXwgt.innerText = xwgt;
+    elemYwgt.innerText = ywgt;
+  };
+
+  // Request permission for iOS 13+ devices
+  if (
+    DeviceMotionEvent &&
+    typeof DeviceMotionEvent.requestPermission === "function"
+  ) {
+    DeviceMotionEvent.requestPermission();
+  }
+
+  window.addEventListener("deviceorientation", handleOrientation);
+</script>
+
+</html>
