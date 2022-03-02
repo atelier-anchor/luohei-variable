@@ -61,7 +61,7 @@
     Math.round((100 - Math.cos((x * Math.PI) / 180) * 90) * precision) / precision;
 
   const handleOrientation = (e) => {
-    const beta = Math.max(Math.min(e.beta, 90), 0);
+    const beta = Math.max(Math.min(e.beta, 90), -90);
     const xwgt = scale(beta);
     const ywgt = scale(e.gamma);
     const varSettings = `"XWGT" ${xwgt}, "YWGT" ${ywgt}`;
