@@ -4,7 +4,7 @@
   const tailFactor = 0.2
 
   const chars =
-    '一三上二今共十同国土夜字山工己平意我日明春月朝水永江海潮然王生的自花草警转连造酬锚随面风鹰'
+    '上业个中书人今体作共动十南取变可叶同向国图土夜大天字对山工己平开形态意我排文日明春月朝本杜样比毕水永江海潮然王生田由白的目空纛细织络耳自花草警计设转连造酬锚间随面风鹰黑'
   const useRandomChars = true
 
   const grid = document.getElementById('grid-container')
@@ -101,5 +101,9 @@
 
   window.addEventListener('click', update)
   window.addEventListener('mousemove', update)
-  window.addEventListener('touchstart', (e) => update(e.touches[0]))
+  // window.addEventListener('touchstart', (e) => update(e.touches[0]))
+  window.addEventListener('touchmove', (e) => {
+    e.preventDefault()
+    update(e.touches[0])
+  })
 })()
