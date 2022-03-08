@@ -101,9 +101,6 @@
 
   window.addEventListener('click', update)
   window.addEventListener('mousemove', update)
-  // window.addEventListener('touchstart', (e) => update(e.touches[0]))
-  window.addEventListener('touchmove', (e) => {
-    e.preventDefault()
-    update(e.touches[0])
-  })
+  window.addEventListener('touchstart', (e) => update(e.touches[0]))
+  window.addEventListener('touchmove', (e) => update(e.touches[0]))
 })()

@@ -16,7 +16,7 @@
       font-family: -apple-system, sans-serif;
       font-size: 1rem;
       margin: 0;
-      touch-action: none;
+      touch-action: pinch-zoom;
     }
 
     @media (prefers-color-scheme: dark) {
@@ -38,7 +38,9 @@
       font-size: 40px;
       width: 100vw;
       height: 100vh;
+      -webkit-user-select: none;
       user-select: none;
+      cursor: default;
     }
 
     .grid-item {
