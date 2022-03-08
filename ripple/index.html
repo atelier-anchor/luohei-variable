@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>涟漪 - 可变字体</title>
+  <style>
+    @font-face {
+      font-family: "Li Hei Variable Concept";
+      src: url("/fonts/LiHeiVariableConceptVF.woff2") format("woff2");
+    }
+
+    body {
+      font-family: -apple-system, sans-serif;
+      font-size: 1rem;
+      margin: 0;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, 48px);
+      grid-template-rows: repeat(auto-fit, 48px);
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+      justify-items: center;
+      font-family: "Li Hei Variable Concept";
+      font-size: 40px;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .grid-item {
+      font-variation-settings: "XWGT" 10;
+      font-variation-settings: "YWGT" 10;
+      transition: all 0.1s ease;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="grid-container" class="grid-container">
+  </div>
+</body>
+
+<script src="/ripple/script.js"></script>
+
+</html>
