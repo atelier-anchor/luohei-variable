@@ -44,6 +44,12 @@
       padding: 0;
       margin: 0;
     }
+
+    @media (pointer: fine) {
+      .notice {
+        visibility: hidden;
+      }
+    }
   </style>
 </head>
 
@@ -53,7 +59,7 @@
     <li>XWGT = <span id="xwgt">10</span></li>
     <li>YWGT = <span id="ywgt">10</span></li>
   </ul>
-  <p id="status">Click anywhere to activate&hellip;</p>
+  <p class="notice" id="status">Click anywhere to activate&hellip;</p>
 </body>
 
 <script src="/gyroscope/script.js"></script>
