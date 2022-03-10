@@ -66,20 +66,22 @@
 
     input[type=range]::-webkit-slider-thumb {
       -webkit-appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 2px solid var(--fg-color);
+      background-color: var(--bg-color);
+      box-shadow: none;
+      margin-top: -9px;
+    }
+
+    input[type=range]::-moz-range-thumb {
       width: 20px;
       height: 20px;
       border-radius: 50%;
       border: 2px solid var(--fg-color);
       background-color: var(--bg-color);
-      margin-top: -7px;
-    }
-
-    input[type=range]::-moz-range-thumb {
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      border: 2px solid var(--fg-color);
-      background-color: var(--bg-color);
+      box-shadow: none;
     }
 
     input[type=range]::-webkit-slider-runnable-track {
@@ -92,10 +94,6 @@
       border: 2px solid var(--fg-color);
       background-color: var(--bg-color);
       height: 6px;
-    }
-
-    svg {
-      fill: currentColor;
     }
 
     .header {
@@ -132,17 +130,25 @@
     .range-group {
       display: flex;
       flex-direction: column;
-      row-gap: .5rem;
+      row-gap: .75rem;
     }
 
     .range {
       display: flex;
       align-items: center;
       column-gap: .75rem;
+      margin-top: .25rem;
+      margin-bottom: .25rem;
     }
 
-    .range>label {
-      height: 1rem;
+    .range label {
+      height: 1.25rem;
+    }
+
+    .range svg {
+      fill: currentColor;
+      height: 1.25rem;
+      width: 1.25rem;
     }
 
     .button-group {
@@ -185,7 +191,7 @@
     <div class="range-group">
       <div class="range">
         <label for="font-size">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
             <path d="M0 16h16V0H0v16zm14-2h-3V5H2V2h12v12z" />
           </svg>
         </label>
@@ -193,7 +199,7 @@
       </div>
       <div class="range">
         <label for="font-xwgt">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
             <path d="M16 5H9V0H7v5H0v6h7v5h2v-5h7z" />
           </svg>
         </label>
@@ -201,7 +207,7 @@
       </div>
       <div class="range">
         <label for="font-ywgt">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
             <path d="M16 7h-5V0H5v7H0v2h5v7h6V9h5z" />
           </svg>
         </label>

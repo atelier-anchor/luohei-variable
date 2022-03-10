@@ -4,7 +4,7 @@
   const tailFactor = 0.2
 
   const chars =
-    '上业个中书人今体作共动十南取变可叶同向国图土夜大天字对山工己平开形态意我排文日明春月朝本杜样比毕水永江海潮然王生田由白的目空纛细织络耳自花草警计设转连造酬锚间随面风鹰黑'
+    '上业个中书人今体作共动十南印取变可叶同向品国图土夜大天字对山工己平开录形态意我排文日明春月朝木本杜染样比毕水永江海潮然王生田由画白的目空纛细织络耳自色花草警计设转连造酬锚间随面风鹰黑'
   const useRandomChars = true
 
   const grid = document.getElementById('grid-container')
