@@ -94,6 +94,10 @@
       height: 6px;
     }
 
+    svg {
+      fill: currentColor;
+    }
+
     .header {
       position: -webkit-sticky;
       position: sticky;
@@ -137,6 +141,10 @@
       column-gap: .75rem;
     }
 
+    .range>label {
+      height: 1rem;
+    }
+
     .button-group {
       font-variation-settings: "XWGT"70, "YWGT"45;
       display: flex;
@@ -176,15 +184,27 @@
     </div>
     <div class="range-group">
       <div class="range">
-        <label for="font-size">S</label>
+        <label for="font-size">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+            <path d="M0 16h16V0H0v16zm14-2h-3V5H2V2h12v12z" />
+          </svg>
+        </label>
         <input type="range" name="font-size" min="16" max="96" id="font-size">
       </div>
       <div class="range">
-        <label for="font-xwgt">X</label>
+        <label for="font-xwgt">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+            <path d="M16 5H9V0H7v5H0v6h7v5h2v-5h7z" />
+          </svg>
+        </label>
         <input type="range" name="font-xwgt" min="10" max="100" id="font-xwgt">
       </div>
       <div class="range">
-        <label for="font-ywgt">Y</label>
+        <label for="font-ywgt">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16">
+            <path d="M16 7h-5V0H5v7H0v2h5v7h6V9h5z" />
+          </svg>
+        </label>
         <input type="range" name="font-ywgt" min="10" max="100" id="font-ywgt">
       </div>
     </div>
