@@ -6,55 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>可变字体</title>
+  <link rel="stylesheet" href="/style.css">
   <style>
-    @font-face {
-      font-family: "LuoHei VF";
-      src: url("/fonts/LuoHeiVF.woff2") format("woff2");
-    }
-
-    :root {
-      --spacing-unit: 1.5rem;
-      --fg-color: #000;
-      --bg-color: #fff;
-    }
-
-    @media screen and (min-width: 480px) {
-      :root {
-        --spacing-unit: 2rem;
-      }
-    }
-
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --fg-color: #fff;
-        --bg-color: #1a1a1a;
-      }
-    }
-
     body {
-      min-width: 360px;
       font-family: "LuoHei VF";
       font-variation-settings: "XWGT"30, "YWGT"30;
-      font-size: 1rem;
-      margin: 0;
-      color: var(--fg-color);
-      background-color: var(--bg-color);
-    }
-
-    button,
-    .button {
-      font: inherit;
-      color: var(--fg-color);
-      background-color: transparent;
-      border-radius: 0;
-      border: 2px solid var(--fg-color);
-      cursor: pointer;
-    }
-
-    button.active,
-    .button.active {
-      color: var(--bg-color);
-      background-color: var(--fg-color);
     }
 
     input[type=range] {
@@ -94,37 +50,6 @@
       border: 2px solid var(--fg-color);
       background-color: var(--bg-color);
       height: 6px;
-    }
-
-    .header {
-      position: -webkit-sticky;
-      position: sticky;
-      top: 0;
-      display: flex;
-      flex-direction: column;
-      row-gap: var(--spacing-unit);
-      padding: var(--spacing-unit);
-      background-color: var(--bg-color);
-    }
-
-    .title-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .title {
-      margin: 0;
-    }
-
-    .nav {
-      display: flex;
-      column-gap: .75rem;
-    }
-
-    .nav>a {
-      width: 1.25rem;
-      height: 1.25rem;
     }
 
     .range-group {
@@ -183,7 +108,7 @@
     <div class="title-bar">
       <h1 class="title">络黑 LuoHei</h1>
       <nav class="nav">
-        <a href="/" title="主页" class="button active" role="button active"></a>
+        <a href="/" title="主页" class="button active" role="button"></a>
         <a href="/gyroscope/" title="陀螺仪" class="button" role="button"></a>
         <a href="/ripple/" title="涟漪" class="button" role="button"></a>
       </nav>

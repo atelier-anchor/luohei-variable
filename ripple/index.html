@@ -6,24 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>涟漪 - 可变字体</title>
+  <link rel="stylesheet" href="/style.css">
   <style>
-    @font-face {
-      font-family: "LuoHei VF";
-      src: url("/fonts/LuoHeiVF.woff2") format("woff2");
-    }
-
     body {
-      font-family: -apple-system, sans-serif;
-      font-size: 1rem;
-      margin: 0;
       touch-action: pinch-zoom;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #1a1a1a;
-        color: #fff;
-      }
     }
 
     .grid-container {
@@ -50,6 +36,11 @@
 </head>
 
 <body>
+  <nav class="nav fixed">
+    <a href="/" title="主页" class="button" role="button"></a>
+    <a href="/gyroscope/" title="陀螺仪" class="button" role="button"></a>
+    <a href="/ripple/" title="涟漪" class="button active" role="button"></a>
+  </nav>
   <div id="grid-container" class="grid-container">
   </div>
 </body>

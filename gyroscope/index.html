@@ -6,30 +6,17 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>陀螺仪 - 可变字体</title>
+  <link rel="stylesheet" href="/style.css">
   <style>
-    @font-face {
-      font-family: "LuoHei VF";
-      src: url("/fonts/LuoHeiVF.woff2") format("woff2");
-    }
-
     body {
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      row-gap: 2rem;
+      row-gap: var(--spacing-unit);
       width: 100vw;
       height: 100vh;
       font-family: -apple-system, sans-serif;
-      font-size: 1rem;
-      margin: 0;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: #1a1a1a;
-        color: #fff;
-      }
     }
 
     .text {
@@ -54,6 +41,11 @@
 </head>
 
 <body id="app">
+  <nav class="nav fixed">
+    <a href="/" title="主页" class="button" role="button"></a>
+    <a href="/gyroscope/" title="陀螺仪" class="button active" role="button"></a>
+    <a href="/ripple/" title="涟漪" class="button" role="button"></a>
+  </nav>
   <div id="text" class="text" contenteditable>永</div>
   <ul class="caption">
     <li>XWGT = <span id="xwgt">10</span></li>
