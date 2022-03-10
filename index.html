@@ -32,24 +32,13 @@
     }
 
     body {
-      display: flex;
-      flex-direction: column;
-      min-width: 20rem;
-      row-gap: var(--spacing-unit);
+      min-width: 360px;
       font-family: "LuoHei VF";
       font-variation-settings: "XWGT"30, "YWGT"30;
       font-size: 1rem;
-      margin: var(--spacing-unit);
+      margin: 0;
       color: var(--fg-color);
       background-color: var(--bg-color);
-    }
-
-    .header {
-      position: relative;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
     }
 
     button,
@@ -62,9 +51,26 @@
       cursor: pointer;
     }
 
-    .active {
+    button.active,
+    .button.active {
       color: var(--bg-color);
       background-color: var(--fg-color);
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      row-gap: var(--spacing-unit);
+      padding: var(--spacing-unit);
+      background-color: var(--bg-color);
+    }
+
+    .title-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .title {
@@ -73,7 +79,7 @@
 
     .nav {
       display: flex;
-      column-gap: 1rem;
+      column-gap: .75rem;
     }
 
     .nav>a {
@@ -84,13 +90,13 @@
     .range {
       display: flex;
       align-items: center;
-      column-gap: 1rem;
+      column-gap: .75rem;
     }
 
     .button-group {
       font-variation-settings: "XWGT"70, "YWGT"45;
       display: flex;
-      column-gap: 1rem;
+      column-gap: .75rem;
     }
 
     .button-group>button {
@@ -99,8 +105,13 @@
 
     .text {
       line-height: 1.3;
+      word-break: break-all;
       max-width: 100%;
-      overflow-x: hidden;
+      padding: var(--spacing-unit);
+    }
+
+    .text>p {
+      margin: 0;
     }
 
     .text>.hidden {
@@ -111,34 +122,34 @@
 
 <body>
   <header class="header">
-    <h1 class="title">络黑 LuoHei</h1>
-    <nav class="nav">
-      <a href="/" title="主页" class="button active" role="button active"></a>
-      <a href="/gyroscope/" title="陀螺仪" class="button" role="button"></a>
-      <a href="/ripple/" title="涟漪" class="button" role="button"></a>
-    </nav>
+    <div class="title-bar">
+      <h1 class="title">络黑 LuoHei</h1>
+      <nav class="nav">
+        <a href="/" title="主页" class="button active" role="button active"></a>
+        <a href="/gyroscope/" title="陀螺仪" class="button" role="button"></a>
+        <a href="/ripple/" title="涟漪" class="button" role="button"></a>
+      </nav>
+    </div>
+    <div class="range-group">
+      <div class="range">
+        <label for="font-size">S</label>
+        <input type="range" name="font-size" min="16" max="96" id="font-size">
+      </div>
+      <div class="range">
+        <label for="font-xwgt">X</label>
+        <input type="range" name="font-xwgt" min="10" max="100" id="font-xwgt">
+      </div>
+      <div class="range">
+        <label for="font-ywgt">Y</label>
+        <input type="range" name="font-ywgt" min="10" max="100" id="font-ywgt">
+      </div>
+    </div>
+    <div class="button-group">
+      <button id="button-a">文本一</button>
+      <button id="button-b">文本二</button>
+      <button id="button-c">文本三</button>
+    </div>
   </header>
-
-  <div class="range-group">
-    <div class="range">
-      <label for="font-size">S</label>
-      <input type="range" name="font-size" min="16" max="96" id="font-size">
-    </div>
-    <div class="range">
-      <label for="font-xwgt">X</label>
-      <input type="range" name="font-xwgt" min="10" max="100" id="font-xwgt">
-    </div>
-    <div class="range">
-      <label for="font-ywgt">Y</label>
-      <input type="range" name="font-ywgt" min="10" max="100" id="font-ywgt">
-    </div>
-  </div>
-
-  <div class="button-group">
-    <button id="button-a">文本一</button>
-    <button id="button-b">文本二</button>
-    <button id="button-c">文本三</button>
-  </div>
 
   <div class="text" id="text">
     <p id="text-a">
