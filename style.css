@@ -37,6 +37,7 @@ button,
   background-color: transparent;
   border-radius: 0;
   border: 2px solid var(--fg-color);
+  box-sizing: border-box;
   cursor: pointer;
 }
 
@@ -82,8 +83,8 @@ button.active,
 }
 
 .nav > .button {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1.5rem;
+  height: 1.5rem;
 }
 
 .notice-font {

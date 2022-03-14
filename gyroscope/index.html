@@ -19,6 +19,14 @@
       font-family: "LuoHei VF";
     }
 
+    .toggler {
+      position: fixed;
+      top: calc(var(--spacing-unit) + 8px - 0.25rem);
+      left: calc(var(--spacing-unit) - 0.25rem);
+      padding: 0.25rem;
+      background-color: var(--bg-color);
+    }
+
     .text {
       font-size: 16rem;
     }
@@ -40,10 +48,13 @@
 </head>
 
 <body id="app">
+  <nav class="nav toggler">
+    <button class="button" id="toggler" title="切换陀螺仪（鼠标）/ 音量控制"></button>
+  </nav>
   <nav class="nav fixed">
-    <a href="/vf-website/" title="主页" class="button" role="button"></a>
-    <a href="/vf-website/gyroscope/" title="陀螺仪" class="button active" role="button"></a>
-    <a href="/vf-website/ripple/" title="涟漪" class="button" role="button"></a>
+    <a href="/vf-website/" title="可变字体 | 测试" class="button" role="button"></a>
+    <a href="/vf-website/gyroscope/" title="可变字体 | 响应" class="button active" role="button"></a>
+    <a href="/vf-website/ripple/" title="可变字体 | 涟漪" class="button" role="button"></a>
   </nav>
   <div id="text" class="text" contenteditable>永</div>
   <ul class="caption notice-font">

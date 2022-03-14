@@ -1,4 +1,5 @@
 const app = document.getElementById('app')
+const toggler = document.getElementById('toggler')
 const statusElem = document.getElementById('status')
 
 const elemText = document.getElementById('text')
@@ -26,6 +27,36 @@ const handleMousemove = (e) => {
   update(x, y)
 }
 
+let requestID
+let audioContext
+const handleMicrophone = async (e) => {
+  if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+
+    audioContext = new AudioContext()
+    const mediaStreamAudioSourceNode = audioContext.createMediaStreamSource(stream)
+    const analyserNode = audioContext.createAnalyser()
+    mediaStreamAudioSourceNode.connect(analyserNode)
+
+    const pcmData = new Float32Array(analyserNode.fftSize)
+    const onFrame = () => {
+      analyserNode.getFloatTimeDomainData(pcmData)
+      const rms = Math.sqrt(pcmData.reduce((a, b) => a + b * b, 0)) / pcmData.length
+      const val = Math.min(Math.round(10 + rms * 20000), 100)
+      const varSettings = elemText.style.fontVariationSettings.replace(/"XWGT" \d+/, `"XWGT" ${val}`)
+      elemText.style.fontVariationSettings = varSettings
+      elemXwgt.innerText = val
+      requestID = window.requestAnimationFrame(onFrame)
+    }
+    requestID = window.requestAnimationFrame(onFrame)
+  }
+}
+
+const stopMicrophone = () => {
+  window.cancelAnimationFrame(requestID)
+  audioContext.close()
+}
+
 let initialized = false
 app.addEventListener('click', (e) => {
   if (!initialized) {
@@ -40,3 +71,18 @@ app.addEventListener('click', (e) => {
 })
 
 app.addEventListener('mousemove', handleMousemove)
+
+let togglerState = false
+toggler.addEventListener('click', (e) => {
+  if (togglerState) {
+    window.addEventListener('deviceorientation', handleOrientation)
+    app.addEventListener('mousemove', handleMousemove)
+    stopMicrophone()
+  } else {
+    window.removeEventListener('deviceorientation', handleOrientation)
+    app.removeEventListener('mousemove', handleMousemove)
+    handleMicrophone()
+  }
+  togglerState = !togglerState
+  toggler.classList.toggle('active')
+})
