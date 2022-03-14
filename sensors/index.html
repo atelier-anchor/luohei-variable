@@ -31,14 +31,6 @@
       font-size: 16rem;
     }
 
-    .caption {
-      display: flex;
-      column-gap: 2rem;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
     @media (pointer: fine) {
       .notice {
         visibility: hidden;
@@ -53,17 +45,13 @@
   </nav>
   <nav class="nav fixed">
     <a href="/vf-website/" title="可变字体 | 测试" class="button" role="button"></a>
-    <a href="/vf-website/gyroscope/" title="可变字体 | 响应" class="button active" role="button"></a>
+    <a href="/vf-website/sensors/" title="可变字体 | 响应" class="button active" role="button"></a>
     <a href="/vf-website/ripple/" title="可变字体 | 涟漪" class="button" role="button"></a>
   </nav>
   <div id="text" class="text" contenteditable>永</div>
-  <ul class="caption notice-font">
-    <li>XWGT = <span id="xwgt">10</span></li>
-    <li>YWGT = <span id="ywgt">10</span></li>
-  </ul>
-  <p class="notice notice-font" id="status">点击任意位置开始…</p>
+  <p class="notice notice-font" id="status">点我开始…</p>
 </body>
 
-<script src="/vf-website/gyroscope/script.js"></script>
+<script src="/vf-website/sensors/script.js"></script>
 
 </html>
