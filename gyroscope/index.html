@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>陀螺仪 - 可变字体</title>
+  <title>可变字体 | 响应</title>
   <link rel="stylesheet" href="/vf-website/style.css">
   <style>
     body {
@@ -16,11 +16,10 @@
       row-gap: var(--spacing-unit);
       width: 100vw;
       height: 100vh;
-      font-family: -apple-system, sans-serif;
+      font-family: "LuoHei VF";
     }
 
     .text {
-      font-family: "LuoHei VF";
       font-size: 16rem;
     }
 
@@ -47,11 +46,11 @@
     <a href="/vf-website/ripple/" title="涟漪" class="button" role="button"></a>
   </nav>
   <div id="text" class="text" contenteditable>永</div>
-  <ul class="caption">
+  <ul class="caption notice-font">
     <li>XWGT = <span id="xwgt">10</span></li>
     <li>YWGT = <span id="ywgt">10</span></li>
   </ul>
-  <p class="notice" id="status">Click anywhere to activate&hellip;</p>
+  <p class="notice notice-font" id="status">点击任意位置开始…</p>
 </body>
 
 <script src="/vf-website/gyroscope/script.js"></script>
