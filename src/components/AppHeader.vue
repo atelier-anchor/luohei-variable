@@ -4,8 +4,8 @@
     <a v-else href="#/">络黑 LuoHei Variable</a>
     <nav class="hidden sm:block">
       <ul class="flex gap-4">
-        <li v-for="(nav, name) in navs" :key="name" class="tracking-[0.2em]">
-          <a :href="`#/${name}`" :class="{ 'font-bold': isActive(name) }">{{ nav.title }}</a>
+        <li v-for="(item, name) in nav" :key="name" class="tracking-[0.2em]">
+          <a :href="`#/${name}`" :class="{ 'font-bold': isActive(name) }">{{ item.title }}</a>
         </li>
       </ul>
     </nav>
@@ -19,7 +19,7 @@ const isActive = (name) => props.currentPath.includes(name)
 const isHome = computed(() => props.currentPath === '' || props.currentPath === '#/')
 
 const props = defineProps({
-  navs: Object,
+  nav: Object,
   currentPath: String,
 })
 </script>

@@ -1,6 +1,8 @@
 <template>
-  <AppHeader :navs="navs" :current-path="currentPath" />
-  <component :is="currentView" />
+  <AppHeader :nav="nav" :current-path="currentPath" />
+  <main>
+    <component :is="currentView" />
+  </main>
 </template>
 
 <script setup>
@@ -17,7 +19,7 @@ const home = {
   title: '主页',
   component: Home,
 }
-const navs = {
+const nav = {
   demo: { title: '字样', component: Demo },
   sensors: { title: '感应', component: Sensors },
   ripple: { title: '涟漪', component: Ripple },
@@ -25,7 +27,7 @@ const navs = {
 }
 
 const currentPath = ref(window.location.hash)
-const currentView = computed(() => (navs[currentPath.value.slice(2)] || home).component)
+const currentView = computed(() => (nav[currentPath.value.slice(2)] || home).component)
 
 window.addEventListener('hashchange', () => (currentPath.value = window.location.hash))
 </script>
@@ -44,7 +46,7 @@ window.addEventListener('hashchange', () => (currentPath.value = window.location
   body {
     @apply bg-light;
     @apply text-white;
-    @apply text-xl;
+    @apply text-lg;
     font-family: 'LuoHei VF';
     font-variation-settings: 'XWGT' 30, 'YWGT' 30;
   }
