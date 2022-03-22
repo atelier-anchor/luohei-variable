@@ -48,7 +48,19 @@ window.addEventListener('hashchange', () => (currentPath.value = window.location
     @apply text-white;
     @apply text-lg;
     font-family: 'LuoHei VF';
-    font-variation-settings: 'XWGT' 30, 'YWGT' 30;
+    font-variation-settings: 'XWGT' 600, 'YWGT' 400;
+  }
+}
+
+@layer utilities {
+  .tracking-1 {
+    @apply tracking-[0.25rem];
+    @apply -mr-1;
+  }
+
+  .tracking-8 {
+    @apply tracking-[2rem];
+    @apply -mr-8;
   }
 }
 </style>

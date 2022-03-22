@@ -1,10 +1,10 @@
 <template>
-  <header class="flex justify-between px-16 py-4">
-    <button v-if="isHome">观看动画</button>
-    <a v-else href="#/">络黑 LuoHei Variable</a>
+  <header class="relative flex justify-between px-8 sm:px-16 py-4 z-10">
+    <button v-if="isHome" class="tracking-1">观看动画</button>
+    <a v-else href="#/"><span class="tracking-1">络黑</span> LuoHei Variable</a>
     <nav class="hidden sm:block">
       <ul class="flex gap-4">
-        <li v-for="(item, name) in nav" :key="name" class="tracking-[0.2em]">
+        <li v-for="(item, name) in nav" :key="name" class="tracking-1">
           <a :href="`#/${name}`" :class="{ 'font-bold': isActive(name) }">{{ item.title }}</a>
         </li>
       </ul>
