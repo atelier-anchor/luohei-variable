@@ -1,7 +1,7 @@
 <template>
   <div class="absolute inset-0">
     <div class="flex flex-col items-center justify-center gap-8 h-full px-8 sm:px-16">
-      <p class="text-center text-lg font-optical-size-lg" v-html="text"></p>
+      <p class="text-center text-lg font-optical-size-lg max-w-lg" v-html="text"></p>
       <div class="text-center">
         <ul class="flex gap-8 justify-center">
           <li><span class="mr-4">设计</span>刘育黎</li>
