@@ -1,8 +1,8 @@
 <template>
   <div class="absolute inset-0">
     <div class="flex flex-col items-center justify-center gap-4 text-center w-full h-full">
-      <p class="text-8xl sm:text-9xl tracking-8 breathe">络黑</p>
-      <p class="text-5xl sm:text-6xl px-8 sm:px-16">
+      <p class="text-[6rem] sm:text-[8rem] tracking-8 breathe">络黑</p>
+      <p class="text-[3rem] sm:text-[4rem] px-8 sm:px-16">
         <span
           v-for="(c, idx) in 'LuoHei Variable'.split('')"
           class="breathe"

@@ -33,34 +33,5 @@ window.addEventListener('hashchange', () => (currentPath.value = window.location
 </script>
 
 <style>
-@font-face {
-  font-family: 'LuoHei VF';
-  src: url('./assets/LuoHeiVF.woff2') format('woff2');
-}
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  body {
-    @apply bg-light;
-    @apply text-white;
-    @apply text-lg;
-    font-family: 'LuoHei VF';
-    font-variation-settings: 'XWGT' 600, 'YWGT' 400;
-  }
-}
-
-@layer utilities {
-  .tracking-1 {
-    @apply tracking-[0.25rem];
-    @apply -mr-1;
-  }
-
-  .tracking-8 {
-    @apply tracking-[2rem];
-    @apply -mr-8;
-  }
-}
+@import './assets/style.css';
 </style>

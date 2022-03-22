@@ -7,8 +7,13 @@ module.exports = {
       light: '#44bbc7',
       dark: '026676',
     },
-    // fontFamily: {
-    //   jinhua: '"Jinhua Mincho"',
-    // },
+    fontSize: {
+      sm: '1rem',
+      base: '1.125rem',
+      lg: '1.5rem',
+    },
+    fontWeight: {
+      bold: 'inherit',
+    },
   },
 }

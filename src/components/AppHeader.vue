@@ -1,5 +1,5 @@
 <template>
-  <header class="relative flex justify-between px-8 sm:px-16 py-4 z-10">
+  <header class="relative flex justify-between text-sm font-optical-sm px-8 sm:px-16 py-4 z-10">
     <button v-if="isHome" class="tracking-1">观看动画</button>
     <a v-else href="#/"><span class="tracking-1">络黑</span> LuoHei Variable</a>
     <nav class="hidden sm:block">
