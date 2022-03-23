@@ -1,5 +1,5 @@
 <template>
-  <header class="fixed w-full px-8 sm:px-16 py-4 z-10">
+  <header class="fixed bg-light dark:bg-dark w-full px-8 sm:px-16 py-4 z-10">
     <div class="flex justify-between text-sm font-optical-sm">
       <button v-if="isHome" class="tracking">观看动画</button>
       <a v-else href="#/"><span class="tracking">络黑</span> LuoHei Variable</a>
