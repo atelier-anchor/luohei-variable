@@ -1,37 +1,39 @@
 <template>
-  <div class="absolute inset-0">
-    <div class="flex flex-col items-center justify-center gap-4 text-center w-full h-full">
-      <p class="text-[6rem] sm:text-[8rem] tracking-8 breathe">络黑</p>
-      <p class="text-[3rem] sm:text-[4rem] px-8 sm:px-16">
-        <span
-          v-for="(c, idx) in 'LuoHei Variable'.split('')"
-          class="breathe"
-          :style="{ animationDelay: `${-idx}s` }"
-          >{{ c }}</span
-        >
-      </p>
-    </div>
+  <div class="flex flex-col items-center justify-center gap-4 text-center h-screen">
+    <p class="text-[6rem] sm:text-[8rem] tracking breathe-zh">络黑</p>
+    <p class="text-[3rem] sm:text-[4rem] px-8 sm:px-16">
+      <span
+        v-for="(c, idx) in 'LuoHei Variable'.split('')"
+        class="breathe-en"
+        :style="{ animationDelay: `${-idx}s` }"
+        >{{ c }}</span
+      >
+    </p>
   </div>
 </template>
 
 <style scoped>
-.breathe {
-  animation: breathe 12s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+.breathe-zh {
+  animation: breathe-zh 12s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
 }
 
-@keyframes breathe {
-  0%,
-  100% {
-    font-variation-settings: 'XWGT' 200, 'YWGT' 200;
-  }
-  25% {
-    font-variation-settings: 'XWGT' 200, 'YWGT' 900;
-  }
-  50% {
-    font-variation-settings: 'XWGT' 900, 'YWGT' 900;
-  }
-  75% {
-    font-variation-settings: 'XWGT' 900, 'YWGT' 200;
-  }
+.breathe-en {
+  animation: breathe-en 12s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+/* prettier-ignore */
+@keyframes breathe-zh {
+  0%, 100% { font-variation-settings: 'XWGT' 100, 'YWGT' 100; }
+  25%      { font-variation-settings: 'XWGT' 100, 'YWGT' 400; }
+  50%      { font-variation-settings: 'XWGT' 400, 'YWGT' 400; }
+  75%      { font-variation-settings: 'XWGT' 400, 'YWGT' 100; }
+}
+
+/* prettier-ignore */
+@keyframes breathe-en {
+  0%, 100% { font-variation-settings: 'XWGT' 150, 'YWGT' 150; }
+  25%      { font-variation-settings: 'XWGT' 150, 'YWGT' 600; }
+  50%      { font-variation-settings: 'XWGT' 600, 'YWGT' 600; }
+  75%      { font-variation-settings: 'XWGT' 600, 'YWGT' 150; }
 }
 </style>

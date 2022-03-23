@@ -1,24 +1,22 @@
 <template>
-  <div class="absolute inset-0">
-    <div class="flex flex-col items-center justify-center gap-8 h-full px-8 sm:px-16">
-      <p class="text-center text-lg font-optical-size-lg max-w-lg" v-html="text"></p>
-      <div class="text-center">
-        <ul class="flex gap-8 justify-center">
-          <li><span class="mr-4">设计</span>刘育黎</li>
-          <li><span class="mr-4">导师</span>杜钦</li>
-        </ul>
-        （同济大学设计创意学院）
-        <br />
+  <div class="flex flex-col items-center justify-center gap-8 text-center h-screen px-8 sm:px-16">
+    <p class="text-lg font-optical-size-lg max-w-lg" v-html="text"></p>
+    <div>
+      <ul class="flex gap-8 justify-center">
+        <li><span class="mr-4">设计</span>刘育黎</li>
+        <li><span class="mr-4">导师</span>杜钦</li>
+      </ul>
+      <p>（同济大学设计创意学院）</p>
+      <p>
         <span class="mr-4">技术支持</span>曾祥东 （<a
           href="https://atelier-anchor.com/"
           target="_blank"
           class="hover:underline"
           >atelierAnchor</a
         >）
-        <br />
-      </div>
-      <p>二〇二二年三月<span class="mr-4"></span>作于上海家中</p>
+      </p>
     </div>
+    <p>二〇二二年三月<span class="mr-4"></span>作于上海家中</p>
   </div>
 </template>
 

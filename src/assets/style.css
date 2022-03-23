@@ -42,13 +42,8 @@
     font-variation-settings: var(--font-variation-bold);
   }
 
-  .tracking-1 {
-    @apply tracking-[0.25rem];
-    @apply -mr-1;
-  }
-
-  .tracking-8 {
-    @apply tracking-[2rem];
-    @apply -mr-8;
+  .tracking {
+    @apply tracking-[0.25em];
+    @apply -mr-[0.25em];
   }
 }
