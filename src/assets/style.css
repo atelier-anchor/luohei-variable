@@ -14,6 +14,8 @@
 
     @apply text-white;
     @apply bg-light;
+    @apply dark:text-light;
+    @apply dark:bg-dark;
     @apply text-base;
     font-family: 'LuoHei VF';
     font-variation-settings: var(--font-variation-normal);

@@ -4,8 +4,9 @@ module.exports = {
     colors: {
       transparent: 'transparent',
       white: '#fff',
+      black: '#000',
       light: '#44bbc7',
-      dark: '026676',
+      dark: '#041723',
     },
     fontSize: {
       sm: '1rem',

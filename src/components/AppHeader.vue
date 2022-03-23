@@ -5,7 +5,7 @@
       <a v-else href="#/"><span class="tracking-1">络黑</span> LuoHei Variable</a>
       <button class="sm:hidden tracking-1" @click="toggleNav()">页面</button>
       <nav
-        class="absolute top-4 left-8 bg-light sm:static sm:block sm:bg-transparent"
+        class="absolute top-4 left-8 bg-light dark:bg-dark sm:static sm:block sm:bg-transparent"
         :class="{ hidden: !showNav }"
       >
         <ul class="flex gap-4">
