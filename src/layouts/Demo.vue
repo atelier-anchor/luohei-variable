@@ -5,9 +5,15 @@
     >
       <div class="sticky flex flex-col gap-4 w-64 h-fit top-6 bg-white dark:bg-dark">
         <div>
-          <RangeInput id="font-size" label="字号" min="16" max="96" v-model.number="fontSize" />
-          <RangeInput id="font-xwgt" label="变量 X" min="100" max="900" v-model.number="fontXwgt" />
-          <RangeInput id="font-ywgt" label="变量 Y" min="100" max="900" v-model.number="fontYwgt" />
+          <RangeInput
+            v-for="(item, id) in rangeInputs"
+            :key="id"
+            :id="`range-input-${id}`"
+            :label="item.label"
+            :min="item.min"
+            :max="item.max"
+            v-model.number="item.value"
+          />
         </div>
         <!-- <RadioInput :options="textTypes" id-prefix="text" label="文本" v-model="textType"> -->
         <!-- </RadioInput> -->
@@ -51,9 +57,9 @@
       <div
         class="flex-1 text-[2rem] overflow-x-auto"
         :style="{
-          fontSize: `${fontSize}px`,
-          fontVariationSettings: `'XWGT' ${fontXwgt}, 'YWGT' ${fontYwgt}`,
-          writingMode: writingMode
+          fontSize: `${rangeInputs.size.value}px`,
+          fontVariationSettings: `'XWGT' ${rangeInputs.xwgt.value}, 'YWGT' ${rangeInputs.ywgt.value}`,
+          writingMode: writingMode,
         }"
       >
         <template v-for="line in getText(textType)">
@@ -66,7 +72,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
+import { randomChar } from '../utils'
 import ColorContainer from '../components/ColorContainer.vue'
 import RangeInput from '../components/RangeInput.vue'
 // import RadioInput from '../components/RadioInput.vue'
@@ -89,21 +96,25 @@ const writingModes = [
   { name: 'vertical', value: 'vertical-rl', label: '直排' },
 ]
 
-const fontSize = ref(40)
-const fontXwgt = ref(100)
-const fontYwgt = ref(100)
+const rangeInputs = reactive({
+  size: { label: '字号', min: 16, max: 96, value: 40 },
+  xwgt: { label: '变量 X', min: 100, max: 900, value: 100 },
+  ywgt: { label: '变量 Y', min: 100, max: 900, value: 100 },
+})
 
 const textType = ref(textTypes[0].value)
 const writingMode = ref(writingModes[0].value)
 
-const getText = (type) => {
-  if (type === 'random') {
-    return [
-      '上业个中书人今任位体作共击动十南印取变可叶同向品国图土夜大天始字',
-      '对山工己平开录形态意我排文日明春月朝木本杜染样比毕水永江海潮点然',
-      '王生田由画白的目空纛细织络置耳自色花草警计设转连造酬锚间随面风鹰',
-    ]
-  }
-  return texts[type]
-}
+// Manually set the weights of different puncts.
+const puncts = '，，，，。。。！'.split('')
+const randomText = () =>
+  [...Array(8).keys()]
+    .map(() => {
+      const len = Math.floor(Math.random() * 15) + 5
+      const punct = puncts[Math.floor(Math.random() * puncts.length)]
+      return [...Array(len).keys()].map(() => randomChar()).join('') + punct + ' '
+    })
+    .join('')
+    .replace(/.\s$/g, '。')
+const getText = (type) => (type === 'random' ? [randomText()] : texts[type])
 </script>
