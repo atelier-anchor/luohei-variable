@@ -5,18 +5,9 @@
     >
       <div class="flex flex-col gap-4 w-64">
         <div>
-          <div>
-            <label for="font-size">字号</label>
-            <input type="range" name="font-size" id="font-size" min="16" max="96" />
-          </div>
-          <div>
-            <label for="font-xwgt">变量一</label>
-            <input type="range" name="font-xwgt" id="font-xwgt" min="10" max="100" />
-          </div>
-          <div>
-            <label for="font-ywgt">变量二</label>
-            <input type="range" name="font-ywgt" id="font-ywgt" min="10" max="100" />
-          </div>
+          <RangeInput id="font-size" label="字号"></RangeInput>
+          <RangeInput id="font-xwgt" label="变量一"></RangeInput>
+          <RangeInput id="font-ywgt" label="变量二"></RangeInput>
         </div>
         <div class="flex justify-between">
           <button>文本甲</button>
@@ -41,4 +32,5 @@
 
 <script setup>
 import ColorContainer from '../components/ColorContainer.vue'
+import RangeInput from '../components/RangeInput.vue'
 </script>

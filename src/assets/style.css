@@ -24,6 +24,10 @@
   a {
     @apply transition-[font-variation-settings];
   }
+
+  button {
+    font: inherit;
+  }
 }
 
 @layer utilities {
@@ -46,7 +50,7 @@
     @apply tracking-[0.25em];
     @apply -mr-[0.25em];
   }
-  
+
   .writing-vertical-rl {
     writing-mode: vertical-rl;
   }
