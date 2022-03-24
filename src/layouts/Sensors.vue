@@ -1,5 +1,5 @@
 <template>
-  <div class="text-light bg-white dark:bg-dark">
+  <ColorContainer>
     <div class="flex flex-col items-center justify-center text-center h-screen">
       <div
         contenteditable
@@ -9,7 +9,7 @@
         永
       </div>
       <p>点击这里开始…</p>
-      <div class="absolute top-24 left-8 sm:left-16">
+      <div class="absolute top-20 left-8 sm:left-16">
         <div class="flex flex-col items-start">
           <button>显示值</button>
           <button>声控变量一</button>
@@ -17,11 +17,12 @@
         </div>
       </div>
     </div>
-  </div>
+  </ColorContainer>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ColorContainer from '../components/ColorContainer.vue'
 
 const fontVariationSettings = ref('inherit')
 

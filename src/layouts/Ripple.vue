@@ -1,6 +1,6 @@
 <template>
-  <div class="text-[2.5rem] sm:text-[3rem] leading-none text-light bg-white dark:bg-dark">
-    <div class="select-none cursor-default">
+  <ColorContainer>
+    <div class="text-[2.5rem] sm:text-[3rem] leading-none select-none cursor-default">
       <div
         class="grid content-center justify-center items-center justify-items-center h-screen pt-14"
         :style="{ 'grid-template': gridTemplate }"
@@ -9,11 +9,12 @@
         <div v-for="c in gridContent">{{ c }}</div>
       </div>
     </div>
-  </div>
+  </ColorContainer>
 </template>
 
 <script setup>
 import { onMounted, onUnmounted, reactive, ref } from 'vue'
+import ColorContainer from '../components/ColorContainer.vue'
 
 const LUOHEI_CHARS =
   '上业个中书人今任位体作共击动十南印取变可叶同向品国图土夜大天始字对山工己平开录形态意我排文日明春月朝木本杜染样比毕水永江海潮点然王生田由画白的目空纛细织络置耳自色花草警计设转连造酬锚间随面风鹰黑'

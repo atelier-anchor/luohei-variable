@@ -46,4 +46,8 @@
     @apply tracking-[0.25em];
     @apply -mr-[0.25em];
   }
+  
+  .writing-vertical-rl {
+    writing-mode: vertical-rl;
+  }
 }
