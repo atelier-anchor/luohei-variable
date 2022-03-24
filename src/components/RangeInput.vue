@@ -1,7 +1,15 @@
 <template>
-  <div class="flex items-center justify-between">
-    <label :for="id">{{ label }}</label>
-    <input type="range" :id="id" :name="id" class="w-48" />
+  <div class="flex items-center gap-4">
+    <label :for="id" class="w-16">{{ label }}</label>
+    <input
+      type="range"
+      :id="id"
+      :value="modelValue"
+      :min="min"
+      :max="max"
+      @input="$emit('update:modelValue', $event.target.value)"
+      class="w-40"
+    />
   </div>
 </template>
 
@@ -9,12 +17,16 @@
 defineProps({
   id: String,
   label: String,
+  min: Number,
+  max: Number,
+  modelValue: Number,
 })
+defineEmits(['update:modelValue'])
 </script>
 
 <style lang="postcss" scoped>
 input[type='range'] {
-  --size: 18px;
+  --size: 16px;
   --border-width: 2px;
 
   @apply appearance-none;

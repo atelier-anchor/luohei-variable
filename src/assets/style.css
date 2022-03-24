@@ -21,7 +21,7 @@
     font-variation-settings: var(--font-variation-normal);
   }
 
-  a {
+  a, label {
     @apply transition-[font-variation-settings];
   }
 
@@ -49,9 +49,5 @@
   .tracking {
     @apply tracking-[0.25em];
     @apply -mr-[0.25em];
-  }
-
-  .writing-vertical-rl {
-    writing-mode: vertical-rl;
   }
 }
