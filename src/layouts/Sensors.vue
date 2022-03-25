@@ -1,7 +1,7 @@
 <template>
-  <ColorContainer>
+  <ColorContainer class="px-8 sm:px-16">
     <div
-      class="flex flex-col items-center justify-center gap-16 text-center h-screen"
+      class="relative flex flex-col items-center justify-center gap-16 text-center h-screen max-w-screen-2xl mx-auto"
       @mousemove="handleMousemove"
     >
       <div
@@ -16,19 +16,19 @@
         <div>YWGT = {{ axes.ywgt }}</div>
       </div>
       <InitializeButton :listener="handleOrientation">点击这里开始…</InitializeButton>
-    </div>
-    <div class="absolute top-20 left-8 sm:left-16">
-      <div class="flex flex-col items-start">
-        <input
-          type="checkbox"
-          id="checkbox-show-value"
-          name="checkbox-show-value"
-          v-model="showValue"
-          class="hidden appearance-none"
-        />
-        <label for="checkbox-show-value" :class="{ 'font-bold': showValue }">显示值</label>
-        <button :class="{ 'font-bold': voiceControlXwgt }" @click="toggleX">声控 X</button>
-        <button :class="{ 'font-bold': voiceControlYwgt }" @click="toggleY">声控 Y</button>
+      <div class="absolute top-20 left-0">
+        <div class="flex flex-col items-start">
+          <input
+            type="checkbox"
+            id="checkbox-show-value"
+            name="checkbox-show-value"
+            v-model="showValue"
+            class="hidden appearance-none"
+          />
+          <label for="checkbox-show-value" :class="{ 'font-bold': showValue }">显示值</label>
+          <button :class="{ 'font-bold': voiceControlXwgt }" @click="toggleX">声控 X</button>
+          <button :class="{ 'font-bold': voiceControlYwgt }" @click="toggleY">声控 Y</button>
+        </div>
       </div>
     </div>
   </ColorContainer>

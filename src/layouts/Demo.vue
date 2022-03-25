@@ -1,7 +1,7 @@
 <template>
-  <ColorContainer>
+  <ColorContainer class="px-8 sm:px-16">
     <div
-      class="flex flex-col sm:flex-row sm:justify-between gap-8 min-h-screen px-8 sm:px-16 pt-20"
+      class="flex flex-col sm:flex-row sm:justify-between gap-8 min-h-screen max-w-screen-2xl pt-20 mx-auto"
     >
       <div class="sticky flex flex-col gap-4 w-64 h-fit top-6 bg-white dark:bg-dark">
         <div>

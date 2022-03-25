@@ -1,6 +1,6 @@
 <template>
   <header class="absolute bg-light dark:bg-dark w-full px-8 sm:px-16 py-4 z-10">
-    <div class="flex justify-between text-sm font-optical-sm">
+    <div class="flex justify-between text-sm font-optical-sm max-w-screen-2xl mx-auto">
       <button v-if="isHome" class="tracking">观看动画</button>
       <a v-else href="#/"><span class="tracking">络黑</span> LuoHei Variable</a>
       <button class="sm:hidden tracking" @click="toggleNav()">页面</button>
