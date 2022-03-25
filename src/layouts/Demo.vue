@@ -58,6 +58,7 @@
           fontSize: `${rangeInputs.size.value}px`,
           fontVariationSettings: `'XWGT' ${rangeInputs.xwgt.value}, 'YWGT' ${rangeInputs.ywgt.value}`,
           writingMode: writingMode,
+          paddingTop: writingMode === 'vertical-rl' ? '0.2em' : '0',
         }"
       >
         <template v-for="line in getText(textType)">
@@ -70,7 +71,7 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { onMounted, reactive, ref } from 'vue'
 import { randomChar, scale } from '../utils'
 import ColorContainer from '../components/ColorContainer.vue'
 import RangeInput from '../components/RangeInput.vue'
@@ -104,7 +105,7 @@ const writingMode = ref(writingModes[0].value)
 
 // Manually set the weights of different puncts.
 const puncts = '，，，，。。。！'.split('')
-const randomText = () =>
+const generateRandomText = () =>
   [...Array(8).keys()]
     .map(() => {
       const len = Math.floor(Math.random() * 15) + 5
@@ -113,5 +114,12 @@ const randomText = () =>
     })
     .join('')
     .replace(/.\s$/g, '。')
-const getText = (type) => (type === 'random' ? [randomText()] : texts[type])
+const randomText = ref('')
+const getText = (type) => (type === 'random' ? [randomText.value] : texts[type])
+
+// TODO: avoid using DOM query
+onMounted(() => {
+  const button = document.querySelector('label[for="radio-random"]')
+  if (button) button.addEventListener('click', () => (randomText.value = generateRandomText()))
+})
 </script>
