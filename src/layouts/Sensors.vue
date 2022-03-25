@@ -58,8 +58,8 @@ const handleMousemove = (event) => {
 
 const handleOrientation = (event) => {
   const beta = clamp(event.beta, -90, 90)
-  const x = Math.cos((beta * Math.PI) / 180)
-  const y = Math.cos((event.gamma * Math.PI) / 180)
+  const x = 1 - Math.cos((beta * Math.PI) / 180)
+  const y = 1 - Math.cos((event.gamma * Math.PI) / 180)
   axes.xwgt = scale(x)
   axes.ywgt = scale(y)
 }
