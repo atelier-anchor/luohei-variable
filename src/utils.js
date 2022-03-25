@@ -3,3 +3,5 @@ const LUOHEI_CHARS =
 
 export const randomChar = (random = true) =>
   random ? LUOHEI_CHARS[Math.floor(Math.random() * LUOHEI_CHARS.length)] : '字'
+
+export const clamp = (value, min, max) => Math.min(Math.max(value, min), max)
