@@ -5,3 +5,10 @@ export const randomChar = (random = true) =>
   random ? LUOHEI_CHARS[Math.floor(Math.random() * LUOHEI_CHARS.length)] : '字'
 
 export const clamp = (value, min, max) => Math.min(Math.max(value, min), max)
+
+export const scale = (x, min = 100, max = 900) => Math.round(x * (max - min) + min)
+
+export const expScale = (n, k, min = 100, max = 900) =>
+  [...Array(n).keys()].map((i) =>
+    Math.round(((Math.exp(k * i) - 1) / (Math.exp(k * n - k) - 1)) * (max - min) + min)
+  )

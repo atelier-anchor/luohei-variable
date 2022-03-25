@@ -24,7 +24,7 @@
 
 <script setup>
 import { onMounted, onUnmounted, reactive, ref } from 'vue'
-import { clamp, randomChar } from '../utils'
+import { clamp, expScale, randomChar } from '../utils'
 import ColorContainer from '../components/ColorContainer.vue'
 
 const gridContainer = ref(null)
@@ -92,11 +92,6 @@ const getUpdatedArray = (row, col) => {
   }))
 }
 
-const expScale = (n, k, start = 100, end = 900) =>
-  [...Array(n).keys()].map((i) =>
-    Math.round(((Math.exp(k * i) - 1) / (Math.exp(k * n - k) - 1)) * (end - start) + start)
-  )
-
 const updateX = (id, val) => {
   const elem = document.getElementById(id)
   const res = elem.style.fontVariationSettings.replace(/"XWGT" \d+/, `"XWGT" ${val}`)
@@ -125,11 +120,10 @@ const updateFont = async (array, time) => {
 }
 
 const update = (event) => {
-  const { clientX, clientY } = event
   const marginX = (window.innerWidth - grid.cols * grid.size) / 2
   const marginY = (window.innerHeight - grid.rows * grid.size + grid.paddingTop) / 2
-  const col = clamp(Math.floor((clientX - marginX) / grid.size), 0, grid.cols - 1)
-  const row = clamp(Math.floor((clientY - marginY) / grid.size), 0, grid.rows - 1)
+  const col = clamp(Math.floor((event.clientX - marginX) / grid.size), 0, grid.cols - 1)
+  const row = clamp(Math.floor((event.clientY - marginY) / grid.size), 0, grid.rows - 1)
   const updatedArray = getUpdatedArray(row, col)
   updateFont(updatedArray, timeInterval)
 }
