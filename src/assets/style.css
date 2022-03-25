@@ -21,12 +21,18 @@
     font-variation-settings: var(--font-variation-normal);
   }
 
-  a, label {
+  a,
+  label {
     @apply transition-[font-variation-settings];
   }
 
   button {
     font: inherit;
+  }
+
+  label[for^='checkbox'],
+  label[for^='radio'] {
+    @apply cursor-pointer;
   }
 }
 

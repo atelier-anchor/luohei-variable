@@ -8,15 +8,13 @@
           <RangeInput
             v-for="(item, id) in rangeInputs"
             :key="id"
-            :id="`range-input-${id}`"
+            :id="`range-${id}`"
             :label="item.label"
             :min="item.min"
             :max="item.max"
             v-model.number="item.value"
           />
         </div>
-        <!-- <RadioInput :options="textTypes" id-prefix="text" label="文本" v-model="textType"> -->
-        <!-- </RadioInput> -->
         <div class="flex items-center gap-4">
           <label class="w-16">文本</label>
           <div class="flex gap-4">
@@ -73,33 +71,32 @@
 
 <script setup>
 import { reactive, ref } from 'vue'
-import { randomChar } from '../utils'
+import { randomChar, scale } from '../utils'
 import ColorContainer from '../components/ColorContainer.vue'
 import RangeInput from '../components/RangeInput.vue'
-// import RadioInput from '../components/RadioInput.vue'
 
 const texts = {
   a: ['天上取样人间织， 染作江南春水色。', '春江潮水连海平， 海上明月共潮生。'],
   b: ['面向动态图形的中文可变字体设计', '「络黑」 LuoHei Variable'],
-  c: ['风我酬意警鹰纛\u{30EDD}', 'Hamburge 0123'],
+  c: ['风我酬意警鹰纛\u{30EDD}', 'Gampsocleis gratiosa', '2.718281828459…'],
 }
 
 const textTypes = [
-  { name: 'a', value: 'a', label: '甲' },
-  { name: 'b', value: 'b', label: '乙' },
-  { name: 'c', value: 'c', label: '丙' },
-  { name: 'random', value: 'random', label: '随机' },
+  { name: 'radio-a', value: 'a', label: '甲' },
+  { name: 'radio-b', value: 'b', label: '乙' },
+  { name: 'radio-c', value: 'c', label: '丙' },
+  { name: 'radio-random', value: 'random', label: '随机' },
 ]
 
 const writingModes = [
-  { name: 'horizontal', value: 'horizontal-tb', label: '横排' },
-  { name: 'vertical', value: 'vertical-rl', label: '直排' },
+  { name: 'radio-horizontal', value: 'horizontal-tb', label: '横排' },
+  { name: 'radio-vertical', value: 'vertical-rl', label: '直排' },
 ]
 
 const rangeInputs = reactive({
   size: { label: '字号', min: 16, max: 96, value: 40 },
-  xwgt: { label: '变量 X', min: 100, max: 900, value: 100 },
-  ywgt: { label: '变量 Y', min: 100, max: 900, value: 100 },
+  xwgt: { label: '变量 X', min: 100, max: 900, value: scale(Math.random(), 300, 800) },
+  ywgt: { label: '变量 Y', min: 100, max: 900, value: scale(Math.random(), 300, 800) },
 })
 
 const textType = ref(textTypes[0].value)

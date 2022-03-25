@@ -24,11 +24,11 @@
 
 <script setup>
 import { onMounted, onUnmounted, reactive, ref } from 'vue'
-import { clamp, expScale, randomChar } from '../utils'
+import { clamp, expScale, randomChar, HEADER_HEIGHT } from '../utils'
 import ColorContainer from '../components/ColorContainer.vue'
 
 const gridContainer = ref(null)
-const grid = reactive({ size: 0, rows: 0, cols: 0, template: '', paddingTop: 0, content: [] })
+const grid = reactive({ size: 0, rows: 0, cols: 0, template: '', content: [] })
 
 const timeInterval = 40
 const tailLength = 8
@@ -41,7 +41,7 @@ const updateGridSize = () => {
 }
 
 const updateGridNum = () => {
-  grid.rows = Math.floor((window.innerHeight - grid.paddingTop) / grid.size)
+  grid.rows = Math.floor((window.innerHeight - HEADER_HEIGHT) / grid.size)
   grid.cols = Math.floor(window.innerWidth / grid.size)
 }
 
@@ -53,12 +53,6 @@ const updateGridContent = () => {
   } else {
     grid.content.splice(gridCellNum)
   }
-}
-
-const updateGridPaddingTop = () => {
-  grid.paddingTop = parseInt(
-    window.getComputedStyle(gridContainer.value).paddingTop.replace('px', '')
-  )
 }
 
 const updateGrid = () => {
@@ -94,14 +88,18 @@ const getUpdatedArray = (row, col) => {
 
 const updateX = (id, val) => {
   const elem = document.getElementById(id)
-  const res = elem.style.fontVariationSettings.replace(/"XWGT" \d+/, `"XWGT" ${val}`)
-  elem.style.fontVariationSettings = res
+  if (elem) {
+    const res = elem.style.fontVariationSettings.replace(/"XWGT" \d+/, `"XWGT" ${val}`)
+    elem.style.fontVariationSettings = res
+  }
 }
 
 const updateY = (id, val) => {
   const elem = document.getElementById(id)
-  const res = elem.style.fontVariationSettings.replace(/"YWGT" \d+/, `"YWGT" ${val}`)
-  elem.style.fontVariationSettings = res
+  if (elem) {
+    const res = elem.style.fontVariationSettings.replace(/"YWGT" \d+/, `"YWGT" ${val}`)
+    elem.style.fontVariationSettings = res
+  }
 }
 
 const updateFont = async (array, time) => {
@@ -121,7 +119,7 @@ const updateFont = async (array, time) => {
 
 const update = (event) => {
   const marginX = (window.innerWidth - grid.cols * grid.size) / 2
-  const marginY = (window.innerHeight - grid.rows * grid.size + grid.paddingTop) / 2
+  const marginY = (window.innerHeight - grid.rows * grid.size + HEADER_HEIGHT) / 2
   const col = clamp(Math.floor((event.clientX - marginX) / grid.size), 0, grid.cols - 1)
   const row = clamp(Math.floor((event.clientY - marginY) / grid.size), 0, grid.rows - 1)
   const updatedArray = getUpdatedArray(row, col)
@@ -131,7 +129,6 @@ const update = (event) => {
 const toggleTouchAction = () => document.querySelector('body').classList.toggle('touch-pinch-zoom')
 
 onMounted(() => {
-  updateGridPaddingTop()
   updateGrid()
   toggleTouchAction()
   window.addEventListener('resize', () => {
