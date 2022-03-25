@@ -73,13 +73,13 @@ const normalize = (x, min, max) => (clamp(x, min, max) - min) / (max - min)
 const setXwgt = (analyser, data) => {
   if (voiceControlXwgt.value) {
     analyser.getFloatTimeDomainData(data)
-    axes.xwgt = scale(normalize(rms(data), 0, 0.04))
+    axes.xwgt = scale(normalize(rms(data), 0, 0.2))
   }
 }
 
 const setYwgt = (analyser, data) => {
   if (voiceControlYwgt.value) {
-    analyser.getFloatTimeDomainData(data)
+    analyser.getFloatFrequencyData(data)
     axes.ywgt = scale(normalize(rms(data), 40, 200))
   }
 }
