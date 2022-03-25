@@ -33,6 +33,7 @@
   label[for^='checkbox'],
   label[for^='radio'] {
     @apply cursor-pointer;
+    @apply select-none;
   }
 }
 

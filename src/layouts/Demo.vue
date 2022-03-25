@@ -6,9 +6,9 @@
       <div class="sticky flex flex-col gap-4 w-64 h-fit top-6 bg-white dark:bg-dark">
         <div>
           <RangeInput
-            v-for="(item, id) in rangeInputs"
-            :key="id"
-            :id="`range-${id}`"
+            v-for="(item, name) in rangeInputs"
+            :key="name"
+            :name="name"
             :label="item.label"
             :min="item.min"
             :max="item.max"

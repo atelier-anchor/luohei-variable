@@ -1,4 +1,6 @@
 .DS_Store
 
-node_modules
-dist
+.vscode/
+dist/
+node_modules/
+temp/

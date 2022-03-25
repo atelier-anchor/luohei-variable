@@ -1,9 +1,10 @@
 <template>
   <div class="flex items-center gap-4">
-    <label :for="id" class="w-16">{{ label }}</label>
+    <label :for="`range-${name}`" class="w-16">{{ label }}</label>
     <input
       type="range"
-      :id="id"
+      :id="`range-${name}`"
+      :name="`range-${name}`"
       :value="modelValue"
       :min="min"
       :max="max"
@@ -15,7 +16,7 @@
 
 <script setup>
 defineProps({
-  id: String,
+  name: String,
   label: String,
   min: Number,
   max: Number,
