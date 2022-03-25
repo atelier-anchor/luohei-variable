@@ -3,15 +3,13 @@
     <p class="text-lg font-optical-size-lg max-w-lg" v-html="text"></p>
     <div>
       <ul class="flex gap-8 justify-center">
-        <li><span class="mr-4">设计</span>刘育黎</li>
+        <li><span class="mr-4">设计</span><a href="mailto:owill@foxmail.com">刘育黎</a></li>
         <li><span class="mr-4">导师</span>杜钦</li>
       </ul>
-      <p>（同济大学设计创意学院）</p>
+      <p>（<a href="https://tjdi.tongji.edu.cn/">同济大学设计创意学院</a>）</p>
       <p>
-        <span class="mr-4">技术支持</span>曾祥东 （<a
+        <span class="mr-4">技术支持</span><a href="mailto:xdzeng96@gmail.com">曾祥东</a> （<a
           href="https://atelier-anchor.com/"
-          target="_blank"
-          class="hover:underline"
           >atelierAnchor</a
         >）
       </p>

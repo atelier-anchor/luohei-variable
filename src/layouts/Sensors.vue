@@ -27,8 +27,8 @@
           class="hidden appearance-none"
         />
         <label for="checkbox-show-value" :class="{ 'font-bold': showValue }">显示值</label>
-        <button :class="{ 'font-bold': voiceControlXwgt }" @click="toggleX">声控变量 X</button>
-        <button :class="{ 'font-bold': voiceControlYwgt }" @click="toggleY">声控变量 Y</button>
+        <button :class="{ 'font-bold': voiceControlXwgt }" @click="toggleX">声控 X</button>
+        <button :class="{ 'font-bold': voiceControlYwgt }" @click="toggleY">声控 Y</button>
       </div>
     </div>
   </ColorContainer>

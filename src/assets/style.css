@@ -22,18 +22,21 @@
   }
 
   a,
-  label {
-    @apply transition-[font-variation-settings];
-  }
-
-  button {
-    font: inherit;
-  }
-
+  button,
   label[for^='checkbox'],
   label[for^='radio'] {
     @apply cursor-pointer;
     @apply select-none;
+    @apply transition-[font-variation-settings];
+
+    &:hover,
+    &:active {
+      @apply font-bold;
+    }
+  }
+
+  button {
+    font: inherit;
   }
 }
 

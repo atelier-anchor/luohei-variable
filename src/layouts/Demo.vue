@@ -53,7 +53,7 @@
         </div>
       </div>
       <div
-        class="flex-1 text-[2rem] overflow-x-auto"
+        class="flex-1 text-[2rem] overflow-x-auto break-words"
         :style="{
           fontSize: `${rangeInputs.size.value}px`,
           fontVariationSettings: `'XWGT' ${rangeInputs.xwgt.value}, 'YWGT' ${rangeInputs.ywgt.value}`,
