@@ -21,7 +21,12 @@
     font-variation-settings: var(--font-variation-normal);
   }
 
-  a,
+  a:hover,
+  a:active {
+    @apply transition-[font-variation-settings];
+    @apply font-bold;
+  }
+
   button,
   label[for^='checkbox'],
   label[for^='radio'] {
@@ -29,9 +34,10 @@
     @apply select-none;
     @apply transition-[font-variation-settings];
 
-    &:hover,
-    &:active {
-      @apply font-bold;
+    @media (pointer: fine) {
+      &:hover {
+        @apply font-bold;
+      }
     }
   }
 

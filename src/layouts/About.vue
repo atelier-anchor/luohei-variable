@@ -6,10 +6,11 @@
         <li><span class="mr-4">设计</span><a href="mailto:owill@foxmail.com">刘育黎</a></li>
         <li><span class="mr-4">导师</span>杜钦</li>
       </ul>
-      <p>（<a href="https://tjdi.tongji.edu.cn/">同济大学设计创意学院</a>）</p>
+      <p>（<a href="https://tjdi.tongji.edu.cn/" target="_blank">同济大学设计创意学院</a>）</p>
       <p>
         <span class="mr-4">技术支持</span><a href="mailto:xdzeng96@gmail.com">曾祥东</a> （<a
           href="https://atelier-anchor.com/"
+          target="_blank"
           >atelierAnchor</a
         >）
       </p>
