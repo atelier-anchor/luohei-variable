@@ -7,8 +7,8 @@
         ref="gridContainer"
         @click="update($event)"
         @mousemove="update($event)"
-        @touchstart="update($event.touches[0])"
-        @touchmove="update($event.touches[0])"
+        @touchstart.passive="update($event.touches[0])"
+        @touchmove.passive="update($event.touches[0])"
       >
         <div
           v-for="(item, idx) in grid.content"

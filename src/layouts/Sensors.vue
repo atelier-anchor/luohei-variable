@@ -4,13 +4,7 @@
       class="relative flex flex-col items-center justify-center gap-16 text-center h-screen max-w-screen-2xl mx-auto"
       @mousemove="handleMousemove"
     >
-      <div
-        contenteditable
-        class="text-[14rem] sm:text-[16rem] leading-none pt-8 sm:pt-0"
-        :style="{ 'font-variation-settings': `'XWGT' ${axes.xwgt}, 'YWGT' ${axes.ywgt}` }"
-      >
-        永
-      </div>
+      <EditableText :xwgt="axes.xwgt" :ywgt="axes.ywgt" class="pt-8 sm:pt-0">永</EditableText>
       <div class="flex gap-16" :class="{ hidden: !showValue }">
         <div>XWGT = {{ axes.xwgt }}</div>
         <div>YWGT = {{ axes.ywgt }}</div>
@@ -35,9 +29,10 @@
 </template>
 
 <script setup>
-import { reactive, ref } from 'vue'
+import { onUnmounted, reactive, ref } from 'vue'
 import { clamp, scale, HEADER_HEIGHT } from '../utils'
 import ColorContainer from '../components/ColorContainer.vue'
+import EditableText from '../components/EditableText.vue'
 import InitializeButton from '../components/InitializeButton.vue'
 
 const axes = reactive({ xwgt: 250, ywgt: 500 })
@@ -132,4 +127,9 @@ const toggleY = () => {
   voiceControlYwgt.value = !voiceControlYwgt.value
   toggleMicrophone()
 }
+
+onUnmounted(() => {
+  stopMicrophone()
+  window.removeEventListener('deviceorientation', handleOrientation)
+})
 </script>
