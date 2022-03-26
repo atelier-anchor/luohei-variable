@@ -9,7 +9,7 @@
         <div>XWGT = {{ axes.xwgt }}</div>
         <div>YWGT = {{ axes.ywgt }}</div>
       </div>
-      <InitializeButton :listener="handleOrientation">点击这里开始…</InitializeButton>
+      <InitializeButton :listener="handleOrientation">点击这里开启方向感应…</InitializeButton>
       <div class="absolute top-20 left-0">
         <div class="flex flex-col items-start">
           <input
@@ -20,8 +20,8 @@
             class="hidden appearance-none"
           />
           <label for="checkbox-show-value" :class="{ 'font-bold': showValue }">显示值</label>
-          <button :class="{ 'font-bold': voiceControlXwgt }" @click="toggleX">声控 X</button>
-          <button :class="{ 'font-bold': voiceControlYwgt }" @click="toggleY">声控 Y</button>
+          <button :class="{ 'font-bold': voiceControl.xwgt }" @click="toggleX">声控 X</button>
+          <button :class="{ 'font-bold': voiceControl.ywgt }" @click="toggleY">声控 Y</button>
         </div>
       </div>
     </div>
@@ -36,28 +36,27 @@ import EditableText from '../components/EditableText.vue'
 import InitializeButton from '../components/InitializeButton.vue'
 
 const axes = reactive({ xwgt: 250, ywgt: 500 })
+const voiceControl = reactive({ xwgt: false, ywgt: false })
 const showValue = ref(true)
-const voiceControlXwgt = ref(false)
-const voiceControlYwgt = ref(false)
 
 const handleMousemove = (event) => {
-  if (!voiceControlXwgt.value) {
+  if (!voiceControl.xwgt) {
     const x = event.clientX / window.innerWidth
     axes.xwgt = scale(x)
   }
-  if (!voiceControlYwgt.value) {
+  if (!voiceControl.ywgt) {
     const y = (event.clientY - HEADER_HEIGHT) / (window.innerHeight - HEADER_HEIGHT)
     axes.ywgt = scale(y)
   }
 }
 
 const handleOrientation = (event) => {
-  if (!voiceControlXwgt.value) {
+  if (!voiceControl.xwgt) {
     const beta = clamp(event.beta, -90, 90)
     const x = 1 - Math.cos((beta * Math.PI) / 180)
     axes.xwgt = scale(x)
   }
-  if (!voiceControlYwgt.value) {
+  if (!voiceControl.ywgt) {
     const y = 1 - Math.cos((event.gamma * Math.PI) / 180)
     axes.ywgt = scale(y)
   }
@@ -69,20 +68,6 @@ let audioContext = null
 const rms = (data) => Math.sqrt(data.reduce((a, b) => a + b * b, 0) / data.length)
 const normalize = (x, min, max) => (clamp(x, min, max) - min) / (max - min)
 
-const setXwgt = (analyser, data) => {
-  if (voiceControlXwgt.value) {
-    analyser.getFloatTimeDomainData(data)
-    axes.xwgt = scale(normalize(rms(data), 0, 0.2))
-  }
-}
-
-const setYwgt = (analyser, data) => {
-  if (voiceControlYwgt.value) {
-    analyser.getFloatFrequencyData(data)
-    axes.ywgt = scale(normalize(rms(data), 40, 200))
-  }
-}
-
 const handleMicrophone = async (e) => {
   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false })
@@ -92,11 +77,12 @@ const handleMicrophone = async (e) => {
     const analyser = audioContext.createAnalyser()
     mediaStreamAudioSource.connect(analyser)
 
-    const dataX = new Float32Array(analyser.fftSize)
-    const dataY = new Float32Array(analyser.fftSize)
+    const data = new Float32Array(analyser.fftSize)
     const onFrame = () => {
-      setXwgt(analyser, dataX)
-      setYwgt(analyser, dataY)
+      analyser.getFloatTimeDomainData(data)
+      const value = scale(normalize(rms(data), 0, 0.25))
+      if (voiceControl.xwgt) axes.xwgt = value
+      if (voiceControl.ywgt) axes.ywgt = value
       requestID = window.requestAnimationFrame(onFrame)
     }
     requestID = window.requestAnimationFrame(onFrame)
@@ -107,13 +93,16 @@ const handleMicrophone = async (e) => {
 
 const stopMicrophone = () => {
   if (audioContext && requestID) {
-    audioContext.close()
-    window.cancelAnimationFrame(requestID)
+    audioContext.close().then(() => {
+      window.cancelAnimationFrame(requestID)
+      audioContext = null
+      requestID = null
+    })
   }
 }
 
 const toggleMicrophone = () => {
-  if (voiceControlXwgt.value || voiceControlYwgt.value) {
+  if (voiceControl.xwgt || voiceControl.ywgt) {
     window.removeEventListener('deviceorientation', handleOrientation)
     handleMicrophone()
   } else {
@@ -123,12 +112,12 @@ const toggleMicrophone = () => {
 }
 
 const toggleX = () => {
-  voiceControlXwgt.value = !voiceControlXwgt.value
+  voiceControl.xwgt = !voiceControl.xwgt
   toggleMicrophone()
 }
 
 const toggleY = () => {
-  voiceControlYwgt.value = !voiceControlYwgt.value
+  voiceControl.ywgt = !voiceControl.ywgt
   toggleMicrophone()
 }
 
