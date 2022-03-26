@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col items-center justify-center gap-8 text-center h-screen px-8 sm:px-16">
+  <div class="text-rfs flex flex-col items-center justify-center gap-8 text-center h-screen px-8 sm:px-16">
     <div>
-      <p class="text-lg font-optical-size-lg">
+      <p class="text-rfs-lg font-optical-size-lg">
         In Memory of<br />
         <a
           href="https://typemedia.org/noordzij/"
@@ -12,7 +12,7 @@
       </p>
       <p>(1931&ndash;2022)</p>
     </div>
-    <p class="text-lg font-optical-size-lg max-w-3xl" v-html="text"></p>
+    <p class="text-rfs-lg font-optical-size-lg max-w-3xl" v-html="text"></p>
     <div>
       <ul class="flex gap-8 justify-center">
         <li><span class="mr-4">设计</span><a href="mailto:owill@foxmail.com">刘育黎</a></li>
@@ -38,3 +38,15 @@ const text =
     .replace(/，/g, '<span class="mr-2">，</span>')
     .replace(/([\u4e00-\u9fff]{2})(.)$/g, '<span class="whitespace-nowrap">$1</span>$2')
 </script>
+
+<style scoped>
+.text-rfs {
+  font-size: calc(0.825rem + 0.375vw);
+  @apply xl:text-base;
+}
+
+.text-rfs-lg {
+  font-size: calc(1rem + 0.625vw);
+  @apply xl:text-lg;
+}
+</style>
