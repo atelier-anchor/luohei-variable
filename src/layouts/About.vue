@@ -20,11 +20,10 @@
       </ul>
       <p>（<a href="https://tjdi.tongji.edu.cn/" target="_blank">同济大学设计创意学院</a>）</p>
       <p>
-        <span class="mr-4">技术支持</span><a href="mailto:xdzeng96@gmail.com">曾祥东</a> （<a
-          href="https://atelier-anchor.com/"
-          target="_blank"
-          >atelierAnchor</a
-        >）
+        <span class="mr-4">技术支持</span>
+        <a href="mailto:xdzeng96@gmail.com">曾祥东</a>
+        <span class="ml-2"></span>
+        （<a href="https://atelier-anchor.com/" target="_blank">atelierAnchor</a>）
       </p>
     </div>
     <p>二〇二二年三月<span class="mr-4"></span>作于上海家中</p>
@@ -33,7 +32,7 @@
 
 <script setup>
 const text =
-  '可变字体「络黑」源自刘育黎的毕业设计项目「面向动态图形的中文可变字体」，由两个变量作&NoBreak;用于笔画粗细，产生不同的对比样式。'
+  '可变字体「络黑」源自刘育黎的毕业设计项目「面向动态图形的中文可变字体」，由两个变量作用于笔画粗细，产生不同的对比样式。'
     .replace(/「/g, '<span class="ml-2">「</span>')
     .replace(/」([\u4e00-\u9fff])/g, '<span class="mr-2">」</span>$1')
     .replace(/，/g, '<span class="mr-2">，</span>')
