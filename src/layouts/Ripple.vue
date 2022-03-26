@@ -48,7 +48,7 @@ const updateGridContent = () => {
   const gridContentLen = grid.content.length
   const gridCellNum = grid.rows * grid.cols
   if (gridContentLen <= gridCellNum) {
-    for (let i = gridContentLen; i < gridCellNum; i++) grid.content.push(randomChar())
+    for (let i = gridContentLen; i < gridCellNum; i++) grid.content.push(randomChar(true))
   } else {
     grid.content.splice(gridCellNum)
   }

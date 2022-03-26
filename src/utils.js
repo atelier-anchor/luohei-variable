@@ -3,8 +3,10 @@ const LUOHEI_CHARS =
 
 export const HEADER_HEIGHT = 56
 
-export const randomChar = (random = true) =>
-  random ? LUOHEI_CHARS[Math.floor(Math.random() * LUOHEI_CHARS.length)] : '字'
+export const randomChar = (excludeSimple = false) => {
+  const chars = excludeSimple ? LUOHEI_CHARS.replace(/[一二三]/g, '') : LUOHEI_CHARS
+  return chars[Math.floor(Math.random() * chars.length)]
+}
 
 export const clamp = (value, min, max) => Math.min(Math.max(value, min), max)
 
