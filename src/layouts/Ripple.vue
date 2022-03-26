@@ -7,7 +7,6 @@
         ref="gridContainer"
         @click="update($event)"
         @mousemove="update($event)"
-        @touchstart.passive="update($event.touches[0])"
         @touchmove.passive="update($event.touches[0])"
       >
         <div
