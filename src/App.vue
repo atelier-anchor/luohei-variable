@@ -19,14 +19,13 @@ const nav = {
   demo: { title: '字样', component: Demo },
   sensors: { title: '感应', component: Sensors },
   ripple: { title: '涟漪', component: Ripple },
+  about: { title: '关于', component: About },
 }
 
 const currentPath = ref(window.location.hash)
 const currentView = computed(() => {
   const path = currentPath.value.slice(2)
-  if (path in nav) return nav[path].component
-  if (path === 'about') return About
-  return Home
+  return path in nav ? nav[path].component : Home
 })
 
 window.addEventListener('hashchange', () => (currentPath.value = window.location.hash))

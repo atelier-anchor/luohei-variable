@@ -12,7 +12,9 @@
         <nav class="absolute left-8 sm:static sm:block" :class="{ hidden: !showNav }">
           <ul class="flex gap-4">
             <li v-for="(item, name) in nav" :key="name" class="tracking">
-              <a :href="`#/${name}`" :class="{ 'font-bold': isActive(name) }">{{ item.title }}</a>
+              <a :href="`#/${name}`" :class="{ 'font-bold': currentPath.includes(name) }">
+                {{ item.title }}
+              </a>
             </li>
           </ul>
         </nav>
@@ -23,7 +25,6 @@
         >
           开始
         </button>
-        <a href="#/about" class="tracking" :class="{ 'font-bold': isActive('about') }">关于</a>
       </div>
     </div>
   </header>
@@ -33,11 +34,10 @@
 import { ref } from 'vue'
 
 const showNav = ref(false)
-const isActive = (name) => props.currentPath.includes(name)
 
 window.addEventListener('resize', () => (showNav.value = false))
 
-const props = defineProps({
+defineProps({
   nav: Object,
   currentPath: String,
 })
