@@ -40,13 +40,15 @@ const voiceControl = reactive({ xwgt: false, ywgt: false })
 const showValue = ref(true)
 
 const handleMousemove = (event) => {
-  if (!voiceControl.xwgt) {
-    const x = event.clientX / window.innerWidth
-    axes.xwgt = scale(x)
-  }
-  if (!voiceControl.ywgt) {
-    const y = (event.clientY - HEADER_HEIGHT) / (window.innerHeight - HEADER_HEIGHT)
-    axes.ywgt = scale(y)
+  if (window.matchMedia('(pointer: fine)').matches) {
+    if (!voiceControl.xwgt) {
+      const x = event.clientX / window.innerWidth
+      axes.xwgt = scale(x)
+    }
+    if (!voiceControl.ywgt) {
+      const y = (event.clientY - HEADER_HEIGHT) / (window.innerHeight - HEADER_HEIGHT)
+      axes.ywgt = scale(y)
+    }
   }
 }
 
