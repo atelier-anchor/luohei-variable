@@ -1,9 +1,7 @@
 <template>
   <ColorContainer class="px-8 sm:px-16">
-    <div
-      class="flex flex-col sm:flex-row sm:justify-between gap-8 min-h-screen max-w-screen-2xl pt-20 mx-auto"
-    >
-      <div class="sticky flex flex-col gap-4 w-64 h-fit top-6 bg-white dark:bg-dark">
+    <div class="flex flex-col md:flex-row gap-8 h-screen max-w-screen-2xl pt-20 pb-6 mx-auto">
+      <div class="flex flex-col gap-4 w-64">
         <div>
           <RangeInput
             v-for="(item, name) in rangeInputs"
@@ -53,7 +51,7 @@
         </div>
       </div>
       <div
-        class="flex-1 text-[2rem] overflow-x-auto break-words"
+        class="flex-1 text-[2rem] overflow-auto break-words"
         :style="{
           fontSize: `${rangeInputs.size.value}px`,
           fontVariationSettings: `'XWGT' ${rangeInputs.xwgt.value}, 'YWGT' ${rangeInputs.ywgt.value}`,
@@ -77,9 +75,13 @@ import ColorContainer from '../components/ColorContainer.vue'
 import RangeInput from '../components/RangeInput.vue'
 
 const texts = {
-  a: ['天上取样人间织， 染作江南春水色。', '春江潮水连海平， 海上明月共潮生。'],
-  b: ['面向动态图形的中文可变字体设计', '「络黑」 LuoHei Variable'],
-  c: ['风我酬意警鹰纛\u{30EDD}', 'Gampsocleis gratiosa', '2.718281828459…'],
+  a: [
+    '天上取样人间织， 染作江南春水色。',
+    '春江潮水连海平， 海上明月共潮生。',
+    'Ad astra abyssosque!',
+  ],
+  b: ['面向动态图形的中文可变字体 「络黑」', '(LuoHei Variable) 设计于 2020\u{2013}2022 年间'],
+  c: ['个风我酬意警鹰纛\u{30EDD}', 'Fox nymphs grab quick-jived waltz.', '2.718281828459…'],
 }
 
 const textTypes = [
@@ -103,17 +105,31 @@ const rangeInputs = reactive({
 const textType = ref(textTypes[0].value)
 const writingMode = ref(writingModes[0].value)
 
-// Manually set the weights of different puncts.
-const puncts = '，，，，。。。！'.split('')
-const generateRandomText = () =>
-  [...Array(8).keys()]
+const insertQuotes = (s, quoteProb) => {
+  if (Math.random() > quoteProb) return s
+  const a = Math.floor(Math.random() * (s.length - 1))
+  const b = Math.floor(Math.random() * (s.length - a)) + a + 1
+  const left = a === 0 ? '「' : ' 「'
+  const right = b === s.length ? '」' : '」 '
+  return s.slice(0, a) + left + s.slice(a, b) + right + s.slice(b)
+}
+
+const generateRandomText = (
+  sentenceNum = 8,
+  sentenceMinLen = 5,
+  sentenceMaxLen = 15,
+  quoteProb = 0.2,
+  puncts = '，，，，。。。！'.split('') // Manually set the weights of different puncts.
+) =>
+  [...Array(sentenceNum).keys()]
     .map(() => {
-      const len = Math.floor(Math.random() * 15) + 5
+      const len = Math.floor(Math.random() * sentenceMaxLen) + sentenceMinLen
+      const sentence = [...Array(len).keys()].map(() => randomChar()).join('')
       const punct = puncts[Math.floor(Math.random() * puncts.length)]
-      return [...Array(len).keys()].map(() => randomChar()).join('') + punct + ' '
+      return insertQuotes(sentence, quoteProb) + punct
     })
-    .join('')
-    .replace(/.\s$/g, '。')
+    .join(' ')
+    .replace(/.$/g, '。')
 const randomText = ref('')
 const getText = (type) => (type === 'random' ? [randomText.value] : texts[type])
 

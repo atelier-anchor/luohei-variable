@@ -5,7 +5,7 @@
       :class="[showNav ? 'justify-end' : 'justify-between']"
     >
       <template v-if="!showNav">
-        <button v-if="isHome" class="tracking">观看动画</button>
+        <button v-if="currentPath === '' || currentPath === '#/'" class="tracking">观看动画</button>
         <a v-else href="#/"><span class="tracking">络黑 </span>LuoHei Variable</a>
       </template>
       <div class="flex gap-4">
@@ -16,7 +16,11 @@
             </li>
           </ul>
         </nav>
-        <button class="sm:hidden tracking" :class="{ 'font-bold': showNav }" @click="toggleNav">
+        <button
+          class="sm:hidden tracking"
+          :class="{ 'font-bold': showNav }"
+          @click="showNav = !showNav"
+        >
           开始
         </button>
         <a href="#/about" class="tracking" :class="{ 'font-bold': isActive('about') }">关于</a>
@@ -26,13 +30,10 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
-
-const isActive = (name) => props.currentPath.includes(name)
-const isHome = computed(() => props.currentPath === '' || props.currentPath === '#/')
+import { ref } from 'vue'
 
 const showNav = ref(false)
-const toggleNav = () => (showNav.value = !showNav.value)
+const isActive = (name) => props.currentPath.includes(name)
 
 window.addEventListener('resize', () => (showNav.value = false))
 
