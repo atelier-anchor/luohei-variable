@@ -40,23 +40,27 @@ const showValue = ref(true)
 const voiceControlXwgt = ref(false)
 const voiceControlYwgt = ref(false)
 
-const useMicrophone = () => voiceControlXwgt.value || voiceControlYwgt.value
-
 const handleMousemove = (event) => {
-  if (!useMicrophone()) {
+  if (!voiceControlXwgt.value) {
     const x = event.clientX / window.innerWidth
-    const y = (event.clientY - HEADER_HEIGHT) / (window.innerHeight - HEADER_HEIGHT)
     axes.xwgt = scale(x)
+  }
+  if (!voiceControlYwgt.value) {
+    const y = (event.clientY - HEADER_HEIGHT) / (window.innerHeight - HEADER_HEIGHT)
     axes.ywgt = scale(y)
   }
 }
 
 const handleOrientation = (event) => {
-  const beta = clamp(event.beta, -90, 90)
-  const x = 1 - Math.cos((beta * Math.PI) / 180)
-  const y = 1 - Math.cos((event.gamma * Math.PI) / 180)
-  axes.xwgt = scale(x)
-  axes.ywgt = scale(y)
+  if (!voiceControlXwgt.value) {
+    const beta = clamp(event.beta, -90, 90)
+    const x = 1 - Math.cos((beta * Math.PI) / 180)
+    axes.xwgt = scale(x)
+  }
+  if (!voiceControlYwgt.value) {
+    const y = 1 - Math.cos((event.gamma * Math.PI) / 180)
+    axes.ywgt = scale(y)
+  }
 }
 
 let requestID = null
@@ -109,7 +113,7 @@ const stopMicrophone = () => {
 }
 
 const toggleMicrophone = () => {
-  if (useMicrophone()) {
+  if (voiceControlXwgt.value || voiceControlYwgt.value) {
     window.removeEventListener('deviceorientation', handleOrientation)
     handleMicrophone()
   } else {
