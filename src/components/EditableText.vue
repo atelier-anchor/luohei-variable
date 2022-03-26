@@ -14,9 +14,3 @@ defineProps({
   ywgt: Number,
 })
 </script>
-
-<style scoped>
-[contenteditable]:focus {
-  @apply outline-light;
-}
-</style>
