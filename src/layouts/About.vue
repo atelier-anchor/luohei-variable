@@ -1,5 +1,17 @@
 <template>
   <div class="flex flex-col items-center justify-center gap-8 text-center h-screen px-8 sm:px-16">
+    <div>
+      <p class="text-lg font-optical-size-lg">
+        In Memory of<br />
+        <a
+          href="https://typemedia.org/noordzij/"
+          target="_blank"
+          class="font-bold hover:font-optical-size-lg"
+          >Gerrit Noordzij</a
+        >
+      </p>
+      <p>(1931&ndash;2022)</p>
+    </div>
     <p class="text-lg font-optical-size-lg max-w-3xl" v-html="text"></p>
     <div>
       <ul class="flex gap-8 justify-center">

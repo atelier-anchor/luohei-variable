@@ -55,6 +55,7 @@
 
   .font-optical-size-lg {
     --font-variation-normal: 'XWGT' 200, 'YWGT' 400;
+    --font-variation-bold: 'XWGT' 200, 'YWGT' 800;
     font-variation-settings: var(--font-variation-normal);
   }
 
