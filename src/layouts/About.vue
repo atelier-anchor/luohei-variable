@@ -1,5 +1,7 @@
 <template>
-  <div class="text-rfs flex flex-col items-center justify-center gap-8 text-center h-screen px-8 sm:px-16">
+  <div
+    class="text-rfs flex flex-col items-center justify-center gap-8 text-center h-screen px-8 sm:px-16"
+  >
     <div>
       <p class="text-rfs-lg font-optical-size-lg">
         In Memory of<br />
@@ -31,12 +33,11 @@
 </template>
 
 <script setup>
-const text =
+import { cjkKern } from '../utils'
+
+const text = cjkKern(
   '可变字体「络黑」源自刘育黎的毕业设计项目「面向动态图形的中文可变字体」，由两个变量作用于笔画粗细，产生不同的对比样式。'
-    .replace(/「/g, '<span class="ml-2">「</span>')
-    .replace(/」([\u4e00-\u9fff])/g, '<span class="mr-2">」</span>$1')
-    .replace(/，/g, '<span class="mr-2">，</span>')
-    .replace(/([\u4e00-\u9fff]{2})(.)$/g, '<span class="whitespace-nowrap">$1</span>$2')
+)
 </script>
 
 <style scoped>

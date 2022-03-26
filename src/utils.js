@@ -16,3 +16,13 @@ export const expScale = (n, k, min = 100, max = 900) =>
   [...Array(n).keys()].map((i) =>
     Math.round(((Math.exp(k * i) - 1) / (Math.exp(k * n - k) - 1)) * (max - min) + min)
   )
+
+export const cjkKern = (str) =>
+  str
+    .replace(/，([\u4e00-\u9fff])/g, '<span class="cjk-kern-sm">，</span>$1')
+    .replace(/([。！])([\u4e00-\u9fff])/g, '<span class="cjk-kern-md">$1</span>$2')
+    .replace(/([\u4e00-\u9fff])「/g, '$1<span class="cjk-kern-sm"></span>「')
+    .replace(/」([\u4e00-\u9fff])/g, '<span class="cjk-kern-sm">」</span>$1')
+    .replace(/，「/g, '<span class="cjk-kern-sm">，</span>「')
+    .replace(/([。！])「/g, '<span class="cjk-kern-md">$1</span>「')
+    .replace(/([\u4e00-\u9fff])([。！])$/g, '<span class="whitespace-nowrap">$1</span>$2')

@@ -58,29 +58,25 @@
           writingMode: writingMode,
           paddingTop: writingMode === 'vertical-rl' ? '0.2em' : '0',
         }"
-      >
-        <template v-for="line in getText(textType)">
-          {{ line }}
-          <br />
-        </template>
-      </div>
+        v-html="getTextHtml(textType)"
+      ></div>
     </div>
   </ColorContainer>
 </template>
 
 <script setup>
 import { onMounted, reactive, ref } from 'vue'
-import { randomChar, scale } from '../utils'
+import { cjkKern, randomChar, scale } from '../utils'
 import ColorContainer from '../components/ColorContainer.vue'
 import RangeInput from '../components/RangeInput.vue'
 
 const texts = {
   a: [
-    '天上取样人间织， 染作江南春水色。',
-    '春江潮水连海平， 海上明月共潮生。',
+    '天上取样人间织，染作江南春水色。',
+    '春江潮水连海平，海上明月共潮生。',
     'Ad astra abyssosque!',
   ],
-  b: ['面向动态图形的中文可变字体 「络黑」', '(LuoHei Variable) 设计于 2020\u{2013}2022 年间'],
+  b: ['面向动态图形的中文可变字体「络黑」', '(LuoHei Variable)，设计于 2020\u{2013}2022 年间。'],
   c: ['个风我酬意警鹰纛\u{30EDD}', 'Fox nymphs grab quick-jived waltz.', '2.718281828459…'],
 }
 
@@ -109,18 +105,10 @@ const insertQuotes = (s, quoteProb) => {
   if (Math.random() > quoteProb) return s
   const a = Math.floor(Math.random() * (s.length - 1))
   const b = Math.floor(Math.random() * (s.length - a)) + a + 1
-  const left = a === 0 ? '「' : ' 「'
-  const right = b === s.length ? '」' : '」 '
-  return s.slice(0, a) + left + s.slice(a, b) + right + s.slice(b)
+  return `${s.slice(0, a)}「${s.slice(a, b)}」${s.slice(b)}`
 }
 
-const generateRandomText = (
-  sentenceNum = 8,
-  sentenceMinLen = 5,
-  sentenceMaxLen = 15,
-  quoteProb = 0.2,
-  puncts = '，，，，。。。！'.split('') // Manually set the weights of different puncts.
-) =>
+const generateRandomPar = (sentenceNum, sentenceMinLen, sentenceMaxLen, quoteProb, puncts) =>
   [...Array(sentenceNum).keys()]
     .map(() => {
       const len = Math.floor(Math.random() * sentenceMaxLen) + sentenceMinLen
@@ -128,10 +116,23 @@ const generateRandomText = (
       const punct = puncts[Math.floor(Math.random() * puncts.length)]
       return insertQuotes(sentence, quoteProb) + punct
     })
-    .join(' ')
+    .join('')
     .replace(/.$/g, '。')
+
+const generateRandomText = (
+  parNum = 3,
+  sentenceNum = 5,
+  sentenceMinLen = 5,
+  sentenceMaxLen = 15,
+  quoteProb = 0.2,
+  puncts = '，，，，。。。！'.split('') // Manually set the weights of different puncts.
+) =>
+  [...Array(parNum).keys()].map(() =>
+    generateRandomPar(sentenceNum, sentenceMinLen, sentenceMaxLen, quoteProb, puncts)
+  )
 const randomText = ref('')
-const getText = (type) => (type === 'random' ? [randomText.value] : texts[type])
+const getTextHtml = (type) =>
+  (type === 'random' ? randomText.value : texts[type]).map(cjkKern).join('<br />')
 
 // TODO: avoid using DOM query
 onMounted(() => {
