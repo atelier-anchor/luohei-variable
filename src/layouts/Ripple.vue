@@ -2,8 +2,8 @@
   <ColorContainer>
     <div class="text-xl sm:text-2xl leading-none select-none cursor-default">
       <div
-        class="grid content-center justify-center items-center justify-items-center h-screen pt-14"
-        :style="{ 'grid-template': grid.template }"
+        class="grid content-center justify-center items-center justify-items-center pt-14"
+        :style="{ 'grid-template': grid.template, height: grid.height }"
         ref="gridContainer"
         @click="update($event)"
         @mousemove="update($event)"
@@ -27,7 +27,7 @@ import { clamp, expScale, randomChar, HEADER_HEIGHT } from '../utils'
 import ColorContainer from '../components/ColorContainer.vue'
 
 const gridContainer = ref(null)
-const grid = reactive({ size: 0, rows: 0, cols: 0, template: '', content: [] })
+const grid = reactive({ size: 0, rows: 0, cols: 0, template: '', height: '', content: [] })
 
 const timeInterval = 40
 const tailLength = 8
@@ -37,6 +37,7 @@ const updateGridSize = () => {
   const fontSize = window.getComputedStyle(gridContainer.value).fontSize
   grid.size = parseInt(fontSize.replace('px', '')) * 1.25
   grid.template = `repeat(auto-fit, ${grid.size}px) / repeat(auto-fit, ${grid.size}px)`
+  grid.height = `${window.innerHeight}px`
 }
 
 const updateGridNum = () => {
