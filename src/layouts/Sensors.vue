@@ -105,11 +105,14 @@ const stopMicrophone = () => {
 
 const toggleMicrophone = () => {
   if (voiceControl.xwgt || voiceControl.ywgt) {
-    window.removeEventListener('deviceorientation', handleOrientation)
     handleMicrophone()
   } else {
-    window.addEventListener('deviceorientation', handleOrientation)
     stopMicrophone()
+  }
+  if (voiceControl.xwgt && voiceControl.ywgt) {
+    window.removeEventListener('deviceorientation', handleOrientation)
+  } else {
+    window.addEventListener('deviceorientation', handleOrientation)
   }
 }
 
