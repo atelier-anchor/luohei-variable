@@ -24,7 +24,7 @@
       <p>
         <span class="mr-4">技术支持</span>
         <a href="mailto:xdzeng96@gmail.com">曾祥东</a>
-        <span class="ml-2"></span>
+        <span class="cjk-kern-sm"></span>
         （<a href="https://atelier-anchor.com/" target="_blank">atelierAnchor</a>）
       </p>
     </div>

@@ -25,4 +25,6 @@ export const cjkKern = (str) =>
     .replace(/」([\u4e00-\u9fff])/g, '<span class="cjk-kern-sm">」</span>$1')
     .replace(/，「/g, '<span class="cjk-kern-sm">，</span>「')
     .replace(/([。！])「/g, '<span class="cjk-kern-md">$1</span>「')
+    .replace(/([\u4e00-\u9fff])(\d)/g, '$1<span class="cjk-kern-xs"></span>$2')
+    .replace(/(\d)([\u4e00-\u9fff])/g, '$1<span class="cjk-kern-xs"></span>$2')
     .replace(/([\u4e00-\u9fff])([。！])$/g, '<span class="whitespace-nowrap">$1</span>$2')

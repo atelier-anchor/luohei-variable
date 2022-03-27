@@ -84,12 +84,16 @@
     @apply tracking-[0.25em];
     @apply -mr-[0.25em];
   }
+}
 
-  .cjk-kern-sm {
-    margin-inline-end: 0.25em;
-  }
+.cjk-kern-xs {
+  margin-inline-end: 0.1667em;
+}
 
-  .cjk-kern-md {
-    margin-inline-end: 0.5em;
-  }
+.cjk-kern-sm {
+  margin-inline-end: 0.25em;
+}
+
+.cjk-kern-md {
+  margin-inline-end: 0.5em;
 }
