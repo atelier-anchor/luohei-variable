@@ -66,7 +66,7 @@
 
 <script setup>
 import { onMounted, reactive, ref } from 'vue'
-import { cjkKern, randomChar, scale } from '../utils'
+import { randomChar, scale } from '../utils'
 import ColorContainer from '../components/ColorContainer.vue'
 import RangeInput from '../components/RangeInput.vue'
 
@@ -131,8 +131,7 @@ const generateRandomText = (
     generateRandomPar(sentenceNum, sentenceMinLen, sentenceMaxLen, quoteProb, puncts)
   )
 const randomText = ref('')
-const getTextHtml = (type) =>
-  (type === 'random' ? randomText.value : texts[type]).map(cjkKern).join('<br />')
+const getTextHtml = (type) => (type === 'random' ? randomText.value : texts[type]).join('<br />')
 
 // TODO: avoid using DOM query
 onMounted(() => {
