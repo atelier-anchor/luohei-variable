@@ -4,10 +4,7 @@
       class="flex text-sm font-optical-sm max-w-screen-2xl mx-auto"
       :class="[showNav ? 'justify-end' : 'justify-between']"
     >
-      <template v-if="!showNav">
-        <button v-if="currentPath === '' || currentPath === '#/'" class="tracking">观看动画</button>
-        <a v-else href="#/"><span class="tracking">络黑 </span>LuoHei Variable</a>
-      </template>
+      <a v-if="!showNav" href="#/"><span class="tracking">络黑 </span>LuoHei Variable</a>
       <div class="flex gap-4">
         <nav class="absolute left-8 sm:static sm:block" :class="{ hidden: !showNav }">
           <ul class="flex gap-4">
