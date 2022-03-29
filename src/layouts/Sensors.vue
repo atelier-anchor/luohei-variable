@@ -4,7 +4,7 @@
       class="relative flex flex-col items-center justify-center gap-16 text-center h-screen max-w-screen-2xl mx-auto"
       @mousemove="handleMousemove"
     >
-      <EditableText :xwgt="axes.xwgt" :ywgt="axes.ywgt" class="pt-8 sm:pt-0">永</EditableText>
+      <EditableText :xwgt="axes.xwgt" :ywgt="axes.ywgt" class="pt-8">永</EditableText>
       <div class="flex gap-16" :class="{ hidden: !showValue }">
         <div>XWGT = {{ axes.xwgt }}</div>
         <div>YWGT = {{ axes.ywgt }}</div>

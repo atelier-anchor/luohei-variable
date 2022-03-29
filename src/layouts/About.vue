@@ -1,6 +1,6 @@
 <template>
   <div
-    class="text-rfs flex flex-col items-center justify-center gap-8 text-center h-screen px-8 sm:px-16"
+    class="flex flex-col items-center justify-center gap-8 text-rfs-base text-center h-screen px-8 sm:px-16"
   >
     <div>
       <p class="text-rfs-lg font-optical-size-lg">
@@ -39,15 +39,3 @@ const text = cjkKern(
   '可变字体「络黑」源自刘育黎的毕业设计项目「面向动态图形的中文可变字体」，由两个变量作用于笔画粗细，产生不同的对比样式。'
 )
 </script>
-
-<style scoped>
-.text-rfs {
-  font-size: calc(0.825rem + 0.375vw);
-  @apply xl:text-base;
-}
-
-.text-rfs-lg {
-  font-size: calc(1rem + 0.625vw);
-  @apply xl:text-lg;
-}
-</style>

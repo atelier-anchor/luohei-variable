@@ -26,10 +26,13 @@
     font-variation-settings: var(--font-variation-normal);
   }
 
-  a:hover,
-  a:active {
+  a {
     @apply transition-font-variation;
-    @apply font-bold;
+
+    &:hover,
+    &:active {
+      @apply font-bold;
+    }
   }
 
   button,

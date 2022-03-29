@@ -1,6 +1,6 @@
 <template>
   <ColorContainer>
-    <div class="text-xl sm:text-2xl leading-none select-none cursor-default">
+    <div class="text-rfs-2xl leading-none select-none cursor-default">
       <div
         class="grid content-center justify-center items-center justify-items-center pt-14"
         :style="{ 'grid-template': grid.template, height: grid.height }"

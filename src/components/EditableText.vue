@@ -1,7 +1,7 @@
 <template>
   <div
     contenteditable
-    class="text-[14rem] sm:text-[16rem] leading-none"
+    class="text-rfs-18xl leading-none"
     :style="{ 'font-variation-settings': `'XWGT' ${xwgt}, 'YWGT' ${ywgt}` }"
   >
     <slot></slot>
