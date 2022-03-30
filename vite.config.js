@@ -3,8 +3,5 @@ import vue from '@vitejs/plugin-vue'
 
 export default defineConfig({
   base: '/luohei-variable/',
-  build: {
-    sourcemap: true,
-  },
   plugins: [vue()],
 })
