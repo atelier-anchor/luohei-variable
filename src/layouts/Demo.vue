@@ -5,69 +5,31 @@
         <div>
           <RangeInput
             v-for="(item, name) in rangeInputs"
-            :key="name"
-            :name="name"
-            :label="item.label"
-            :min="item.min"
-            :max="item.max"
+            :option="Object.assign({ name: name }, item)"
             v-model.number="item.value"
           />
         </div>
-        <div class="flex items-center gap-4">
-          <label class="w-16">文本</label>
-          <div class="flex gap-4">
-            <template v-for="item in textTypes">
-              <input
-                type="radio"
-                :id="item.name"
-                :name="item.name"
-                :value="item.value"
-                v-model="textType"
-                class="hidden appearance-none"
-              />
-              <label :for="item.name" :class="{ 'font-bold': item.value === textType }">
-                {{ item.label }}
-              </label>
-            </template>
-          </div>
-        </div>
-        <div class="flex items-center gap-4">
-          <label class="w-16">方向</label>
-          <div class="flex gap-4">
-            <template v-for="item in writingModes">
-              <input
-                type="radio"
-                :id="item.name"
-                :name="item.name"
-                :value="item.value"
-                v-model="writingMode"
-                class="hidden appearance-none"
-              />
-              <label :for="item.name" :class="{ 'font-bold': item.value === writingMode }">
-                {{ item.label }}
-              </label>
-            </template>
-          </div>
-        </div>
+        <RadioInputGroup label="文本" :options="textIds" v-model="textId" />
+        <RadioInputGroup label="方向" :options="writingModes" v-model="writingMode" />
       </div>
-      <div
-        class="flex-1 overflow-auto break-words"
-        :style="{
-          fontSize: `${rangeInputs.size.value}px`,
-          fontVariationSettings: `'XWGT' ${rangeInputs.xwgt.value}, 'YWGT' ${rangeInputs.ywgt.value}`,
-          writingMode: writingMode,
-          paddingTop: writingMode === 'vertical-rl' ? '0.2em' : '0',
-        }"
-        v-html="getTextHtml(textType)"
-      ></div>
+      <DemoText
+        :fontSize="rangeInputs.size.value"
+        :xwgt="rangeInputs.xwgt.value"
+        :ywgt="rangeInputs.ywgt.value"
+        :writingMode="writingMode"
+      >
+        <p v-for="p in text" v-html="p"></p>
+      </DemoText>
     </div>
   </ColorContainer>
 </template>
 
 <script setup>
-import { onMounted, reactive, ref } from 'vue'
+import { computed, onMounted, reactive, ref } from 'vue'
 import { randomChar, scale } from '../utils'
 import ColorContainer from '../components/ColorContainer.vue'
+import DemoText from '../components/DemoText.vue'
+import RadioInputGroup from '../components/RadioInputGroup.vue'
 import RangeInput from '../components/RangeInput.vue'
 
 const texts = {
@@ -80,11 +42,11 @@ const texts = {
   c: ['个风我酬意警鹰纛\u{30EDD}', 'Fox nymphs grab quick-jived waltz.', '2.718281828459…'],
 }
 
-const textTypes = [
-  { name: 'radio-a', value: 'a', label: '甲' },
-  { name: 'radio-b', value: 'b', label: '乙' },
-  { name: 'radio-c', value: 'c', label: '丙' },
-  { name: 'radio-random', value: 'random', label: '随机' },
+const textIds = [
+  { name: 'a', value: 'a', label: '甲' },
+  { name: 'b', value: 'b', label: '乙' },
+  { name: 'c', value: 'c', label: '丙' },
+  { name: 'random', value: 'random', label: '随机' },
 ]
 
 const writingModes = [
@@ -98,7 +60,7 @@ const rangeInputs = reactive({
   ywgt: { label: '变量 Y', min: 100, max: 900, value: scale(Math.random(), 300, 800) },
 })
 
-const textType = ref(textTypes[0].value)
+const textId = ref(textIds[0].value)
 const writingMode = ref(writingModes[0].value)
 
 const insertQuotes = (s, quoteProb) => {
@@ -130,8 +92,9 @@ const generateRandomText = (
   [...Array(parNum).keys()].map(() =>
     generateRandomPar(sentenceNum, sentenceMinLen, sentenceMaxLen, quoteProb, puncts)
   )
-const randomText = ref('')
-const getTextHtml = (type) => (type === 'random' ? randomText.value : texts[type]).join('<br />')
+
+const randomText = ref([])
+const text = computed(() => (textId.value === 'random' ? randomText.value : texts[textId.value]))
 
 // TODO: avoid using DOM query
 onMounted(() => {

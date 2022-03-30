@@ -1,13 +1,13 @@
 <template>
   <div class="flex items-center gap-4">
-    <label :for="`range-${name}`" class="w-16">{{ label }}</label>
+    <label :for="name" class="w-16">{{ option.label }}</label>
     <input
       type="range"
-      :id="`range-${name}`"
-      :name="`range-${name}`"
+      :id="name"
+      :name="name"
+      :min="option.min"
+      :max="option.max"
       :value="modelValue"
-      :min="min"
-      :max="max"
       @input="$emit('update:modelValue', $event.target.value)"
       class="w-40"
     />
@@ -15,11 +15,12 @@
 </template>
 
 <script setup>
-defineProps({
-  name: String,
-  label: String,
-  min: Number,
-  max: Number,
+import { computed } from 'vue'
+
+const name = computed(() => `range-${props.option.name}`)
+
+const props = defineProps({
+  option: Object, // name, label, min, max
   modelValue: Number,
 })
 defineEmits(['update:modelValue'])
@@ -28,7 +29,7 @@ defineEmits(['update:modelValue'])
 <style lang="postcss" scoped>
 input[type='range'] {
   --size: 16px;
-  --border-width: 2px;
+  --border-width: 1.5px;
 
   @apply appearance-none;
   @apply bg-transparent;
