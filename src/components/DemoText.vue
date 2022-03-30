@@ -2,10 +2,10 @@
   <div
     class="flex-1 overflow-auto break-words"
     :style="{
-      fontSize: `${fontSize}px`,
-      fontVariationSettings: `'XWGT' ${xwgt}, 'YWGT' ${ywgt}`,
-      writingMode: writingMode,
-      paddingTop: writingMode === 'vertical-rl' ? '0.2em' : '0',
+      fontSize: `${options.size}px`,
+      fontVariationSettings: `'XWGT' ${options.xwgt}, 'YWGT' ${options.ywgt}`,
+      writingMode: options.direction,
+      paddingTop: options.direction === 'vertical-rl' ? '0.2em' : '0',
     }"
   >
     <slot></slot>
@@ -14,9 +14,6 @@
 
 <script setup>
 defineProps({
-  fontSize: Number,
-  xwgt: Number,
-  ywgt: Number,
-  writingMode: String,
+  options: Object, // size, xwgt, ywgt, direction
 })
 </script>

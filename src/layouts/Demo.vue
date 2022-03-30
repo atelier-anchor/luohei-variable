@@ -4,20 +4,15 @@
       <div class="flex flex-col gap-4 w-64">
         <div>
           <RangeInput
-            v-for="(item, name) in rangeInputs"
-            :option="Object.assign({ name: name }, item)"
-            v-model.number="item.value"
+            v-for="item in controls.rangeInputs"
+            :option="item"
+            v-model.number="options[item.name]"
           />
         </div>
-        <RadioInputGroup label="文本" :options="textIds" v-model="textId" />
-        <RadioInputGroup label="方向" :options="writingModes" v-model="writingMode" />
+        <RadioInputGroup label="文本" :options="controls.textIds" v-model="options.textId" />
+        <RadioInputGroup label="方向" :options="controls.directions" v-model="options.direction" />
       </div>
-      <DemoText
-        :fontSize="rangeInputs.size.value"
-        :xwgt="rangeInputs.xwgt.value"
-        :ywgt="rangeInputs.ywgt.value"
-        :writingMode="writingMode"
-      >
+      <DemoText :options="options">
         <p v-for="p in text" v-html="p"></p>
       </DemoText>
     </div>
@@ -25,7 +20,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, reactive, ref } from 'vue'
+import { computed, onMounted, reactive } from 'vue'
 import { randomChar, scale } from '../utils'
 import ColorContainer from '../components/ColorContainer.vue'
 import DemoText from '../components/DemoText.vue'
@@ -42,26 +37,37 @@ const texts = {
   c: ['个风我酬意警鹰纛\u{30EDD}', 'Fox nymphs grab quick-jived waltz.', '2.718281828459…'],
 }
 
-const textIds = [
-  { name: 'a', value: 'a', label: '甲' },
-  { name: 'b', value: 'b', label: '乙' },
-  { name: 'c', value: 'c', label: '丙' },
-  { name: 'random', value: 'random', label: '随机' },
-]
+const controls = {
+  rangeInputs: [
+    { name: 'size', label: '字号', min: 16, max: 96 },
+    { name: 'xwgt', label: '变量 X', min: 100, max: 900 },
+    { name: 'ywgt', label: '变量 Y', min: 100, max: 900 },
+  ],
+  textIds: [
+    { name: 'a', label: '甲', value: 'a' },
+    { name: 'b', label: '乙', value: 'b' },
+    { name: 'c', label: '丙', value: 'c' },
+    { name: 'random', label: '随机', value: 'random' },
+  ],
+  directions: [
+    { name: 'horizontal', label: '横排', value: 'horizontal-tb' },
+    { name: 'vertical', label: '直排', value: 'vertical-rl' },
+  ],
+}
 
-const writingModes = [
-  { name: 'radio-horizontal', value: 'horizontal-tb', label: '横排' },
-  { name: 'radio-vertical', value: 'vertical-rl', label: '直排' },
-]
-
-const rangeInputs = reactive({
-  size: { label: '字号', min: 16, max: 96, value: 40 },
-  xwgt: { label: '变量 X', min: 100, max: 900, value: scale(Math.random(), 300, 800) },
-  ywgt: { label: '变量 Y', min: 100, max: 900, value: scale(Math.random(), 300, 800) },
+const options = reactive({
+  size: 40,
+  xwgt: scale(Math.random(), 300, 800),
+  ywgt: scale(Math.random(), 300, 800),
+  direction: 'horizontal-tb',
+  // punct: '',
+  // leading: 0,
+  textId: 'a',
+  randomText: [],
 })
-
-const textId = ref(textIds[0].value)
-const writingMode = ref(writingModes[0].value)
+const text = computed(() =>
+  options.textId === 'random' ? options.randomText : texts[options.textId]
+)
 
 const insertQuotes = (s, quoteProb) => {
   if (Math.random() > quoteProb) return s
@@ -87,18 +93,14 @@ const generateRandomText = (
   sentenceMinLen = 5,
   sentenceMaxLen = 15,
   quoteProb = 0.2,
-  puncts = '，，，，。。。！'.split('') // Manually set the weights of different puncts.
+  puncts = '，，，，。。。！'.split('') // Manually set the weights of different puncts
 ) =>
   [...Array(parNum).keys()].map(() =>
     generateRandomPar(sentenceNum, sentenceMinLen, sentenceMaxLen, quoteProb, puncts)
   )
 
-const randomText = ref([])
-const text = computed(() => (textId.value === 'random' ? randomText.value : texts[textId.value]))
-
-// TODO: avoid using DOM query
 onMounted(() => {
   const button = document.querySelector('label[for="radio-random"]')
-  if (button) button.addEventListener('click', () => (randomText.value = generateRandomText()))
+  if (button) button.addEventListener('click', () => (options.randomText = generateRandomText()))
 })
 </script>
