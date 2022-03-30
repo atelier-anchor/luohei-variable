@@ -7,6 +7,7 @@
       :name="name"
       :min="option.min"
       :max="option.max"
+      :step="option.step"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
       class="w-40"
@@ -20,7 +21,7 @@ import { computed } from 'vue'
 const name = computed(() => `range-${props.option.name}`)
 
 const props = defineProps({
-  option: Object, // name, label, min, max
+  option: Object, // name, label, min, max, step?
   modelValue: Number,
 })
 defineEmits(['update:modelValue'])

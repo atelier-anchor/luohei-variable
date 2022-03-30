@@ -89,14 +89,18 @@
   }
 }
 
-.cjk-kern-xs {
-  margin-inline-end: 0.1667em;
-}
-
 .cjk-kern-sm {
-  margin-inline-end: 0.25em;
+  letter-spacing: 0.25em;
 }
 
 .cjk-kern-md {
-  margin-inline-end: 0.5em;
+  letter-spacing: 0.5em;
+}
+
+.cjk-latin-glue {
+  margin-inline-end: 0.125em;
+}
+
+.nowrap {
+  @apply whitespace-nowrap;
 }

@@ -3,18 +3,16 @@
     <div class="flex flex-col md:flex-row gap-8 h-screen max-w-screen-2xl pt-20 pb-6 mx-auto">
       <div class="flex flex-col gap-4 w-64">
         <div>
-          <RangeInput
-            v-for="item in controls.rangeInputs"
-            :option="item"
-            v-model.number="options[item.name]"
-          />
+          <RangeInput :option="controls.fontSize" v-model.number="options.fontSize" />
+          <RangeInput :option="controls.xwgt" v-model.number="options.xwgt" />
+          <RangeInput :option="controls.ywgt" v-model.number="options.ywgt" />
         </div>
         <RadioInputGroup label="文本" :options="controls.textIds" v-model="options.textId" />
         <RadioInputGroup label="方向" :options="controls.directions" v-model="options.direction" />
+        <!-- <RangeInput :option="controls.leading" v-model.number="options.leading" /> -->
+        <!-- <RadioInputGroup label="标点" :options="controls.punct" v-model="options.punct" /> -->
       </div>
-      <DemoText :options="options">
-        <p v-for="p in text" v-html="p"></p>
-      </DemoText>
+      <DemoText :options="options" :text="text" />
     </div>
   </ColorContainer>
 </template>
@@ -32,17 +30,22 @@ const texts = {
     '天上取样人间织，染作江南春水色。',
     '春江潮水连海平，海上明月共潮生。',
     'Ad astra abyssosque!',
+    // '天，上。取！样「人」间（织）染作',
+    // '字字字字字字字，字字。字字字',
+    // '字字字字字字字「字字」字（字）字',
+    // '字字，「字字」，字字字',
+    // '字字。「字字」！字字字',
+    // '字字「字」「字」字」，字',
+    // '字字「字」（字）字）。字',
   ],
   b: ['面向动态图形的中文可变字体「络黑」（LuoHei Variable），设计于2020\u{2013}2022年间。'],
   c: ['个风我酬意警鹰纛\u{30EDD}', 'Fox nymphs grab quick-jived waltz.', '2.718281828459…'],
 }
 
 const controls = {
-  rangeInputs: [
-    { name: 'size', label: '字号', min: 16, max: 96 },
-    { name: 'xwgt', label: '变量 X', min: 100, max: 900 },
-    { name: 'ywgt', label: '变量 Y', min: 100, max: 900 },
-  ],
+  fontSize: { name: 'size', label: '字号', min: 16, max: 96 },
+  xwgt: { name: 'xwgt', label: '变量 X', min: 100, max: 900 },
+  ywgt: { name: 'ywgt', label: '变量 Y', min: 100, max: 900 },
   textIds: [
     { name: 'a', label: '甲', value: 'a' },
     { name: 'b', label: '乙', value: 'b' },
@@ -53,15 +56,21 @@ const controls = {
     { name: 'horizontal', label: '横排', value: 'horizontal-tb' },
     { name: 'vertical', label: '直排', value: 'vertical-rl' },
   ],
+  leading: { name: 'leading', label: '行距', min: 1, max: 4, step: 0.1 },
+  punct: [
+    { name: 'default', label: '默认', value: 'default' },
+    { name: 'kaiming', label: '开明', value: 'kaiming' },
+    { name: 'full', label: '全宽', value: 'full' },
+  ],
 }
 
 const options = reactive({
-  size: 40,
+  fontSize: 40,
   xwgt: scale(Math.random(), 300, 800),
   ywgt: scale(Math.random(), 300, 800),
   direction: 'horizontal-tb',
-  // punct: '',
-  // leading: 0,
+  punct: 'default',
+  leading: 1.3,
   textId: 'a',
   randomText: [],
 })

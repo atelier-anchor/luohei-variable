@@ -19,12 +19,16 @@ export const expScale = (n, k, min = 100, max = 900) =>
 
 export const cjkKern = (str) =>
   str
-    .replace(/，([\u4e00-\u9fff])/g, '<span class="cjk-kern-sm">，</span>$1')
+    // Right puncts
+    .replace(/([，」）])([\u4e00-\u9fff])/g, '<span class="cjk-kern-sm">$1</span>$2')
     .replace(/([。！])([\u4e00-\u9fff])/g, '<span class="cjk-kern-md">$1</span>$2')
-    .replace(/([\u4e00-\u9fff])「/g, '$1<span class="cjk-kern-sm"></span>「')
-    .replace(/」([\u4e00-\u9fff])/g, '<span class="cjk-kern-sm">」</span>$1')
-    .replace(/，「/g, '<span class="cjk-kern-sm">，</span>「')
-    .replace(/([。！])「/g, '<span class="cjk-kern-md">$1</span>「')
-    .replace(/([\u4e00-\u9fff])(\d)/g, '$1<span class="cjk-kern-xs"></span>$2')
-    .replace(/(\d)([\u4e00-\u9fff])/g, '$1<span class="cjk-kern-xs"></span>$2')
-    .replace(/([\u4e00-\u9fff])([。！])$/g, '<span class="whitespace-nowrap">$1</span>$2')
+    // Left puncts
+    .replace(/([\u4e00-\u9fff])([「（)])/g, '<span class="cjk-kern-sm">$1</span>$2')
+    // Inter-punct spacing
+    .replace(/([，」）])([「（)])/g, '<span class="cjk-kern-sm">$1</span>$2')
+    .replace(/([。！])([「（)])/g, '<span class="cjk-kern-md">$1</span>$2')
+    // CJK and latin/digits spacing
+    .replace(/([\u4e00-\u9fff])([a-z0-9])/g, '$1<span class="cjk-latin-glue"></span>$2')
+    .replace(/([a-z0-9])([\u4e00-\u9fff])/g, '$1<span class="cjk-latin-glue"></span>$2')
+    // Avoid orphans
+    .replace(/([\u4e00-\u9fff]{2})([。！])$/g, '<span class="nowrap">$1</span>$2')
