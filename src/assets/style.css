@@ -41,12 +41,7 @@
     @apply cursor-pointer;
     @apply select-none;
     @apply transition-font-variation;
-
-    @media (pointer: fine) {
-      &:hover {
-        @apply font-bold;
-      }
-    }
+    @apply pointer:hover:font-bold;
   }
 
   button {

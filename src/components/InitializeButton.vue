@@ -1,5 +1,5 @@
 <template>
-  <button @click="initialize" :class="{ hidden: initialized }">
+  <button @click="initialize" class="pointer:hidden" :class="{ hidden: initialized }">
     <slot></slot>
   </button>
 </template>
@@ -22,11 +22,3 @@ const props = defineProps({
   listener: Function,
 })
 </script>
-
-<style scoped>
-@media (pointer: fine) {
-  button {
-    @apply hidden;
-  }
-}
-</style>

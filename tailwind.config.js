@@ -1,3 +1,5 @@
+const plugin = require('tailwindcss/plugin')
+
 module.exports = {
   content: ['./index.html', './src/**/*.vue'],
   theme: {
@@ -28,4 +30,9 @@ module.exports = {
       },
     },
   },
+  plugins: [
+    plugin(function ({ addVariant }) {
+      addVariant('pointer', '@media (pointer: fine)')
+    }),
+  ],
 }

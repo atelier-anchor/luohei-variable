@@ -2,6 +2,7 @@
   "name": "vf-website",
   "version": "0.1.0",
   "author": "Xiangdong Zeng <xdzeng96@gmail.com>",
+  "license": "MIT",
   "repository": "https://github.com/atelier-anchor/vf-website.git",
   "scripts": {
     "dev": "vite",
