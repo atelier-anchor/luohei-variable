@@ -1,15 +1,15 @@
 <template>
   <div class="flex flex-col gap-4">
-    <div class="flex gap-4">
+    <div class="flex gap-4 md:hidden">
       <button :class="{ 'font-bold': showFontOptions }" @click="toggleOptions">字体设置</button>
       <button :class="{ 'font-bold': !showFontOptions }" @click="toggleOptions">排版设置</button>
     </div>
-    <div v-if="showFontOptions">
+    <div class="md:block" :class="{ hidden: !showFontOptions }">
       <RangeInput :option="controls.fontSize" v-model.number="options.fontSize" />
       <RangeInput :option="controls.xwgt" v-model.number="options.xwgt" />
       <RangeInput :option="controls.ywgt" v-model.number="options.ywgt" />
     </div>
-    <div v-else>
+    <div class="md:block" :class="{ hidden: showFontOptions }">
       <RadioInputGroup label="方向" :options="controls.directions" v-model="options.direction" />
       <RadioInputGroup label="标点" :options="controls.punct" v-model="options.punct" />
       <RangeInput :option="controls.leading" v-model.number="options.leading" />
