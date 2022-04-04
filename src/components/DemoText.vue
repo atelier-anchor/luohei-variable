@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex-1 overflow-auto break-words"
+    class="overflow-auto break-words"
     :style="{
       fontSize: `${options.fontSize}px`,
       fontVariationSettings: `'XWGT' ${options.xwgt}, 'YWGT' ${options.ywgt}`,
@@ -17,6 +17,29 @@
 import { computed } from 'vue'
 import { cjkKern } from '../utils'
 
+const texts = {
+  a: [
+    // '天上取样人间织，染作江南春水色。',
+    // '春江潮水连海平，海上明月共潮生。',
+    // 'Ad astra abyssosque!',
+    '天，上。取！样「人」间（织）染作',
+    '字字字字字字字，字字。字字字',
+    '字字字字字字字「字字」字（字）字',
+    '字字，「字字」，字字字',
+    '字字。「字字」！字字字',
+    '字字，」字字字',
+    '字字。」字字字',
+    '字字「字」「字」字」，字',
+    '字字「字」（字）字）。字',
+  ],
+  b: ['面向动态图形的中文可变字体「络黑」（LuoHei Variable），设计于2020\u{2013}2022年间。'],
+  c: ['个风我酬意警鹰纛\u{30EDD}', 'Fox nymphs grab quick-jived waltz.', '2.718281828459…'],
+}
+
+const text = computed(() =>
+  props.options.textId === 'random' ? props.options.randomText : texts[props.options.textId]
+)
+
 const cjkKernValues = {
   sm: { default: '0', kaiming: '0', full: '0.5em' },
   md: { default: '0', kaiming: '0.5em', full: '0.5em' },
@@ -27,10 +50,7 @@ const cjkKernSm = computed(() => cjkKernValues.sm[props.options.punct])
 const cjkKernMd = computed(() => cjkKernValues.md[props.options.punct])
 const cjkLatinGlue = computed(() => cjkKernValues.latin[props.options.punct])
 
-const props = defineProps({
-  options: Object, // fontSize, xwgt, ywgt, direction, leading, punct
-  text: Array,
-})
+const props = defineProps({ options: Object })
 </script>
 
 <style scoped>
