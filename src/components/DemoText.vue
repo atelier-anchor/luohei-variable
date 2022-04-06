@@ -2,7 +2,7 @@
   <div
     class="overflow-auto break-words"
     :style="{
-      fontSize: `${options.fontSize}px`,
+      fontSize: `${options.size}px`,
       fontVariationSettings: `'XWGT' ${options.xwgt}, 'YWGT' ${options.ywgt}`,
       writingMode: options.direction,
       paddingTop: options.direction === 'vertical-rl' ? '0.2em' : '0',

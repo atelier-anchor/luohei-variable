@@ -1,12 +1,45 @@
 const LUOHEI_CHARS =
   '一三上不丙业东两个中乙书二于产人今任位体作值共关击划刘创动十南占印取变可叶号叽同向启品国图土声夜大天始字学家对导山工己师平年应开式录形态意感我或技持排控支文方日明春显曾月朝木本术机杜染样横比毕水永江济海涟源漪潮点然王生用田由甲画白的目直看示祥空笔粗纛细织络置耳育自色花草观警计设转过这连造酬里量钦锚闭间院随面页项风鹰黎黑'
 
+const LUOHEI_NAMED_INSTANCES = {
+  thin: {
+    normal: { xwgt: 200, ywgt: 200 },
+    contrast: { xwgt: 100, ywgt: 300 },
+    reverse: { xwgt: 300, ywgt: 100 },
+  },
+  light: {
+    normal: { xwgt: 300, ywgt: 300 },
+    contrast: { xwgt: 200, ywgt: 400 },
+    reverse: { xwgt: 400, ywgt: 200 },
+  },
+  medium: {
+    normal: { xwgt: 450, ywgt: 450 },
+    contrast: { xwgt: 300, ywgt: 600 },
+    reverse: { xwgt: 600, ywgt: 300 },
+  },
+  bold: {
+    normal: { xwgt: 600, ywgt: 600 },
+    contrast: { xwgt: 450, ywgt: 750 },
+    reverse: { xwgt: 750, ywgt: 450 },
+  },
+  heavy: {
+    normal: { xwgt: 800, ywgt: 800 },
+    contrast: { xwgt: 600, ywgt: 900 },
+    reverse: { xwgt: 900, ywgt: 600 },
+  },
+}
+
+export const LUOHEI_WEIGHTS = Object.keys(LUOHEI_NAMED_INSTANCES)
+export const LUOHEI_CONTRASTS = Object.keys(LUOHEI_NAMED_INSTANCES.thin)
+
 export const HEADER_HEIGHT = 56
 
 export const randomChar = (excludeSimple = false) => {
   const chars = excludeSimple ? LUOHEI_CHARS.replace(/[一二三]/g, '') : LUOHEI_CHARS
   return chars[Math.floor(Math.random() * chars.length)]
 }
+
+export const namedInstance = (weight, contrast) => LUOHEI_NAMED_INSTANCES[weight][contrast]
 
 export const clamp = (value, min, max) => Math.min(Math.max(value, min), max)
 

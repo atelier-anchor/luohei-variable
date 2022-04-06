@@ -5,14 +5,16 @@
       <button :class="{ 'font-bold': !showFontOptions }" @click="toggleOptions">排版设置</button>
     </div>
     <div class="md:block" :class="{ hidden: !showFontOptions }">
-      <RangeInput :option="controls.fontSize" v-model.number="options.fontSize" />
       <RangeInput :option="controls.xwgt" v-model.number="options.xwgt" />
       <RangeInput :option="controls.ywgt" v-model.number="options.ywgt" />
+      <RadioInputGroup label="字重" :options="controls.weights" v-model="options.weight" />
+      <RadioInputGroup label="对比" :options="controls.contrasts" v-model="options.contrast" />
     </div>
     <div class="md:block" :class="{ hidden: showFontOptions }">
-      <RadioInputGroup label="方向" :options="controls.directions" v-model="options.direction" />
-      <RadioInputGroup label="标点" :options="controls.punct" v-model="options.punct" />
+      <RangeInput :option="controls.size" v-model.number="options.size" />
       <RangeInput :option="controls.leading" v-model.number="options.leading" />
+      <RadioInputGroup label="方向" :options="controls.directions" v-model="options.direction" />
+      <RadioInputGroup label="标点" :options="controls.puncts" v-model="options.punct" />
     </div>
     <RadioInputGroup label="文本" :options="controls.textIds" v-model="options.textId" />
   </div>
@@ -25,24 +27,36 @@ import RadioInputGroup from '../components/RadioInputGroup.vue'
 import RangeInput from '../components/RangeInput.vue'
 
 const controls = {
-  fontSize: { name: 'size', label: '字号', min: 16, max: 96 },
   xwgt: { name: 'xwgt', label: '变量 X', min: 100, max: 900 },
   ywgt: { name: 'ywgt', label: '变量 Y', min: 100, max: 900 },
-  directions: [
-    { name: 'horizontal', label: '横排', value: 'horizontal-tb' },
-    { name: 'vertical', label: '直排', value: 'vertical-rl' },
+  weights: [
+    { name: 'w-thin', label: '纤', value: 'thin' },
+    { name: 'w-light', label: '细', value: 'light' },
+    { name: 'w-medium', label: '中', value: 'medium' },
+    { name: 'w-bold', label: '粗', value: 'bold' },
+    { name: 'w-heavy', label: '黑', value: 'heavy' },
   ],
-  punct: [
-    { name: 'default', label: '默认', value: 'default' },
-    { name: 'kaiming', label: '开明', value: 'kaiming' },
-    { name: 'full', label: '全宽', value: 'full' },
+  contrasts: [
+    { name: 'c-normal', label: '无', value: 'normal' },
+    { name: 'c-contrast', label: '正', value: 'contrast' },
+    { name: 'c-reverse', label: '反', value: 'reverse' },
   ],
+  size: { name: 'size', label: '字号', min: 16, max: 96 },
   leading: { name: 'leading', label: '行距', min: 1, max: 4, step: 0.05 },
+  directions: [
+    { name: 'direction-horizontal', label: '横排', value: 'horizontal-tb' },
+    { name: 'direction-vertical', label: '直排', value: 'vertical-rl' },
+  ],
+  puncts: [
+    { name: 'punct-default', label: '默认', value: 'default' },
+    { name: 'punct-kaiming', label: '开明', value: 'kaiming' },
+    { name: 'punct-full', label: '全宽', value: 'full' },
+  ],
   textIds: [
-    { name: 'a', label: '甲', value: 'a' },
-    { name: 'b', label: '乙', value: 'b' },
-    { name: 'c', label: '丙', value: 'c' },
-    { name: 'random', label: '随机', value: 'random' },
+    { name: 'id-a', label: '甲', value: 'a' },
+    { name: 'id-b', label: '乙', value: 'b' },
+    { name: 'id-c', label: '丙', value: 'c' },
+    { name: 'id-random', label: '随机', value: 'random' },
   ],
 }
 
@@ -80,7 +94,7 @@ const generateRandomText = (
   )
 
 onMounted(() => {
-  const button = document.querySelector('label[for="radio-random"]')
+  const button = document.querySelector('label[for="radio-id-random"]')
   if (button)
     button.addEventListener('click', () => (props.options.randomText = generateRandomText()))
 })
