@@ -1,6 +1,8 @@
 <template>
   <div class="flex items-center gap-4">
-    <label :for="name" class="w-16">{{ option.label }}</label>
+    <label :for="name" :data-reset="option.reset" class="w-16" @click="reset">
+      {{ option.label }}
+    </label>
     <input
       type="range"
       :id="name"
@@ -20,11 +22,15 @@ import { computed } from 'vue'
 
 const name = computed(() => `range-${props.option.name}`)
 
+const reset = () => {
+  if (props.option.reset) emit('update:modelValue', props.option.default)
+}
+
 const props = defineProps({
-  option: Object, // name, label, min, max, step?
+  option: Object, // name, label, min, max, step?, reset?, default?
   modelValue: Number,
 })
-defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue'])
 </script>
 
 <style lang="postcss" scoped>

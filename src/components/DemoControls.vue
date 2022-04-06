@@ -41,8 +41,9 @@ const controls = {
     { name: 'c-contrast', label: '正', value: 'contrast' },
     { name: 'c-reverse', label: '反', value: 'reverse' },
   ],
-  size: { name: 'size', label: '字号', min: 16, max: 96 },
-  leading: { name: 'leading', label: '行距', min: 1, max: 4, step: 0.05 },
+  // TODO: handle default values
+  size: { name: 'size', label: '字号', min: 16, max: 96, reset: true, default: 40 },
+  leading: { name: 'leading', label: '行距', min: 1, max: 4, step: 0.05, reset: true, default: 1.3 },
   directions: [
     { name: 'direction-horizontal', label: '横排', value: 'horizontal-tb' },
     { name: 'direction-vertical', label: '直排', value: 'vertical-rl' },

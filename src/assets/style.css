@@ -37,7 +37,8 @@
 
   button,
   label[for^='checkbox'],
-  label[for^='radio'] {
+  label[for^='radio'],
+  label[data-reset] {
     @apply cursor-pointer;
     @apply select-none;
     @apply transition-font-variation;
