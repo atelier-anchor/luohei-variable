@@ -1,10 +1,13 @@
 <template>
   <header class="absolute bg-light dark:bg-dark w-full px-8 sm:px-16 py-4 z-10">
     <div
-      class="flex text-sm font-optical-sm max-w-screen-2xl mx-auto"
+      class="flex text-sm font-optical-size-sm max-w-screen-2xl mx-auto"
       :class="[showNav ? 'justify-end' : 'justify-between']"
     >
-      <a v-if="!showNav" href="#/"><span class="tracking">络黑 </span>LuoHei Variable</a>
+      <template v-if="!showNav">
+        <button v-if="isHome" class="tracking" @click="$emit('show-video')">观看动画</button>
+        <a v-else href="#/"><span class="tracking">络黑 </span>LuoHei Variable</a>
+      </template>
       <div class="flex gap-4">
         <nav class="absolute left-8 sm:static sm:block" :class="{ hidden: !showNav }">
           <ul class="flex gap-4">
@@ -28,13 +31,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 
 const showNav = ref(false)
+const isHome = computed(() => props.currentPath === '' || props.currentPath === '#/')
 
 window.addEventListener('resize', () => (showNav.value = false))
 
-defineProps({
+const props = defineProps({
   nav: Object,
   currentPath: String,
 })

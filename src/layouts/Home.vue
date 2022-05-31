@@ -1,16 +1,22 @@
 <template>
   <div class="flex flex-col items-center justify-center gap-4 text-center h-screen">
-    <p class="text-rfs-8xl tracking breathe-zh">络黑</p>
+    <p class="text-rfs-8xl tracking" :class="{ 'breathe-zh': active }">络黑</p>
     <p class="text-rfs-4xl px-8 sm:px-16">
       <span
         v-for="(c, idx) in 'LuoHei Variable'.split('')"
-        class="breathe-en"
+        :class="{ 'breathe-en': active }"
         :style="{ animationDelay: `${-idx}s` }"
         >{{ c }}</span
       >
     </p>
   </div>
 </template>
+
+<script setup>
+defineProps({
+  active: Boolean,
+})
+</script>
 
 <style scoped>
 .breathe-zh {
