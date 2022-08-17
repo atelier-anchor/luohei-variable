@@ -1,6 +1,6 @@
 <template>
   <div
-    class="grid content-center justify-center items-center justify-items-center pt-14"
+    class="grid content-center items-center justify-center justify-items-center pt-14"
     :style="{ 'grid-template': grid.template, height: grid.height }"
     ref="gridContainer"
     @click="update($event)"
@@ -10,7 +10,7 @@
     <div
       v-for="(item, idx) in grid.content"
       :id="gridItemId(idx)"
-      :style="{ fontVariationSettings: `'XWGT' 100, 'YWGT' 100` }"
+      :style="{ fontVariationSettings: initFontVariationSettings }"
     >
       {{ item }}
     </div>
@@ -27,6 +27,7 @@ const grid = reactive({ size: 0, rows: 0, cols: 0, template: '', height: '', con
 const timeInterval = 40
 const tailLength = 8
 const tailFactor = 0.2
+const initFontVariationSettings = '"XWGT" 100, "YWGT" 100'
 
 const updateGridSize = () => {
   const fontSize = window.getComputedStyle(gridContainer.value).fontSize

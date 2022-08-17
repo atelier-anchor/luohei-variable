@@ -1,7 +1,7 @@
 <template>
   <ColorContainer class="px-8 sm:px-16">
     <div
-      class="relative flex flex-col items-center justify-center gap-16 text-center h-screen max-w-screen-2xl mx-auto"
+      class="relative mx-auto flex h-screen max-w-screen-2xl flex-col items-center justify-center gap-16 text-center"
       @mousemove="handleMousemove"
     >
       <EditableText :xwgt="axes.xwgt" :ywgt="axes.ywgt" class="pt-8">永</EditableText>

@@ -1,22 +1,22 @@
 <template>
   <div
-    class="flex flex-col items-center justify-center gap-8 text-rfs-base text-center h-screen px-8 sm:px-16"
+    class="flex h-screen flex-col items-center justify-center gap-8 px-8 text-center text-rfs-base sm:px-16"
   >
     <div>
-      <p class="text-rfs-lg font-optical-size-lg">
+      <p class="font-optical-size-lg text-rfs-lg">
         In Memory of<br />
         <a
           href="https://typemedia.org/noordzij/"
           target="_blank"
-          class="font-bold hover:font-optical-size-lg"
+          class="hover:font-optical-size-lg font-bold"
           >Gerrit Noordzij</a
         >
       </p>
       <p>(1931&ndash;2022)</p>
     </div>
-    <p class="text-rfs-lg font-optical-size-lg max-w-3xl" v-html="text"></p>
+    <p class="font-optical-size-lg max-w-3xl text-rfs-lg" v-html="text"></p>
     <div>
-      <ul class="flex gap-8 justify-center">
+      <ul class="flex justify-center gap-8">
         <li><span class="mr-4">设计</span><a href="mailto:owill@foxmail.com">刘育黎</a></li>
         <li><span class="mr-4">导师</span>杜钦</li>
       </ul>

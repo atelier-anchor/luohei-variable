@@ -1,7 +1,7 @@
 <template>
-  <div class="flex flex-col items-center justify-center gap-4 text-center h-screen">
-    <p class="text-rfs-8xl tracking" :class="{ 'breathe-zh': active }">络黑</p>
-    <p class="text-rfs-4xl px-8 sm:px-16">
+  <div class="flex h-screen flex-col items-center justify-center gap-4 text-center">
+    <p class="tracking text-rfs-8xl" :class="{ 'breathe-zh': active }">络黑</p>
+    <p class="px-8 text-rfs-4xl sm:px-16">
       <span
         v-for="(c, idx) in 'LuoHei Variable'.split('')"
         :class="{ 'breathe-en': active }"

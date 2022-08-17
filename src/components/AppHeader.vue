@@ -1,7 +1,7 @@
 <template>
-  <header class="absolute bg-light dark:bg-dark w-full px-8 sm:px-16 py-4 z-10">
+  <header class="absolute z-10 w-full bg-light px-8 py-4 dark:bg-dark sm:px-16">
     <div
-      class="flex text-sm font-optical-size-sm max-w-screen-2xl mx-auto"
+      class="font-optical-size-sm mx-auto flex max-w-screen-2xl text-sm"
       :class="[showNav ? 'justify-end' : 'justify-between']"
     >
       <template v-if="!showNav">
@@ -19,7 +19,7 @@
           </ul>
         </nav>
         <button
-          class="sm:hidden tracking"
+          class="tracking sm:hidden"
           :class="{ 'font-bold': showNav }"
           @click="showNav = !showNav"
         >

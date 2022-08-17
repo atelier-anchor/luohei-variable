@@ -1,6 +1,6 @@
 <template>
   <ColorContainer class="px-8 sm:px-16">
-    <div class="flex flex-col md:flex-row gap-8 h-screen max-w-screen-2xl pt-20 pb-6 mx-auto">
+    <div class="mx-auto flex h-screen max-w-screen-2xl flex-col gap-8 pt-20 pb-6 md:flex-row">
       <DemoControls :options="options" class="w-64" />
       <DemoText :options="options" class="flex-1" />
     </div>

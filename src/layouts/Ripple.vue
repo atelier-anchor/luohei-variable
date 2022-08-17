@@ -1,5 +1,5 @@
 <template>
-  <ColorContainer class="text-rfs-2xl leading-none select-none cursor-default">
+  <ColorContainer class="cursor-default select-none text-rfs-2xl leading-none">
     <RippleGrid />
   </ColorContainer>
 </template>
