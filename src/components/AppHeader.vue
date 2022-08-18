@@ -12,9 +12,13 @@
         >
           {{ $t('header.video') }}
         </button>
-        <a v-else href="#/">
-          <span v-if="$i18n.locale === 'zh'" class="tracking">络黑 </span>
-          LuoHei Variable
+        <a
+          v-else
+          href="#/"
+          v-html="
+            $t('header.title-display', [`<span class='tracking'>${$t('header.name')} </span>`])
+          "
+        >
         </a>
       </template>
       <div class="flex gap-4">

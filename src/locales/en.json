@@ -1,5 +1,8 @@
 {
   "header": {
+    "name": "LuoHei Variable",
+    "title": "@:header.name",
+    "title-display": "@:header.name",
     "video": "Watch the video",
     "close": "Close",
     "start": "Start"

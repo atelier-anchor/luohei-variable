@@ -1,5 +1,8 @@
 {
   "header": {
+    "name": "络黑",
+    "title": "@:header.name LuoHei Variable",
+    "title-display": "{0} LuoHei Variable",
     "video": "观看动画",
     "close": "关闭",
     "start": "开始"

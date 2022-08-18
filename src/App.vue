@@ -39,9 +39,10 @@ const currentProps = computed(() =>
 window.addEventListener('hashchange', () => (currentPath.value = window.location.hash))
 
 onMounted(() => {
+  const { locale, t } = useI18n()
   if (navigator.language.split('-')[0] !== 'zh') {
-    const i18n = useI18n()
-    i18n.locale.value = 'en'
+    locale.value = 'en'
   }
+  document.title = t('header.title')
 })
 </script>
