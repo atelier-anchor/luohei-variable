@@ -1,6 +1,7 @@
 {
   "header": {
-    "video": "Video",
+    "video": "Watch the video",
+    "close": "Close",
     "start": "Start"
   },
   "nav": {
@@ -29,13 +30,13 @@
       "heavy": "Heavy"
     },
     "contrasts": {
+      "none": "None",
       "normal": "Normal",
-      "contrast": "Contrast",
       "reverse": "Reverse"
     },
     "directions": {
-      "horizontal": "horizontal",
-      "vertical": "vertical"
+      "horizontal": "Horizontal",
+      "vertical": "Vertical"
     },
     "puncts": {
       "default": "Default",

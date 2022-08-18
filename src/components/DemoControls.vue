@@ -61,8 +61,8 @@ const controls = reactive({
     { name: 'w-heavy', label: 'demo.weights.heavy', value: 'heavy' },
   ],
   contrasts: [
+    { name: 'c-none', label: 'demo.contrasts.none', value: 'none' },
     { name: 'c-normal', label: 'demo.contrasts.normal', value: 'normal' },
-    { name: 'c-contrast', label: 'demo.contrasts.contrast', value: 'contrast' },
     { name: 'c-reverse', label: 'demo.contrasts.reverse', value: 'reverse' },
   ],
   // TODO: handle default values

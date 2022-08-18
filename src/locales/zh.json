@@ -1,6 +1,7 @@
 {
   "header": {
     "video": "观看动画",
+    "close": "关闭",
     "start": "开始"
   },
   "nav": {
@@ -29,8 +30,8 @@
       "heavy": "黑"
     },
     "contrasts": {
-      "normal": "无",
-      "contrast": "正",
+      "none": "无",
+      "normal": "正",
       "reverse": "反"
     },
     "directions": {

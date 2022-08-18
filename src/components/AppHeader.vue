@@ -5,10 +5,13 @@
       :class="[showNav ? 'justify-end' : 'justify-between']"
     >
       <template v-if="!showNav">
-        <button v-if="isHome" class="tracking" @click="$emit('show-video')">
+        <button
+          v-if="isHome"
+          :class="{ tracking: $i18n.locale === 'zh' }"
+          @click="$emit('show-video')"
+        >
           {{ $t('header.video') }}
         </button>
-        <!-- <a v-else href="#/"><span v-if="$i18n.locale==='zh'" class="tracking">络黑 </span>LuoHei Variable</a> -->
         <a v-else href="#/">
           <span v-if="$i18n.locale === 'zh'" class="tracking">络黑 </span>
           LuoHei Variable
@@ -17,21 +20,21 @@
       <div class="flex gap-4">
         <nav class="absolute left-8 sm:static sm:block" :class="{ hidden: !showNav }">
           <ul class="flex gap-4">
-            <li v-for="name in Object.keys(nav)" class="tracking">
+            <li v-for="name in Object.keys(nav)" :class="{ tracking: $i18n.locale === 'zh' }">
               <a :href="`#/${name}`" :class="{ 'font-bold': currentPath.includes(name) }">
                 {{ $t(`nav.${name}`) }}
               </a>
             </li>
           </ul>
         </nav>
-        <LocaleToggler />
         <button
-          class="tracking sm:hidden"
-          :class="{ 'font-bold': showNav }"
+          class="sm:hidden"
+          :class="{ 'font-bold': showNav, tracking: $i18n.locale === 'zh' }"
           @click="showNav = !showNav"
         >
           {{ $t('header.start') }}
         </button>
+        <LocaleToggler />
       </div>
     </div>
   </header>

@@ -3,28 +3,28 @@ const LUOHEI_CHARS =
 
 const LUOHEI_NAMED_INSTANCES = {
   thin: {
-    normal: { xwgt: 200, ywgt: 200 },
-    contrast: { xwgt: 100, ywgt: 300 },
+    none: { xwgt: 200, ywgt: 200 },
+    normal: { xwgt: 100, ywgt: 300 },
     reverse: { xwgt: 300, ywgt: 100 },
   },
   light: {
-    normal: { xwgt: 300, ywgt: 300 },
-    contrast: { xwgt: 200, ywgt: 400 },
+    none: { xwgt: 300, ywgt: 300 },
+    normal: { xwgt: 200, ywgt: 400 },
     reverse: { xwgt: 400, ywgt: 200 },
   },
   medium: {
-    normal: { xwgt: 450, ywgt: 450 },
-    contrast: { xwgt: 300, ywgt: 600 },
+    none: { xwgt: 450, ywgt: 450 },
+    normal: { xwgt: 300, ywgt: 600 },
     reverse: { xwgt: 600, ywgt: 300 },
   },
   bold: {
-    normal: { xwgt: 600, ywgt: 600 },
-    contrast: { xwgt: 450, ywgt: 750 },
+    none: { xwgt: 600, ywgt: 600 },
+    normal: { xwgt: 450, ywgt: 750 },
     reverse: { xwgt: 750, ywgt: 450 },
   },
   heavy: {
-    normal: { xwgt: 800, ywgt: 800 },
-    contrast: { xwgt: 600, ywgt: 900 },
+    none: { xwgt: 800, ywgt: 800 },
+    normal: { xwgt: 600, ywgt: 900 },
     reverse: { xwgt: 900, ywgt: 600 },
   },
 }
