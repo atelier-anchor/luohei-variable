@@ -7,7 +7,8 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
 
 import AppHeader from './components/AppHeader.vue'
 import VideoPanel from './components/VideoPanel.vue'
@@ -36,4 +37,11 @@ const currentProps = computed(() =>
 )
 
 window.addEventListener('hashchange', () => (currentPath.value = window.location.hash))
+
+onMounted(() => {
+  if (navigator.language.split('-')[0] !== 'zh') {
+    const i18n = useI18n()
+    i18n.locale.value = 'en'
+  }
+})
 </script>
