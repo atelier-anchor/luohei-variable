@@ -1,0 +1,58 @@
+{
+  "header": {
+    "video": "Video",
+    "start": "Start"
+  },
+  "nav": {
+    "demo": "Demo",
+    "sensors": "Sensors",
+    "ripple": "Ripple",
+    "about": "About"
+  },
+  "demo": {
+    "font-options": "Font options",
+    "layout-options": "Layout options",
+    "x-axis": "X axis",
+    "y-axis": "Y axis",
+    "weight": "Weight",
+    "contrast": "Contrast",
+    "font-size": "Font size",
+    "leading": "Leading",
+    "direction": "Direction",
+    "punct": "Punctuation",
+    "text": "Text",
+    "weights": {
+      "thin": "Thin",
+      "light": "Light",
+      "medium": "Medium",
+      "bold": "Bold",
+      "heavy": "Heavy"
+    },
+    "contrasts": {
+      "normal": "Normal",
+      "contrast": "Contrast",
+      "reverse": "Reverse"
+    },
+    "directions": {
+      "horizontal": "horizontal",
+      "vertical": "vertical"
+    },
+    "puncts": {
+      "default": "Default",
+      "kaiming": "Kaiming",
+      "full": "Full"
+    },
+    "texts": {
+      "a": "A",
+      "b": "B",
+      "c": "C",
+      "random": "Random"
+    }
+  },
+  "sensors": {
+    "show-values": "Show values",
+    "enable-orientation": "Click here to enable orientation sensors…",
+    "voice-control-x": "Voice control X",
+    "voice-control-y": "Voice control Y"
+  }
+}

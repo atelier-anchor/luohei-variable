@@ -1,0 +1,58 @@
+{
+  "header": {
+    "video": "观看动画",
+    "start": "开始"
+  },
+  "nav": {
+    "demo": "字样",
+    "sensors": "感应",
+    "ripple": "涟漪",
+    "about": "关于"
+  },
+  "demo": {
+    "font-options": "字体设置",
+    "layout-options": "排版设置",
+    "x-axis": "变量 X",
+    "y-axis": "变量 Y",
+    "weight": "字重",
+    "contrast": "对比",
+    "font-size": "字号",
+    "leading": "行距",
+    "direction": "方向",
+    "punct": "标点",
+    "text": "文本",
+    "weights": {
+      "thin": "纤",
+      "light": "细",
+      "medium": "中",
+      "bold": "粗",
+      "heavy": "黑"
+    },
+    "contrasts": {
+      "normal": "无",
+      "contrast": "正",
+      "reverse": "反"
+    },
+    "directions": {
+      "horizontal": "横排",
+      "vertical": "直排"
+    },
+    "puncts": {
+      "default": "默认",
+      "kaiming": "开明",
+      "full": "全宽"
+    },
+    "texts": {
+      "a": "甲",
+      "b": "乙",
+      "c": "丙",
+      "random": "随机"
+    }
+  },
+  "sensors": {
+    "show-values": "显示值",
+    "enable-orientation": "点击这里开启方向感应…",
+    "voice-control-x": "声控 X",
+    "voice-control-y": "声控 Y"
+  }
+}

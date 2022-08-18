@@ -5,25 +5,32 @@
       :class="[showNav ? 'justify-end' : 'justify-between']"
     >
       <template v-if="!showNav">
-        <button v-if="isHome" class="tracking" @click="$emit('show-video')">观看动画</button>
-        <a v-else href="#/"><span class="tracking">络黑 </span>LuoHei Variable</a>
+        <button v-if="isHome" class="tracking" @click="$emit('show-video')">
+          {{ $t('header.video') }}
+        </button>
+        <!-- <a v-else href="#/"><span v-if="$i18n.locale==='zh'" class="tracking">络黑 </span>LuoHei Variable</a> -->
+        <a v-else href="#/">
+          <span v-if="$i18n.locale === 'zh'" class="tracking">络黑 </span>
+          LuoHei Variable
+        </a>
       </template>
       <div class="flex gap-4">
         <nav class="absolute left-8 sm:static sm:block" :class="{ hidden: !showNav }">
           <ul class="flex gap-4">
-            <li v-for="(item, name) in nav" :key="name" class="tracking">
+            <li v-for="name in Object.keys(nav)" class="tracking">
               <a :href="`#/${name}`" :class="{ 'font-bold': currentPath.includes(name) }">
-                {{ item.title }}
+                {{ $t(`nav.${name}`) }}
               </a>
             </li>
           </ul>
         </nav>
+        <LocaleToggler />
         <button
           class="tracking sm:hidden"
           :class="{ 'font-bold': showNav }"
           @click="showNav = !showNav"
         >
-          开始
+          {{ $t('header.start') }}
         </button>
       </div>
     </div>
@@ -32,6 +39,7 @@
 
 <script setup>
 import { computed, ref } from 'vue'
+import LocaleToggler from './LocaleToggler.vue'
 
 const showNav = ref(false)
 const isHome = computed(() => props.currentPath === '' || props.currentPath === '#/')

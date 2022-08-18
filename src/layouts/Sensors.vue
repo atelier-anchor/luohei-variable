@@ -5,23 +5,31 @@
       @mousemove="handleMousemove"
     >
       <EditableText :xwgt="axes.xwgt" :ywgt="axes.ywgt" class="pt-8">永</EditableText>
-      <div class="flex gap-16" :class="{ hidden: !showValue }">
+      <div class="flex gap-16" :class="{ hidden: !showValues }">
         <div>XWGT = {{ axes.xwgt }}</div>
         <div>YWGT = {{ axes.ywgt }}</div>
       </div>
-      <InitializeButton :listener="handleOrientation">点击这里开启方向感应…</InitializeButton>
+      <InitializeButton :listener="handleOrientation">
+        {{ $t('sensors.enable-orientation') }}
+      </InitializeButton>
       <div class="absolute top-20 left-0">
         <div class="flex flex-col items-start">
           <input
             type="checkbox"
-            id="checkbox-show-value"
-            name="checkbox-show-value"
-            v-model="showValue"
+            id="checkbox-show-values"
+            name="checkbox-show-values"
+            v-model="showValues"
             class="hidden appearance-none"
           />
-          <label for="checkbox-show-value" :class="{ 'font-bold': showValue }">显示值</label>
-          <button :class="{ 'font-bold': voiceControl.xwgt }" @click="toggleX">声控 X</button>
-          <button :class="{ 'font-bold': voiceControl.ywgt }" @click="toggleY">声控 Y</button>
+          <label for="checkbox-show-values" :class="{ 'font-bold': showValues }">
+            {{ $t('sensors.show-values') }}
+          </label>
+          <button :class="{ 'font-bold': voiceControl.xwgt }" @click="toggleX">
+            {{ $t('sensors.voice-control-x') }}
+          </button>
+          <button :class="{ 'font-bold': voiceControl.ywgt }" @click="toggleY">
+            {{ $t('sensors.voice-control-y') }}
+          </button>
         </div>
       </div>
     </div>
@@ -37,7 +45,7 @@ import InitializeButton from '../components/InitializeButton.vue'
 
 const axes = reactive({ xwgt: 250, ywgt: 500 })
 const voiceControl = reactive({ xwgt: false, ywgt: false })
-const showValue = ref(true)
+const showValues = ref(true)
 
 const handleMousemove = (event) => {
   if (window.matchMedia('(pointer: fine)').matches) {

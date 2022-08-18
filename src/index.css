@@ -1,13 +1,13 @@
-@font-face {
-  font-family: 'LuoHei VF';
-  src: url('./LuoHeiVF.woff2') format('woff2');
-}
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  @font-face {
+    font-family: 'LuoHei VF';
+    src: url('./assets/LuoHeiVF.woff2') format('woff2');
+  }
+
   body {
     --font-variation-normal: 'XWGT' 250, 'YWGT' 500;
     --font-variation-bold: 'XWGT' 400, 'YWGT' 800;

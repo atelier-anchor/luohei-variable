@@ -1,6 +1,8 @@
 <template>
   <div>
-    <label :for="name" :class="{ 'font-bold': checked }">{{ option.label }}</label>
+    <label :for="name" :class="{ 'font-bold': checked }">
+      {{ $t(option.label) }}
+    </label>
     <input
       type="radio"
       :id="name"

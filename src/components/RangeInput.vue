@@ -1,7 +1,7 @@
 <template>
   <div class="flex items-center gap-4">
     <label :for="name" :data-reset="option.reset" class="w-16" @click="reset">
-      {{ option.label }}
+      {{ $t(option.label) }}
     </label>
     <input
       type="range"

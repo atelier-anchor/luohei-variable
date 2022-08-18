@@ -20,16 +20,16 @@ import Sensors from './layouts/Sensors.vue'
 const videoShown = ref(false)
 
 const nav = {
-  demo: { title: '字样', component: Demo },
-  sensors: { title: '感应', component: Sensors },
-  ripple: { title: '涟漪', component: Ripple },
-  about: { title: '关于', component: About },
+  demo: Demo,
+  sensors: Sensors,
+  ripple: Ripple,
+  about: About,
 }
 
 const currentPath = ref(window.location.hash)
 const currentView = computed(() => {
   const path = currentPath.value.slice(2)
-  return path in nav ? nav[path].component : Home
+  return path in nav ? nav[path] : Home
 })
 const currentProps = computed(() =>
   currentView.value === Home ? { active: !videoShown.value } : {}
@@ -37,7 +37,3 @@ const currentProps = computed(() =>
 
 window.addEventListener('hashchange', () => (currentPath.value = window.location.hash))
 </script>
-
-<style>
-@import './assets/style.css';
-</style>
