@@ -7,8 +7,12 @@
         </button>
       </div>
       <video controls class="max-h-[80%]">
-        <source src="/luohei.webm" type="video/webm" />
+        <source :src="videoSrc" type="video/webm" />
       </video>
     </div>
   </div>
 </template>
+
+<script setup>
+import videoSrc from '../assets/luohei.webm'
+</script>
