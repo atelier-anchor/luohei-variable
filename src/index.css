@@ -75,6 +75,10 @@
     font-variation-settings: var(--font-variation-normal);
   }
 
+  .font-normal {
+    font-variation-settings: var(--font-variation-normal);
+  }
+
   .font-bold {
     font-variation-settings: var(--font-variation-bold);
   }

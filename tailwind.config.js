@@ -22,6 +22,7 @@ module.exports = {
       'rfs-18xl': 'min(calc(13.2rem + 6vw), 18rem)',
     },
     fontWeight: {
+      normal: 'inherit',
       bold: 'inherit',
     },
     extend: {

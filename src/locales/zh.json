@@ -55,5 +55,16 @@
     "enable-orientation": "点击这里开启方向感应…",
     "voice-control-x": "声控 X",
     "voice-control-y": "声控 Y"
+  },
+  "about": {
+    "commemorate": "谨以此设计纪念",
+    "concept": "可变字体「络黑」源自刘育黎的毕业设计项目「面向动态图形的中文可变字体」，由两个变量作用于笔画粗细，产生不同的对比样式。",
+    "designer": "设计",
+    "supervisor": "导师",
+    "developer": "网页开发",
+    "tongji-di": "同济大学设计创意学院",
+    "maintainer": "本页面由 {0} 维护",
+    "atelier-anchor": "atelierAnchor 锚坞",
+    "date-address": "二〇二二年四月{0}作于上海家中"
   }
 }
