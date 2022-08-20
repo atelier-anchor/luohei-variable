@@ -64,5 +64,5 @@ export const cjkKern = (str) =>
     .replace(/([\u4e00-\u9fff])([a-z0-9])/g, '$1<span class="cjk-latin-glue"></span>$2')
     .replace(/([a-z0-9])([\u4e00-\u9fff])/g, '$1<span class="cjk-latin-glue"></span>$2')
     // Avoid orphans
-    .replace(/([\u4e00-\u9fff]{2})([。！？])$/g, '<span class="nowrap">$1</span>$2')
-    .replace(/([a-z0-9,]+ [a-z0-9,]+ [a-z0-9]+)([\.!?])$/g, '<span class="nowrap">$1</span>$2')
+    .replace(/([\u4e00-\u9fff])([。！？])$/g, '<span class="no-break">$1</span>$2')
+    .replace(/([a-z0-9,]+ [a-z0-9,]+ [a-z0-9]+)([\.!?])$/g, '<span class="no-break">$1</span>$2')

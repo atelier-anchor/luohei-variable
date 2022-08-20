@@ -1,5 +1,5 @@
 <template>
-  <header class="absolute z-10 w-full bg-light px-8 py-4 dark:bg-dark sm:px-16">
+  <header class="fixed z-10 w-full bg-light px-8 py-4 dark:bg-dark sm:px-16">
     <div
       class="font-optical-size-sm mx-auto flex max-w-screen-2xl text-sm"
       :class="[showNav ? 'justify-end' : 'justify-between']"

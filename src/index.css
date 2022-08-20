@@ -101,6 +101,7 @@
   margin-inline-end: 0.125em;
 }
 
-.nowrap {
+.no-break {
   @apply whitespace-nowrap;
+  word-break: keep-all;
 }

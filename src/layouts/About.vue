@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex h-screen flex-col items-center justify-center gap-8 px-8 text-center text-rfs-base sm:px-16"
+    class="flex h-screen min-h-[800px] flex-col items-center justify-center gap-8 px-8 text-center text-rfs-base sm:px-16"
   >
     <div>
       <p class="font-optical-size-lg text-rfs-lg">
