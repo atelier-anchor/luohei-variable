@@ -6,7 +6,7 @@
   "repository": "https://github.com/atelier-anchor/vf-website.git",
   "scripts": {
     "dev": "vite",
-    "build": "VITE_BUILD_DATE=`date` vite build",
+    "build": "VITE_BUILD_DATE=`date \"+%Y-%m-%d %H:%M:%S\"` vite build",
     "preview": "vite preview"
   },
   "dependencies": {

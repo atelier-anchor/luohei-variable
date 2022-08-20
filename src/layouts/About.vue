@@ -40,7 +40,10 @@
       <p>{{ $t('about.repository') }}</p>
       <p v-html="link('https://github.com/atelier-anchor/luohei-variable')"></p>
     </div>
-    <p>{{ $t('about.last-updated', dateValues) }}</p>
+    <p>
+      {{ $t('about.last-updated') }}
+      <time :datetime="date.toISOString()">{{ $t('about.date', dateValues) }}</time>
+    </p>
   </div>
 </template>
 
@@ -60,8 +63,8 @@ const members = [
 
 const link = (url) => `<a href="${url}" target="_blank">${url}</a>`
 
+const date = new Date(import.meta.env.VITE_BUILD_DATE)
 const dateValues = (() => {
-  const date = new Date(import.meta.env.VITE_BUILD_DATE)
   return {
     year: date.getFullYear(),
     month: date.getMonth() + 1,

@@ -71,6 +71,7 @@
     "tongji-di": "同济大学设计创意学院",
     "maintainer": "本页面由 atelierAnchor 锚坞维护",
     "repository": "访问 GitHub 仓库",
-    "last-updated": "最后更新于 {year} 年 {month} 月 {day} 日"
+    "last-updated": "最后更新于",
+    "date": "{year} 年 {month} 月 {day} 日"
   }
 }

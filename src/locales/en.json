@@ -62,12 +62,16 @@
   "about": {
     "commemorate": "In Memory of",
     "concept": "LuoHei Variable starts as Willie Liu’s graduation project, featuring a variable font exploring Hanzi motion graphics. The stroke width is controlled by two axes, leading to a diverse range of contrasts and styles.",
+    "concept-0": "",
+    "concept-1": "",
+    "concept-2": "",
     "designer": "Designer",
     "supervisor": "Supervisor",
     "developer": "Developer",
     "tongji-di": "Tongji University Colledge of Design and Innovation",
     "maintainer": "Maintained by atelierAnchor:",
     "repository": "Visit the GitHub repository:",
-    "last-updated": "Last updated on {date}"
+    "last-updated": "Last updated on",
+    "date": "{date}"
   }
 }
