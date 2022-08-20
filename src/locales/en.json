@@ -66,8 +66,8 @@
     "supervisor": "Supervisor",
     "developer": "Developer",
     "tongji-di": "Tongji University Colledge of Design and Innovation",
-    "maintainer": "Maintained by {0}",
-    "atelier-anchor": "atelierAnchor",
-    "date-address": "April 2022, in Shanghai"
+    "maintainer": "Maintained by atelierAnchor:",
+    "repository": "Visit the GitHub repository:",
+    "last-updated": "Last updated on {date}"
   }
 }

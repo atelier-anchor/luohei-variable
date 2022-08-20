@@ -61,13 +61,16 @@
   },
   "about": {
     "commemorate": "谨以此设计纪念",
-    "concept": "可变字体「络黑」源自刘育黎的毕业设计项目「面向动态图形的中文可变字体」，由两个变量作用于笔画粗细，产生不同的对比样式。",
+    "concept": "{0}{1}{2}",
+    "concept-0": "可变字体「络黑」源自刘育黎的毕业设计项目「",
+    "concept-1": "面向动态图形的中文可变字体",
+    "concept-2": "」，由两个变量作用于笔画粗细，产生不同的对比样式。",
     "designer": "设计",
     "supervisor": "导师",
     "developer": "网页开发",
     "tongji-di": "同济大学设计创意学院",
-    "maintainer": "本页面由 {0} 维护",
-    "atelier-anchor": "atelierAnchor 锚坞",
-    "date-address": "二〇二二年四月{0}作于上海家中"
+    "maintainer": "本页面由 atelierAnchor 锚坞维护",
+    "repository": "访问 GitHub 仓库",
+    "last-updated": "最后更新于 {year} 年 {month} 月 {day} 日"
   }
 }

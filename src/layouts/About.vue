@@ -15,36 +15,32 @@
     </div>
     <p
       class="font-optical-size-lg mb-8 max-w-3xl text-rfs-lg"
-      v-html="cjkKern($t('about.concept'))"
+      v-html="
+        $t('about.concept', [
+          cjkKern($t('about.concept-0')),
+          `<a href='https://tjdi.tongji.edu.cn/tags/projects/1833555' target='_blank'>${$t(
+            'about.concept-1'
+          )}</a>`,
+          cjkKern($t('about.concept-2')),
+        ])
+      "
     ></p>
     <div>
-      <ul class="flex justify-center gap-4 sm:gap-8">
+      <ul class="flex gap-4 sm:gap-8">
         <li><AboutMember :member="members[0]" /></li>
         <li><AboutMember :member="members[1]" /></li>
       </ul>
-      <p
-        v-html="
-          parenthese(
-            `<a href='https://tjdi.tongji.edu.cn/' target='_blank'>${$t('about.tongji-di')}</a>`
-          )[$i18n.locale]
-        "
-      ></p>
       <p>
         <AboutMember :member="members[2]" />
       </p>
     </div>
     <div>
-      <p
-        v-html="
-          $t('about.maintainer', [
-            `<a href='https://atelier-anchor.com/' target='_blank' class='font-bold hover:font-normal'>${$t(
-              'about.atelier-anchor'
-            )}</a>`,
-          ])
-        "
-      ></p>
-      <p v-html="$t('about.date-address', [`<span class='mr-4'></span>`])"></p>
+      <p>{{ $t('about.maintainer') }}</p>
+      <p v-html="link('https://atelier-anchor.com')" class="mb-2"></p>
+      <p>{{ $t('about.repository') }}</p>
+      <p v-html="link('https://github.com/atelier-anchor/luohei-variable')"></p>
     </div>
+    <p>{{ $t('about.last-updated', dateValues) }}</p>
   </div>
 </template>
 
@@ -62,5 +58,15 @@ const members = [
   },
 ]
 
-const parenthese = (s) => ({ zh: `（${s}）`, en: `(${s})` })
+const link = (url) => `<a href="${url}" target="_blank">${url}</a>`
+
+const dateValues = (() => {
+  const date = new Date(import.meta.env.VITE_BUILD_DATE)
+  return {
+    year: date.getFullYear(),
+    month: date.getMonth() + 1,
+    day: date.getDate(),
+    date: date.toLocaleString('en', { year: 'numeric', month: 'long', day: 'numeric' }),
+  }
+})()
 </script>
