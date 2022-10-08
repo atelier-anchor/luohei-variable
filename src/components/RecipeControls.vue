@@ -2,22 +2,22 @@
   <div class="flex flex-col gap-4">
     <div class="flex gap-4 md:hidden">
       <button :class="{ 'font-bold': showFontOptions }" @click="toggleOptions">
-        {{ $t('demo.font-options') }}
+        {{ $t('recipe.font-options') }}
       </button>
       <button :class="{ 'font-bold': !showFontOptions }" @click="toggleOptions">
-        {{ $t('demo.layout-options') }}
+        {{ $t('recipe.layout-options') }}
       </button>
     </div>
     <div class="md:block" :class="{ hidden: !showFontOptions }">
       <RangeInput :option="controls.xwgt" v-model.number="options.xwgt" />
       <RangeInput :option="controls.ywgt" v-model.number="options.ywgt" />
       <RadioInputGroup
-        :label="$t('demo.weight')"
+        :label="$t('recipe.weight')"
         :options="controls.weights"
         v-model="options.weight"
       />
       <RadioInputGroup
-        :label="$t('demo.contrast')"
+        :label="$t('recipe.contrast')"
         :options="controls.contrasts"
         v-model="options.contrast"
       />
@@ -26,18 +26,18 @@
       <RangeInput :option="controls.size" v-model.number="options.size" />
       <RangeInput :option="controls.leading" v-model.number="options.leading" />
       <RadioInputGroup
-        :label="$t('demo.direction')"
+        :label="$t('recipe.direction')"
         :options="controls.directions"
         v-model="options.direction"
       />
       <RadioInputGroup
-        :label="$t('demo.punct')"
+        :label="$t('recipe.punct')"
         :options="controls.puncts"
         v-model="options.punct"
       />
     </div>
     <RadioInputGroup
-      :label="$t('demo.text')"
+      :label="$t('recipe.text')"
       :options="controls.textIds"
       v-model="options.textId"
     />
@@ -47,29 +47,29 @@
 <script setup>
 import { onMounted, reactive, ref } from 'vue'
 import { randomChar } from '../utils'
-import RadioInputGroup from '../components/RadioInputGroup.vue'
-import RangeInput from '../components/RangeInput.vue'
+import RadioInputGroup from './RadioInputGroup.vue'
+import RangeInput from './RangeInput.vue'
 
 const controls = reactive({
-  xwgt: { name: 'xwgt', label: 'demo.x-axis', min: 100, max: 900 },
-  ywgt: { name: 'ywgt', label: 'demo.y-axis', min: 100, max: 900 },
+  xwgt: { name: 'xwgt', label: 'recipe.x-axis', min: 100, max: 900 },
+  ywgt: { name: 'ywgt', label: 'recipe.y-axis', min: 100, max: 900 },
   weights: [
-    { name: 'w-thin', label: 'demo.weights.thin', value: 'thin' },
-    { name: 'w-light', label: 'demo.weights.light', value: 'light' },
-    { name: 'w-medium', label: 'demo.weights.medium', value: 'medium' },
-    { name: 'w-bold', label: 'demo.weights.bold', value: 'bold' },
-    { name: 'w-heavy', label: 'demo.weights.heavy', value: 'heavy' },
+    { name: 'w-thin', label: 'recipe.weights.thin', value: 'thin' },
+    { name: 'w-light', label: 'recipe.weights.light', value: 'light' },
+    { name: 'w-medium', label: 'recipe.weights.medium', value: 'medium' },
+    { name: 'w-bold', label: 'recipe.weights.bold', value: 'bold' },
+    { name: 'w-heavy', label: 'recipe.weights.heavy', value: 'heavy' },
   ],
   contrasts: [
-    { name: 'c-none', label: 'demo.contrasts.none', value: 'none' },
-    { name: 'c-normal', label: 'demo.contrasts.normal', value: 'normal' },
-    { name: 'c-reverse', label: 'demo.contrasts.reverse', value: 'reverse' },
+    { name: 'c-none', label: 'recipe.contrasts.none', value: 'none' },
+    { name: 'c-normal', label: 'recipe.contrasts.normal', value: 'normal' },
+    { name: 'c-reverse', label: 'recipe.contrasts.reverse', value: 'reverse' },
   ],
   // TODO: handle default values
-  size: { name: 'size', label: 'demo.font-size', min: 16, max: 96, reset: true, default: 40 },
+  size: { name: 'size', label: 'recipe.font-size', min: 16, max: 96, reset: true, default: 40 },
   leading: {
     name: 'leading',
-    label: 'demo.leading',
+    label: 'recipe.leading',
     min: 1,
     max: 4,
     step: 0.05,
@@ -77,19 +77,19 @@ const controls = reactive({
     default: 1.3,
   },
   directions: [
-    { name: 'direction-horizontal', label: 'demo.directions.horizontal', value: 'horizontal-tb' },
-    { name: 'direction-vertical', label: 'demo.directions.vertical', value: 'vertical-rl' },
+    { name: 'direction-horizontal', label: 'recipe.directions.horizontal', value: 'horizontal-tb' },
+    { name: 'direction-vertical', label: 'recipe.directions.vertical', value: 'vertical-rl' },
   ],
   puncts: [
-    { name: 'punct-default', label: 'demo.puncts.default', value: 'default' },
-    { name: 'punct-kaiming', label: 'demo.puncts.kaiming', value: 'kaiming' },
-    { name: 'punct-full', label: 'demo.puncts.full', value: 'full' },
+    { name: 'punct-default', label: 'recipe.puncts.default', value: 'default' },
+    { name: 'punct-kaiming', label: 'recipe.puncts.kaiming', value: 'kaiming' },
+    { name: 'punct-full', label: 'recipe.puncts.full', value: 'full' },
   ],
   textIds: [
-    { name: 'id-a', label: 'demo.texts.a', value: 'a' },
-    { name: 'id-b', label: 'demo.texts.b', value: 'b' },
-    { name: 'id-c', label: 'demo.texts.c', value: 'c' },
-    { name: 'id-random', label: 'demo.texts.random', value: 'random' },
+    { name: 'id-a', label: 'recipe.texts.a', value: 'a' },
+    { name: 'id-b', label: 'recipe.texts.b', value: 'b' },
+    { name: 'id-c', label: 'recipe.texts.c', value: 'c' },
+    { name: 'id-random', label: 'recipe.texts.random', value: 'random' },
   ],
 })
 

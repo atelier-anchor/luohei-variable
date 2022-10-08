@@ -1,8 +1,8 @@
 <template>
   <ColorContainer class="px-8 sm:px-16">
     <div class="mx-auto flex h-screen max-w-screen-2xl flex-col gap-8 pt-20 pb-6 md:flex-row">
-      <DemoControls :options="options" class="w-64" />
-      <DemoText :options="options" class="flex-1" />
+      <RecipeControls :options="options" class="w-64" />
+      <RecipeText :options="options" class="flex-1" />
     </div>
   </ColorContainer>
 </template>
@@ -11,8 +11,8 @@
 import { onMounted, reactive } from 'vue'
 import { namedInstance, LUOHEI_WEIGHTS, LUOHEI_CONTRASTS } from '../utils'
 import ColorContainer from '../components/ColorContainer.vue'
-import DemoControls from '../components/DemoControls.vue'
-import DemoText from '../components/DemoText.vue'
+import RecipeControls from '../components/RecipeControls.vue'
+import RecipeText from '../components/RecipeText.vue'
 
 const options = reactive({
   showFontOptions: true,

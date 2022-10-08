@@ -8,12 +8,12 @@
     "start": "Start"
   },
   "nav": {
-    "demo": "Demo",
-    "sensors": "Sensors",
+    "recipe": "Recipe",
+    "response": "Response",
     "ripple": "Ripple",
     "about": "About"
   },
-  "demo": {
+  "recipe": {
     "font-options": "Font options",
     "layout-options": "Layout options",
     "x-axis": "X axis",
@@ -53,7 +53,7 @@
       "random": "Random"
     }
   },
-  "sensors": {
+  "response": {
     "show-values": "Show values",
     "enable-orientation": "Click here to enable orientation sensors…",
     "voice-control-x": "Voice control X",

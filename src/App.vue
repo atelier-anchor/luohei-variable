@@ -13,16 +13,16 @@ import { useI18n } from 'vue-i18n'
 import AppHeader from './components/AppHeader.vue'
 import VideoPanel from './components/VideoPanel.vue'
 import About from './layouts/About.vue'
-import Demo from './layouts/Demo.vue'
 import Home from './layouts/Home.vue'
+import Recipe from './layouts/Recipe.vue'
+import Response from './layouts/Response.vue'
 import Ripple from './layouts/Ripple.vue'
-import Sensors from './layouts/Sensors.vue'
 
 const videoShown = ref(false)
 
 const nav = {
-  demo: Demo,
-  sensors: Sensors,
+  recipe: Recipe,
+  response: Response,
   ripple: Ripple,
   about: About,
 }

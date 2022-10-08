@@ -8,12 +8,12 @@
     "start": "开始"
   },
   "nav": {
-    "demo": "字样",
-    "sensors": "感应",
+    "recipe": "字样",
+    "response": "感应",
     "ripple": "涟漪",
     "about": "关于"
   },
-  "demo": {
+  "recipe": {
     "font-options": "字体设置",
     "layout-options": "排版设置",
     "x-axis": "变量 X",
@@ -53,7 +53,7 @@
       "random": "随机"
     }
   },
-  "sensors": {
+  "response": {
     "show-values": "显示值",
     "enable-orientation": "点击这里开启方向感应…",
     "voice-control-x": "声控 X",
