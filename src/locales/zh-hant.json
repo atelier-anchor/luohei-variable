@@ -1,0 +1,77 @@
+{
+  "header": {
+    "name": "絡黑",
+    "title": "@:header.name LuoHei Variable",
+    "title-display": "{0} LuoHei Variable",
+    "video": "觀看動畫",
+    "close": "關閉",
+    "start": "開始"
+  },
+  "nav": {
+    "demo": "字樣",
+    "sensors": "感應",
+    "ripple": "漣漪",
+    "about": "關於"
+  },
+  "demo": {
+    "font-options": "字型設定",
+    "layout-options": "排版設定",
+    "x-axis": "變數 X",
+    "y-axis": "變數 Y",
+    "weight": "字重",
+    "contrast": "反差",
+    "font-size": "字級",
+    "leading": "行距",
+    "direction": "方向",
+    "punct": "標點",
+    "text": "文本",
+    "weights": {
+      "thin": "纖",
+      "light": "細",
+      "medium": "中",
+      "bold": "粗",
+      "heavy": "黑"
+    },
+    "contrasts": {
+      "none": "無",
+      "normal": "順",
+      "reverse": "逆"
+    },
+    "directions": {
+      "horizontal": "橫排",
+      "vertical": "直排"
+    },
+    "puncts": {
+      "default": "默認",
+      "kaiming": "開明",
+      "full": "全寬"
+    },
+    "texts": {
+      "a": "甲",
+      "b": "乙",
+      "c": "丙",
+      "random": "隨機"
+    }
+  },
+  "sensors": {
+    "show-values": "顯示值",
+    "enable-orientation": "點擊這裡開啟方位感應…",
+    "voice-control-x": "聲控 X",
+    "voice-control-y": "聲控 Y"
+  },
+  "about": {
+    "commemorate": "僅以此設計紀念",
+    "concept": "{0}{1}{2}",
+    "concept-0": "可變字型「絡黑」源自劉育黎的畢業設計項目「",
+    "concept-1": "面向動態圖形的中文可變字體",
+    "concept-2": "」，由兩個變數作用於筆畫粗細，產生不同的反差樣式。",
+    "designer": "設計",
+    "supervisor": "導師",
+    "developer": "網頁開發",
+    "tongji-di": "同濟大學設計創意學院",
+    "maintainer": "本頁面由 atelierAnchor 錨塢維護",
+    "repository": "訪問 GitHub 倉儲",
+    "last-updated": "最後更新於",
+    "date": "{year} 年 {month} 月 {day} 日"
+  }
+}

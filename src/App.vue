@@ -40,7 +40,14 @@ window.addEventListener('hashchange', () => (currentPath.value = window.location
 
 onMounted(() => {
   const { locale, t } = useI18n()
-  if (navigator.language.split('-')[0] !== 'zh') {
+  if (navigator.language.split('-')[0] === 'zh') {
+    const lang = navigator.language.toLowerCase()
+    if (['hant', 'hk', 'tw'].some((s) => lang.indexOf(s) >= 0)) {
+      locale.value = 'zh-hant'
+    } else {
+      locale.value = 'zh-hans'
+    }
+  } else {
     locale.value = 'en'
   }
   document.title = t('header.title')

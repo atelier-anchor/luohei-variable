@@ -52,11 +52,18 @@ import { cjkKern } from '../utils'
 import AboutMember from '../components/AboutMember.vue'
 
 const members = [
-  { title: 'designer', name: { zh: '刘育黎', en: 'Willie Liu' }, href: 'mailto:owill@foxmail.com' },
-  { title: 'supervisor', name: { zh: '杜钦', en: 'Qin Du' } },
+  {
+    title: 'designer',
+    name: { 'zh-hans': '刘育黎', 'zh-hant': '劉育黎', en: 'Willie Liu' },
+    href: 'mailto:owill@foxmail.com',
+  },
+  {
+    title: 'supervisor',
+    name: { 'zh-hans': '杜钦', 'zh-hant': '杜欽', en: 'Qin Du' },
+  },
   {
     title: 'developer',
-    name: { zh: '曾祥东', en: 'Xiangdong Zeng' },
+    name: { 'zh-hans': '曾祥东', 'zh-hant': '曾祥東', en: 'Xiangdong Zeng' },
     href: 'https://stone-zeng.github.io',
   },
 ]

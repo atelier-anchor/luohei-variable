@@ -1,14 +1,16 @@
 <template>
   <div class="flex h-screen flex-col items-center justify-center gap-4 text-center">
-    <p class="tracking text-rfs-8xl" :class="{ 'breathe-zh': active }">络黑</p>
-    <p class="px-8 text-rfs-4xl sm:px-16">
+    <h1 class="tracking text-rfs-8xl" :class="{ 'breathe-zh': active }">
+      {{ $i18n.locale === 'zh-hant' ? '絡黑' : '络黑' }}
+    </h1>
+    <h2 class="px-8 text-rfs-4xl sm:px-16">
       <span
         v-for="(c, idx) in 'LuoHei Variable'.split('')"
         :class="{ 'breathe-en': active }"
         :style="{ animationDelay: `${-idx}s` }"
         >{{ c }}</span
       >
-    </p>
+    </h2>
   </div>
 </template>
 

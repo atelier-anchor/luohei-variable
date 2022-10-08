@@ -10,8 +10,8 @@ import { useI18n } from 'vue-i18n'
 
 const { locale, t } = useI18n()
 const toggle = () => {
-  locale.value = locale.value === 'zh' ? 'en' : 'zh'
+  locale.value = { 'zh-hans': 'zh-hant', 'zh-hant': 'en', en: 'zh-hans' }[locale.value]
   document.title = t('header.title')
 }
-const label = computed(() => (locale.value === 'zh' ? 'EN' : '汉'))
+const label = computed(() => ({ 'zh-hans': '漢', 'zh-hant': 'EN', en: '汉' }[locale.value]))
 </script>

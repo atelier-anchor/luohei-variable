@@ -5,11 +5,7 @@
       :class="[showNav ? 'justify-end' : 'justify-between']"
     >
       <template v-if="!showNav">
-        <button
-          v-if="isHome"
-          :class="{ tracking: $i18n.locale === 'zh' }"
-          @click="$emit('show-video')"
-        >
+        <button v-if="isHome" :class="{ tracking: isLocaleZh }" @click="$emit('show-video')">
           {{ $t('header.video') }}
         </button>
         <a
@@ -24,7 +20,7 @@
       <div class="flex gap-4">
         <nav class="absolute left-8 sm:static sm:block" :class="{ hidden: !showNav }">
           <ul class="flex gap-4">
-            <li v-for="name in Object.keys(nav)" :class="{ tracking: $i18n.locale === 'zh' }">
+            <li v-for="name in Object.keys(nav)" :class="{ tracking: isLocaleZh }">
               <a :href="`#/${name}`" :class="{ 'font-bold': currentPath.includes(name) }">
                 {{ $t(`nav.${name}`) }}
               </a>
@@ -33,7 +29,7 @@
         </nav>
         <button
           class="sm:hidden"
-          :class="{ 'font-bold': showNav, tracking: $i18n.locale === 'zh' }"
+          :class="{ 'font-bold': showNav, tracking: isLocaleZh }"
           @click="showNav = !showNav"
         >
           {{ $t('header.start') }}
@@ -46,6 +42,7 @@
 
 <script setup>
 import { computed, ref } from 'vue'
+import { isLocaleZh } from '../i18n'
 import LocaleToggler from './LocaleToggler.vue'
 
 const showNav = ref(false)
