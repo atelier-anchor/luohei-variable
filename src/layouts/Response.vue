@@ -10,7 +10,7 @@
         <div>YWGT = {{ axes.ywgt }}</div>
       </div>
       <InitializeButton :listener="handleOrientation">
-        {{ $t('sensors.enable-orientation') }}
+        {{ $t('response.enable-orientation') }}
       </InitializeButton>
       <div class="absolute top-20 left-0">
         <div class="flex flex-col items-start">
@@ -22,13 +22,13 @@
             class="hidden appearance-none"
           />
           <label for="checkbox-show-values" :class="{ 'font-bold': showValues }">
-            {{ $t('sensors.show-values') }}
+            {{ $t('response.show-values') }}
           </label>
           <button :class="{ 'font-bold': voiceControl.xwgt }" @click="toggleX">
-            {{ $t('sensors.voice-control-x') }}
+            {{ $t('response.voice-control-x') }}
           </button>
           <button :class="{ 'font-bold': voiceControl.ywgt }" @click="toggleY">
-            {{ $t('sensors.voice-control-y') }}
+            {{ $t('response.voice-control-y') }}
           </button>
         </div>
       </div>
