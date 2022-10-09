@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { isLocaleZhHant } from '../i18n'
+import { isLocaleZhHant } from '@/i18n'
 
 defineProps({
   active: Boolean,

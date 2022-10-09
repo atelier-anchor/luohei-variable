@@ -46,9 +46,9 @@
 
 <script setup>
 import { onMounted, reactive, ref } from 'vue'
-import { randomChar } from '../utils'
-import RadioInputGroup from './RadioInputGroup.vue'
-import RangeInput from './RangeInput.vue'
+import { randomChar } from '@/utils'
+import RadioInputGroup from '@/components/recipe/RadioInputGroup.vue'
+import RangeInput from '@/components/recipe/RangeInput.vue'
 
 const controls = reactive({
   xwgt: { name: 'xwgt', label: 'recipe.x-axis', min: 100, max: 900 },

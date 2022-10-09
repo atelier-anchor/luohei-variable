@@ -48,8 +48,8 @@
 </template>
 
 <script setup>
-import { cjkKern } from '../utils'
-import AboutMember from '../components/AboutMember.vue'
+import { cjkKern } from '@/utils'
+import AboutMember from '@/components/about/AboutMember.vue'
 
 const members = [
   {

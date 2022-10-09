@@ -5,6 +5,6 @@
 </template>
 
 <script setup>
-import ColorContainer from '../components/ColorContainer.vue'
-import RippleGrid from '../components/RippleGrid.vue'
+import ColorContainer from '@/components/ColorContainer.vue'
+import RippleGrid from '@/components/ripple/RippleGrid.vue'
 </script>

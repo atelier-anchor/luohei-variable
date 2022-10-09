@@ -12,7 +12,7 @@
 
 <script setup>
 import { inject } from 'vue'
-import { isLocaleZh } from '../i18n'
+import { isLocaleZh } from '@/i18n'
 
 const { isHome } = inject('currentPath')
 const { showVideo } = inject('video')

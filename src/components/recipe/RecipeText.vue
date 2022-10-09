@@ -15,8 +15,8 @@
 
 <script setup>
 import { computed } from 'vue'
-import { isLocaleZhHant } from '../i18n'
-import { cjkKern } from '../utils'
+import { isLocaleZhHant } from '@/i18n'
+import { cjkKern } from '@/utils'
 
 const texts = {
   'zh-hans': {

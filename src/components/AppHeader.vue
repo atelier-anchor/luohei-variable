@@ -12,8 +12,8 @@
 
 <script setup>
 import { onMounted, ref } from 'vue'
-import VideoToggler from './VideoToggler.vue'
-import AppNav from './AppNav.vue'
+import VideoToggler from '@/components/VideoToggler.vue'
+import AppNav from '@/components/AppNav.vue'
 
 const showNav = ref(false)
 

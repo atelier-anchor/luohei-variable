@@ -19,7 +19,7 @@
 
 <script setup>
 import { onMounted, onUnmounted, reactive, ref } from 'vue'
-import { clamp, expScale, randomChar, HEADER_HEIGHT } from '../utils'
+import { clamp, expScale, randomChar, HEADER_HEIGHT } from '@/utils'
 
 const gridContainer = ref(null)
 const grid = reactive({ size: 0, rows: 0, cols: 0, template: '', height: '', content: [] })

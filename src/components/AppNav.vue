@@ -22,8 +22,8 @@
 
 <script setup>
 import { inject } from 'vue'
-import { isLocaleZh } from '../i18n'
-import LocaleToggler from './LocaleToggler.vue'
+import { isLocaleZh } from '@/i18n'
+import LocaleToggler from '@/components/LocaleToggler.vue'
 
 const nav = inject('nav')
 const { currentPath } = inject('currentPath')

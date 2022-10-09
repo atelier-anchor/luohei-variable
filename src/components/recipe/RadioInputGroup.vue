@@ -13,7 +13,7 @@
 </template>
 
 <script setup>
-import RadioInput from './RadioInput.vue'
+import RadioInput from '@/components/recipe/RadioInput.vue'
 
 defineProps({
   label: String,

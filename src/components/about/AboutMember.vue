@@ -6,7 +6,7 @@
 </template>
 
 <script setup>
-import { isLocaleZh } from '../i18n'
+import { isLocaleZh } from '@/i18n'
 
 defineProps({
   member: Object,

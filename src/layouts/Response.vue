@@ -38,10 +38,10 @@
 
 <script setup>
 import { onUnmounted, reactive, ref } from 'vue'
-import { clamp, scale, HEADER_HEIGHT } from '../utils'
-import ColorContainer from '../components/ColorContainer.vue'
-import EditableText from '../components/EditableText.vue'
-import InitializeButton from '../components/InitializeButton.vue'
+import { clamp, scale, HEADER_HEIGHT } from '@/utils'
+import ColorContainer from '@/components/ColorContainer.vue'
+import EditableText from '@/components/response/EditableText.vue'
+import InitializeButton from '@/components/response/InitializeButton.vue'
 
 const axes = reactive({ xwgt: 250, ywgt: 500 })
 const voiceControl = reactive({ xwgt: false, ywgt: false })

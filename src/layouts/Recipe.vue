@@ -9,10 +9,10 @@
 
 <script setup>
 import { onMounted, reactive } from 'vue'
-import { namedInstance, LUOHEI_WEIGHTS, LUOHEI_CONTRASTS } from '../utils'
-import ColorContainer from '../components/ColorContainer.vue'
-import RecipeControls from '../components/RecipeControls.vue'
-import RecipeText from '../components/RecipeText.vue'
+import { namedInstance, LUOHEI_WEIGHTS, LUOHEI_CONTRASTS } from '@/utils'
+import ColorContainer from '@/components/ColorContainer.vue'
+import RecipeControls from '@/components/recipe/RecipeControls.vue'
+import RecipeText from '@/components/recipe/RecipeText.vue'
 
 const options = reactive({
   showFontOptions: true,

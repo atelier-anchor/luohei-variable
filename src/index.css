@@ -5,7 +5,7 @@
 @layer base {
   @font-face {
     font-family: 'LuoHei VF';
-    src: url('./assets/LuoHeiVF.woff2') format('woff2');
+    src: url('@/assets/LuoHeiVF.woff2') format('woff2');
   }
 
   body {
