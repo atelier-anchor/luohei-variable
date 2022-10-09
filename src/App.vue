@@ -57,6 +57,7 @@ onMounted(() => {
     locale.value = 'en'
   }
   document.title = t('header.title')
+  document.documentElement.lang = locale.value
   window.addEventListener('hashchange', () => (currentPath.value = window.location.hash))
 })
 </script>

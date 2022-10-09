@@ -60,7 +60,7 @@
     "voice-control-y": "聲控 Y"
   },
   "about": {
-    "commemorate": "謹此設計紀念",
+    "commemoration": "謹以此設計紀念",
     "concept": "{0}{1}{2}",
     "concept-0": "可變字型「絡黑」源自劉育黎的畢業設計項目「",
     "concept-1": "面向動態圖形的中文可變字體",
@@ -69,7 +69,7 @@
     "supervisor": "導師",
     "developer": "網頁開發",
     "tongji-di": "同濟大學設計創意學院",
-    "maintainer": "本頁面由 atelierAnchor 錨塢維護",
+    "atelier-anchor": "atelierAnchor 錨塢",
     "repository": "訪問 GitHub 倉儲",
     "last-updated": "最後更新於",
     "date": "{year} 年 {month} 月 {day} 日"

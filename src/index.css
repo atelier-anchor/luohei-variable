@@ -105,3 +105,7 @@
   @apply whitespace-nowrap;
   word-break: keep-all;
 }
+
+.hyphens-auto {
+  hyphens: auto;
+}

@@ -60,16 +60,16 @@
     "voice-control-y": "Voice control Y"
   },
   "about": {
-    "commemorate": "In Memory of",
-    "concept": "{0}",
-    "concept-0": "LuoHei Variable starts as Willie Liu’s graduation project, featuring a variable font exploring Hanzi motion graphics. The stroke width is controlled by two axes, leading to a diverse range of contrasts and styles.",
-    "concept-1": "",
-    "concept-2": "",
+    "commemoration": "In Memory of",
+    "concept": "{0}{1}{2}",
+    "concept-0": "LuoHei Variable starts as Willie Liu’s ",
+    "concept-1": "graduation project",
+    "concept-2": ", featuring a variable font exploring Hanzi motion graphics. The stroke width is controlled by two axes, leading to a diverse range of contrasts and styles.",
     "designer": "Designer",
     "supervisor": "Supervisor",
     "developer": "Developer",
-    "tongji-di": "Tongji University Colledge of Design and Innovation",
-    "maintainer": "Maintained by atelierAnchor:",
+    "tongji-di": "College of Design and Innovation, Tongji University",
+    "atelier-anchor": "atelierAnchor",
     "repository": "Visit the GitHub repository:",
     "last-updated": "Last updated on",
     "date": "{date}"
