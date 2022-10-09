@@ -10,7 +10,8 @@
 
   body {
     --font-variation-normal: 'XWGT' 250, 'YWGT' 500;
-    --font-variation-bold: 'XWGT' 400, 'YWGT' 800;
+    /* --font-variation-bold: 'XWGT' 400, 'YWGT' 800; */
+    --font-variation-bold: 'XWGT' 800, 'YWGT' 400;
 
     @media (prefers-color-scheme: dark) {
       --font-variation-normal: 'XWGT' 225, 'YWGT' 475;
@@ -53,7 +54,8 @@
 @layer utilities {
   .font-optical-size-sm {
     --font-variation-normal: 'XWGT' 300, 'YWGT' 600;
-    --font-variation-bold: 'XWGT' 450, 'YWGT' 900;
+    /* --font-variation-bold: 'XWGT' 450, 'YWGT' 900; */
+    --font-variation-bold: 'XWGT' 900, 'YWGT' 450;
 
     @media (prefers-color-scheme: dark) {
       --font-variation-normal: 'XWGT' 275, 'YWGT' 575;
@@ -65,7 +67,8 @@
 
   .font-optical-size-lg {
     --font-variation-normal: 'XWGT' 200, 'YWGT' 400;
-    --font-variation-bold: 'XWGT' 200, 'YWGT' 800;
+    /* --font-variation-bold: 'XWGT' 200, 'YWGT' 800; */
+    --font-variation-bold: 'XWGT' 800, 'YWGT' 200;
 
     @media (prefers-color-scheme: dark) {
       --font-variation-normal: 'XWGT' 175, 'YWGT' 375;
