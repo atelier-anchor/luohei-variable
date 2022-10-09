@@ -132,5 +132,7 @@ onMounted(() => {
     button.addEventListener('click', () => (props.options.randomText = generateRandomText()))
 })
 
-const props = defineProps({ options: Object })
+const props = defineProps({
+  options: Object,
+})
 </script>

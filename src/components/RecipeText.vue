@@ -15,30 +15,46 @@
 
 <script setup>
 import { computed } from 'vue'
+import { isLocaleZhHant } from '../i18n'
 import { cjkKern } from '../utils'
 
 const texts = {
-  a: [
-    '天上取样人间织，染作江南春水色。',
-    '春江潮水连海平，海上明月共潮生。',
-    'Ad astra abyssosque!',
-    // '天，上。取！样「人」间（织）染作',
-    // '字字字字字字字，字字。字字字',
-    // '字字字字字字字「字字」字（字）字',
-    // '字字，「字字」，字字字',
-    // '字字。「字字」！字字字',
-    // '字字，」字字字',
-    // '字字。」字字字',
-    // '字字「字」「字」字」，字',
-    // '字字「字」（字）字）。字',
-  ],
-  b: ['面向动态图形的中文可变字体「络黑」（LuoHei Variable），设计于2020\u{2013}2022年间。'],
-  c: ['个风我酬意警鹰纛\u{30EDD}', 'Fox nymphs grab quick-jived waltz.', '2.718281828459…'],
+  'zh-hans': {
+    a: [
+      '天上取样人间织，染作江南春水色。',
+      '春江潮水连海平，海上明月共潮生。',
+      'Ad astra abyssosque!',
+      // '天，上。取！样「人」间（织）染作',
+      // '字字字字字字字，字字。字字字',
+      // '字字字字字字字「字字」字（字）字',
+      // '字字，「字字」，字字字',
+      // '字字。「字字」！字字字',
+      // '字字，」字字字',
+      // '字字。」字字字',
+      // '字字「字」「字」字」，字',
+      // '字字「字」（字）字）。字',
+    ],
+    b: ['面向动态图形的中文可变字体「络黑」（LuoHei Variable），设计于2020\u{2013}2022年间。'],
+    c: ['个风我酬意警鹰纛\u{30EDD}', 'Fox nymphs grab quick-jived waltz.', '2.718281828459…'],
+  },
+  'zh-hant': {
+    a: [
+      '天上取樣人間織，染作江南春水色。',
+      '春江潮水連海平，海上明月共潮生。',
+      'Ad astra abyssosque!',
+    ],
+    b: ['面向動態圖形的中文可變字型「絡黑」（LuoHei Variable），設計於2020\u{2013}2022年間。'],
+    c: ['个東我意酬書鬱鷹\u{30EDE}', 'Fox nymphs grab quick-jived waltz.', '2.718281828459…'],
+  },
 }
 
-const text = computed(() =>
-  props.options.textId === 'random' ? props.options.randomText : texts[props.options.textId]
-)
+const text = computed(() => {
+  if (props.options.textId === 'random') {
+    return props.options.randomText
+  } else {
+    return texts[isLocaleZhHant.value ? 'zh-hant' : 'zh-hans'][props.options.textId]
+  }
+})
 
 const cjkKernValues = {
   sm: { default: '0', kaiming: '0', full: '0.5em' },
@@ -50,7 +66,9 @@ const cjkKernSm = computed(() => cjkKernValues.sm[props.options.punct])
 const cjkKernMd = computed(() => cjkKernValues.md[props.options.punct])
 const cjkLatinGlue = computed(() => cjkKernValues.latin[props.options.punct])
 
-const props = defineProps({ options: Object })
+const props = defineProps({
+  options: Object,
+})
 </script>
 
 <style scoped>

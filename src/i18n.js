@@ -1,5 +1,5 @@
 import { computed } from 'vue'
-import { createI18n, useI18n } from 'vue-i18n'
+import { createI18n } from 'vue-i18n'
 import zhHans from './locales/zh-hans.json'
 import zhHant from './locales/zh-hant.json'
 import en from './locales/en.json'
@@ -14,4 +14,5 @@ export const i18n = createI18n({
   },
 })
 
-export const isLocaleZh = computed(() => useI18n().locale.value.startsWith('zh'))
+export const isLocaleZh = computed(() => i18n.global.locale.value.startsWith('zh'))
+export const isLocaleZhHant = computed(() => i18n.global.locale.value === 'zh-hant')
