@@ -65,10 +65,22 @@
 
   .font-optical-size-lg {
     --font-variation-normal: 'XWGT' 200, 'YWGT' 400;
-    --font-variation-bold: 'XWGT' 200, 'YWGT' 800;
+    --font-variation-bold: 'XWGT' 400, 'YWGT' 800;
 
     @media (prefers-color-scheme: dark) {
       --font-variation-normal: 'XWGT' 175, 'YWGT' 375;
+      --font-variation-bold: 'XWGT' 375, 'YWGT' 775;
+    }
+
+    font-variation-settings: var(--font-variation-normal);
+  }
+
+  .font-optical-size-noordzij {
+    --font-variation-normal: 'XWGT' 450, 'YWGT' 500;
+    --font-variation-bold: 'XWGT' 200, 'YWGT' 800;
+
+    @media (prefers-color-scheme: dark) {
+      --font-variation-normal: 'XWGT' 425, 'YWGT' 475;
       --font-variation-bold: 'XWGT' 175, 'YWGT' 775;
     }
 
