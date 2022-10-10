@@ -16,10 +16,10 @@
 <script setup>
 import { onMounted, ref } from 'vue'
 import { isLocaleZh } from '@/i18n'
-import AppNav from '@/components/AppNav.vue'
-import LocaleToggler from '@/components/LocaleToggler.vue'
-import NavToggler from '@/components/NavToggler.vue'
-import VideoToggler from '@/components/VideoToggler.vue'
+import AppNav from '@/components/header/AppNav.vue'
+import LocaleToggler from '@/components/header/LocaleToggler.vue'
+import NavToggler from '@/components/header/NavToggler.vue'
+import VideoToggler from '@/components/header/VideoToggler.vue'
 
 const showNav = ref(false)
 

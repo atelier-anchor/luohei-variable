@@ -9,7 +9,7 @@
 <script setup>
 import { computed, onMounted, provide, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import AppHeader from '@/components/AppHeader.vue'
+import AppHeader from '@/components/header/AppHeader.vue'
 import VideoPanel from '@/components/VideoPanel.vue'
 import About from '@/layouts/About.vue'
 import Home from '@/layouts/Home.vue'
