@@ -1,12 +1,12 @@
 <template>
   <div class="flex h-screen flex-col items-center justify-center gap-4 text-center">
-    <h1 class="tracking text-rfs-8xl" :class="{ 'breathe-zh': active }">
+    <h1 class="tracking breathe-zh text-rfs-8xl">
       {{ isLocaleZhHant ? '絡黑' : '络黑' }}
     </h1>
     <h2 class="px-8 text-rfs-4xl sm:px-16">
       <span
         v-for="(c, idx) in 'LuoHei Variable'.split('')"
-        :class="{ 'breathe-en': active }"
+        class="breathe-en"
         :style="{ animationDelay: `${-idx}s` }"
         >{{ c }}</span
       >
@@ -16,10 +16,6 @@
 
 <script setup>
 import { isLocaleZhHant } from '@/i18n'
-
-defineProps({
-  active: Boolean,
-})
 </script>
 
 <style scoped>

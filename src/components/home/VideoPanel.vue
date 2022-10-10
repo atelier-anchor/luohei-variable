@@ -18,5 +18,5 @@ import { inject } from 'vue'
 import { isLocaleZh } from '@/i18n'
 import videoSrc from '@/assets/luohei.webm'
 
-const { closeVideo } = inject('video')
+const closeVideo = inject('closeVideo')
 </script>

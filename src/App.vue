@@ -1,8 +1,7 @@
 <template>
   <AppHeader />
   <main>
-    <component :is="currentView" v-bind="currentProps" />
-    <VideoPanel v-if="videoShown" />
+    <component :is="currentView" />
   </main>
 </template>
 
@@ -10,18 +9,11 @@
 import { computed, onMounted, provide, ref } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AppHeader from '@/components/header/AppHeader.vue'
-import VideoPanel from '@/components/VideoPanel.vue'
 import About from '@/layouts/About.vue'
 import Home from '@/layouts/Home.vue'
 import Recipe from '@/layouts/Recipe.vue'
 import Response from '@/layouts/Response.vue'
 import Ripple from '@/layouts/Ripple.vue'
-
-const videoShown = ref(false)
-provide('video', {
-  showVideo: () => (videoShown.value = true),
-  closeVideo: () => (videoShown.value = false),
-})
 
 const routes = {
   recipe: Recipe,
@@ -36,9 +28,6 @@ const currentView = computed(() => {
   const path = currentPath.value.slice(2)
   return path in routes ? routes[path] : Home
 })
-const currentProps = computed(() =>
-  currentView.value === Home ? { active: !videoShown.value } : {}
-)
 provide('currentPath', {
   currentPath,
   isHome: computed(() => currentPath.value === '' || currentPath.value === '#/'),
