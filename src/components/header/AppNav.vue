@@ -14,6 +14,5 @@
 import { inject } from 'vue'
 import { isLocaleZh } from '@/i18n'
 
-const routes = inject('routes')
-const { currentPath } = inject('currentPath')
+const { currentPath, routes } = inject('router')
 </script>

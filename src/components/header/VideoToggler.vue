@@ -18,7 +18,7 @@ import { inject, provide, ref } from 'vue'
 import { isLocaleZh } from '@/i18n'
 import VideoPanel from '@/components/home/VideoPanel.vue'
 
-const { isHome } = inject('currentPath')
+const { isHome } = inject('router')
 
 const videoShown = ref(false)
 provide('closeVideo', () => (videoShown.value = false))

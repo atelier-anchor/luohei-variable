@@ -21,14 +21,13 @@ const routes = {
   ripple: Ripple,
   about: About,
 }
-provide('routes', routes)
-
 const currentPath = ref(window.location.hash)
 const currentView = computed(() => {
   const path = currentPath.value.slice(2)
   return path in routes ? routes[path] : Home
 })
-provide('currentPath', {
+provide('router', {
+  routes,
   currentPath,
   isHome: computed(() => currentPath.value === '' || currentPath.value === '#/'),
 })
