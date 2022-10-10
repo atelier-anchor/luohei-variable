@@ -1,5 +1,5 @@
 <template>
-  <button @click="initialize" class="pointer:hidden" :class="{ hidden: initialized }">
+  <button v-show="!initialized" @click="initialize" class="pointer:hidden">
     <slot></slot>
   </button>
 </template>

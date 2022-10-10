@@ -5,7 +5,7 @@
       @mousemove="handleMousemove"
     >
       <EditableText :xwgt="axes.xwgt" :ywgt="axes.ywgt" class="pt-8">永</EditableText>
-      <div class="flex gap-16" :class="{ hidden: !showValues }">
+      <div v-show="showValues" class="flex gap-16">
         <div>XWGT = {{ axes.xwgt }}</div>
         <div>YWGT = {{ axes.ywgt }}</div>
       </div>

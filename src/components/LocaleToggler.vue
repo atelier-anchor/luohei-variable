@@ -1,5 +1,5 @@
 <template>
-  <button class="" @click="toggle">
+  <button @click="toggleLocale">
     {{ { 'zh-hans': 'EN', 'zh-hant': '汉', en: '漢' }[locale] }}
   </button>
 </template>
@@ -9,7 +9,7 @@ import { useI18n } from 'vue-i18n'
 import { isLocaleZhHant } from '@/i18n'
 
 const { locale, t } = useI18n()
-const toggle = () => {
+const toggleLocale = () => {
   locale.value = { 'zh-hans': 'en', 'zh-hant': 'zh-hans', en: 'zh-hant' }[locale.value]
   document.title = t('header.title')
   document.documentElement.lang = locale.value

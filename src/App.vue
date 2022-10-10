@@ -23,18 +23,18 @@ provide('video', {
   closeVideo: () => (videoShown.value = false),
 })
 
-const nav = {
+const routes = {
   recipe: Recipe,
   response: Response,
   ripple: Ripple,
   about: About,
 }
-provide('nav', nav)
+provide('routes', routes)
 
 const currentPath = ref(window.location.hash)
 const currentView = computed(() => {
   const path = currentPath.value.slice(2)
-  return path in nav ? nav[path] : Home
+  return path in routes ? routes[path] : Home
 })
 const currentProps = computed(() =>
   currentView.value === Home ? { active: !videoShown.value } : {}

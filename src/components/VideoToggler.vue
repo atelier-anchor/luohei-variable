@@ -1,13 +1,13 @@
 <template>
-  <button v-if="isHome" :class="{ tracking: isLocaleZh }" @click="showVideo">
-    {{ $t('header.video') }}
-  </button>
-  <a
-    v-else
-    href="#/"
-    v-html="$t('header.title-display', [`<span class='tracking'>${$t('header.name')} </span>`])"
-  >
-  </a>
+  <div>
+    <button v-show="isHome" :class="{ tracking: isLocaleZh }" @click="showVideo">
+      {{ $t('header.video') }}
+    </button>
+    <a v-show="!isHome" href="#/">
+      <span v-if="isLocaleZh" class="tracking">{{ $t('header.name') + ' ' }}</span>
+      {{ $t('header.name-en') }}
+    </a>
+  </div>
 </template>
 
 <script setup>
