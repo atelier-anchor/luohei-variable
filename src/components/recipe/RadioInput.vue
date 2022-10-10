@@ -1,7 +1,11 @@
 <template>
   <div>
-    <label :for="name" :class="{ 'font-bold': checked }">
-      {{ $t(option.label) }}
+    <label
+      :for="name"
+      :class="{ 'font-bold': checked }"
+      :title="!isLocaleZh && option.abbr ? $t(option.label) : null"
+    >
+      {{ !isLocaleZh && option.abbr ? $t(option.label)[0] : $t(option.label) }}
     </label>
     <input
       type="radio"
@@ -17,12 +21,13 @@
 
 <script setup>
 import { computed } from 'vue'
+import { isLocaleZh } from '@/i18n'
 
 const name = computed(() => `radio-${props.option.name}`)
 const checked = computed(() => props.modelValue === props.option.value)
 
 const props = defineProps({
-  option: Object, // name, label, value
+  option: Object, // name, label, abbr?, value
   modelValue: String,
 })
 defineEmits(['update:modelValue'])

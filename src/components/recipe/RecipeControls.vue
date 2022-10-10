@@ -54,11 +54,11 @@ const controls = reactive({
   xwgt: { name: 'xwgt', label: 'recipe.x-axis', min: 100, max: 900 },
   ywgt: { name: 'ywgt', label: 'recipe.y-axis', min: 100, max: 900 },
   weights: [
-    { name: 'w-thin', label: 'recipe.weights.thin', value: 'thin' },
-    { name: 'w-light', label: 'recipe.weights.light', value: 'light' },
-    { name: 'w-medium', label: 'recipe.weights.medium', value: 'medium' },
-    { name: 'w-bold', label: 'recipe.weights.bold', value: 'bold' },
-    { name: 'w-heavy', label: 'recipe.weights.heavy', value: 'heavy' },
+    { name: 'w-thin', label: 'recipe.weights.thin', abbr: true, value: 'thin' },
+    { name: 'w-light', label: 'recipe.weights.light', abbr: true, value: 'light' },
+    { name: 'w-medium', label: 'recipe.weights.medium', abbr: true, value: 'medium' },
+    { name: 'w-bold', label: 'recipe.weights.bold', abbr: true, value: 'bold' },
+    { name: 'w-heavy', label: 'recipe.weights.heavy', abbr: true, value: 'heavy' },
   ],
   contrasts: [
     { name: 'c-none', label: 'recipe.contrasts.none', value: 'none' },

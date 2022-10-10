@@ -1,6 +1,11 @@
 <template>
   <div class="flex items-center gap-4">
-    <label :for="name" :data-reset="option.reset" class="w-16" @click="reset">
+    <label
+      :for="name"
+      :data-reset="option.reset"
+      :class="isLocaleZh ? 'w-16' : 'w-20'"
+      @click="reset"
+    >
       {{ $t(option.label) }}
     </label>
     <input
@@ -12,13 +17,14 @@
       :step="option.step"
       :value="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
-      class="w-40"
+      :class="isLocaleZh ? 'w-40' : 'w-36'"
     />
   </div>
 </template>
 
 <script setup>
 import { computed } from 'vue'
+import { isLocaleZh } from '@/i18n'
 
 const name = computed(() => `range-${props.option.name}`)
 
@@ -33,7 +39,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 </script>
 
-<style lang="postcss" scoped>
+<style scoped>
 input[type='range'] {
   --size: 16px;
   --border-width: 1.5px;
