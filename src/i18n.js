@@ -12,6 +12,11 @@ export const i18n = createI18n({
     'zh-hant': zhHant,
     en: en,
   },
+  datetimeFormats: {
+    'zh-hans': { long: { year: 'numeric', month: 'long', day: 'numeric' } },
+    'zh-hant': { long: { year: 'numeric', month: 'long', day: 'numeric' } },
+    en: { long: { year: 'numeric', month: 'long', day: 'numeric' } },
+  },
 })
 
 export const isLocaleZh = computed(() => i18n.global.locale.value.startsWith('zh'))
