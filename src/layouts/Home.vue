@@ -1,12 +1,11 @@
 <template>
   <div class="flex h-screen flex-col items-center justify-center gap-4 text-center">
     <h1 class="tracking breathe-zh text-rfs-8xl">
-      {{ isLocaleZhHant ? '絡黑' : '络黑' }}
+      {{ $t('header.name', '', { locale: isLocaleZhHant ? 'zh-hant' : 'zh-hans' }) }}
     </h1>
-    <h2 class="px-8 text-rfs-4xl sm:px-16">
+    <h2 class="breathe-en px-8 text-rfs-4xl sm:px-16">
       <span
-        v-for="(c, idx) in 'LuoHei Variable'.split('')"
-        class="breathe-en"
+        v-for="(c, idx) in $t('header.name-en').split('')"
         :style="{ animationDelay: `${-idx}s` }"
         >{{ c }}</span
       >
@@ -23,7 +22,7 @@ import { isLocaleZhHant } from '@/i18n'
   animation: breathe-zh 12s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
 }
 
-.breathe-en {
+.breathe-en > * {
   animation: breathe-en 12s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
 }
 
