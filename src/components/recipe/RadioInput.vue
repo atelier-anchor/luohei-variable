@@ -1,11 +1,7 @@
 <template>
   <div>
-    <label
-      :for="name"
-      :class="{ 'font-bold': checked }"
-      :title="!isLocaleZh && option.abbr ? $t(option.label) : null"
-    >
-      {{ !isLocaleZh && option.abbr ? $t(option.label)[0] : $t(option.label) }}
+    <label :for="name" :class="{ 'font-bold': checked }">
+      {{ option.abbr && !isLocaleZh && !checked ? $t(option.label)[0] : $t(option.label) }}
     </label>
     <input
       type="radio"
