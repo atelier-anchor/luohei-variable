@@ -1,3 +1,4 @@
+const defaultTheme = require('tailwindcss/defaultTheme')
 const plugin = require('tailwindcss/plugin')
 
 module.exports = {
@@ -24,6 +25,10 @@ module.exports = {
     fontWeight: {
       normal: 'inherit',
       bold: 'inherit',
+    },
+    screens: {
+      xs: '480px',
+      ...defaultTheme.screens,
     },
     extend: {
       transitionProperty: {
