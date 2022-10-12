@@ -1,21 +1,16 @@
 <template>
   <div>
-    <div class="mb-2">
+    <p class="mb-2">
       <ul class="inline-flex gap-4 sm:gap-8">
-        <li><AboutMember :member="members[0]" /></li>
-        <li><AboutMember :member="members[1]" /></li>
+        <li v-for="member in members.slice(0, 2)"><AboutMember :member="member" /></li>
       </ul>
       <br />
-      <AboutLink href="https://tjdi.tongji.edu.cn">
-        {{ $t('about.tongji-di') }}
-      </AboutLink>
-    </div>
+      <AboutLink href="https://tjdi.tongji.edu.cn" :text="$t('about.tongji-di')" />
+    </p>
     <p>
       <AboutMember :member="members[2]" />
       <br />
-      <AboutLink href="https://atelier-anchor.com">
-        {{ $t('about.atelier-anchor') }}
-      </AboutLink>
+      <AboutLink href="https://atelier-anchor.com" :text="$t('about.atelier-anchor')" />
     </p>
   </div>
 </template>

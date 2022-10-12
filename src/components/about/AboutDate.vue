@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <p>
     {{ $t('about.last-updated') }}
     <time :datetime="date.toISOString()">{{ addSpace($d(date, 'long')) }}</time>
-  </div>
+  </p>
 </template>
 
 <script setup>
