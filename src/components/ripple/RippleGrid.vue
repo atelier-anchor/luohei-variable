@@ -18,7 +18,8 @@
 </template>
 
 <script setup>
-import { onMounted, onUnmounted, reactive, ref } from 'vue'
+import { onMounted, onUnmounted, reactive, ref, watch } from 'vue'
+import { fallbackLocale } from '@/i18n'
 import { clamp, expScale, randomChar, HEADER_HEIGHT } from '@/utils'
 
 const gridContainer = ref(null)
@@ -41,15 +42,22 @@ const updateGridNum = () => {
   grid.cols = Math.floor(window.innerWidth / grid.size)
 }
 
-const updateGridContent = () => {
-  const gridContentLen = grid.content.length
+const updateGridContent = (full = false) => {
+  if (full) grid.content.length = 0
   const gridCellNum = grid.rows * grid.cols
-  if (gridContentLen <= gridCellNum) {
-    for (let i = gridContentLen; i < gridCellNum; i++) grid.content.push(randomChar(true))
+  if (grid.content.length <= gridCellNum) {
+    for (let i = grid.content.length; i < gridCellNum; i++) {
+      grid.content.push(randomChar(fallbackLocale.value, true))
+    }
   } else {
     grid.content.splice(gridCellNum)
   }
 }
+
+watch(
+  () => fallbackLocale.value,
+  () => updateGridContent(true)
+)
 
 const updateGrid = () => {
   updateGridSize()

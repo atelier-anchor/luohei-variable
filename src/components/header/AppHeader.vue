@@ -31,7 +31,6 @@ import VideoToggler from '@/components/header/VideoToggler.vue'
 
 const showNav = ref(false)
 const onClickLink = () => {
-  console.log('Nav click')
   if (!isLocaleZh.value && window.innerWidth < 480) showNav.value = false
 }
 

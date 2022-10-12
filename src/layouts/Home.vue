@@ -1,7 +1,7 @@
 <template>
   <div class="flex h-screen flex-col items-center justify-center gap-4 text-center">
     <h1 class="tracking breathe-zh text-rfs-8xl">
-      {{ $t('header.name', '', { locale: isLocaleZhHant ? 'zh-hant' : 'zh-hans' }) }}
+      {{ $t('header.name', '', { locale: fallbackLocale }) }}
     </h1>
     <h2 class="breathe-en px-8 text-rfs-4xl sm:px-16">
       <span
@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { isLocaleZhHant } from '@/i18n'
+import { fallbackLocale } from '@/i18n'
 </script>
 
 <style scoped>

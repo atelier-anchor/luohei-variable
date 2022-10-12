@@ -15,7 +15,7 @@
 
 <script setup>
 import { computed } from 'vue'
-import { isLocaleZhHant } from '@/i18n'
+import { fallbackLocale } from '@/i18n'
 import { cjkKern } from '@/utils'
 
 const texts = {
@@ -48,13 +48,11 @@ const texts = {
   },
 }
 
-const text = computed(() => {
-  if (props.options.textId === 'random') {
-    return props.options.randomText
-  } else {
-    return texts[isLocaleZhHant.value ? 'zh-hant' : 'zh-hans'][props.options.textId]
-  }
-})
+const text = computed(() =>
+  props.options.textId === 'random'
+    ? props.options.randomText
+    : texts[fallbackLocale.value][props.options.textId]
+)
 
 const cjkKernValues = {
   sm: { default: '0', kaiming: '0', full: '0.5em' },

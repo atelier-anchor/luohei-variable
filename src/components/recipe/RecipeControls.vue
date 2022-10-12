@@ -50,7 +50,8 @@
 </template>
 
 <script setup>
-import { onMounted, reactive, ref } from 'vue'
+import { onMounted, reactive, ref, watch } from 'vue'
+import { fallbackLocale } from '@/i18n'
 import { randomChar } from '@/utils'
 import RadioInputGroup from '@/components/recipe/RadioInputGroup.vue'
 import RangeInput from '@/components/recipe/RangeInput.vue'
@@ -112,7 +113,7 @@ const generateRandomPar = (sentenceNum, sentenceMinLen, sentenceMaxLen, quotePro
   [...Array(sentenceNum).keys()]
     .map(() => {
       const len = Math.floor(Math.random() * sentenceMaxLen) + sentenceMinLen
-      const sentence = [...Array(len).keys()].map(() => randomChar()).join('')
+      const sentence = [...Array(len).keys()].map(() => randomChar(fallbackLocale.value)).join('')
       const punct = puncts[Math.floor(Math.random() * puncts.length)]
       return insertQuotes(sentence, quoteProb) + punct
     })
@@ -131,11 +132,15 @@ const generateRandomText = (
     generateRandomPar(sentenceNum, sentenceMinLen, sentenceMaxLen, quoteProb, puncts)
   )
 
-onMounted(() => {
-  const button = document.querySelector('label[for="radio-id-random"]')
-  if (button)
-    button.addEventListener('click', () => (props.options.randomText = generateRandomText()))
-})
+const updateRandomText = () => (props.options.randomText = generateRandomText())
+
+watch(() => fallbackLocale.value, updateRandomText)
+
+onMounted(() =>
+  document
+    .querySelector('label[for="radio-id-random"]')
+    ?.addEventListener('click', updateRandomText)
+)
 
 const props = defineProps({
   options: Object,

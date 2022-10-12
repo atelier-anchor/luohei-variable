@@ -1,5 +1,9 @@
-const LUOHEI_CHARS =
-  '一三上不丙业东两个中乙书二于产人今仓以任传位体作值全共关击划刘创动化十南占印反发取变可叶号叽同后向启品四国图土坞声复夜大天始字学家宽对导小山工己师平年库应度开式录形念态恢意感我或技护持排控播支文新方无日明春显更曾最月朝木本术机杜染标样格横正此比毕水永汉江济海涟源漪潮点然版王生用田由甲画白的目直看示祥空笔粗纛纤纪细织络维网置耳育自色花草行观警计认设访谨距转过这连速造酬里重量钦锚闭问间院随面页项风鹰黎黑默'
+const LUOHEI_CHARS = {
+  'zh-hans':
+    '上不丙业东两个中乙书于产人今仓以任传位体作值全共关击划刘创动化十南占印反发取变可叶号叽同后向启品四国图土坞型声复夜大天始字学定家宽对导小山工差己师平年库应度开式录形念态恢意感我或技护持排控播支文新方於无日明春显更曾最月朝木本术机杜染标样格横正此比毕水永汉江济海涟源漪潮点然版王生用田由甲画白的目直看示祥空笔粗纛纤纪细织络维网置耳育自色花草行观警计认设访谨距转过这连逆速造酬里重量钦锚闭问间院随面页项风鹰黎黑默',
+  'zh-hant':
+    '上不丙中乙于人今以任位体作倉個值儲全兩共划創劉動化十南占印反取可同后向品問啟嘰四圖土型塢复夜大天始字學定家寬導小山工差己師平年度庫式形後念恢意感態應我或技持排控播擊支數文新方於日明春更書曾最月朝木本机杜東染格業標樣機橫欽正此比水永江海源漢漣漪潮濟無然版王生產用田由甲畢畫發白的目直看示祥空筆粗紀級細絡維網織纖纛网置耳聲育自色花草行裡觀計訪設認謹警護變距逆這速造連酬里重量錨閉開間關院隨面頁項順預顯體鬱鷹黎黑默點',
+}
 
 const LUOHEI_NAMED_INSTANCES = {
   thin: {
@@ -34,8 +38,8 @@ export const LUOHEI_CONTRASTS = Object.keys(LUOHEI_NAMED_INSTANCES.thin)
 
 export const HEADER_HEIGHT = 56
 
-export const randomChar = (excludeSimple = false) => {
-  const chars = excludeSimple ? LUOHEI_CHARS.replace(/[一二三]/g, '') : LUOHEI_CHARS
+export const randomChar = (locale, excludeSimple = false) => {
+  const chars = LUOHEI_CHARS[locale] + (excludeSimple ? '' : '一二三')
   return chars[Math.floor(Math.random() * chars.length)]
 }
 

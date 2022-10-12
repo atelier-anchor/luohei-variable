@@ -20,4 +20,6 @@ export const i18n = createI18n({
 })
 
 export const isLocaleZh = computed(() => i18n.global.locale.value.startsWith('zh'))
-export const isLocaleZhHant = computed(() => i18n.global.locale.value === 'zh-hant')
+export const fallbackLocale = computed(() =>
+  i18n.global.locale.value === 'zh-hant' ? 'zh-hant' : 'zh-hans'
+)
