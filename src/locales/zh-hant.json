@@ -15,7 +15,7 @@
   },
   "recipe": {
     "font-options": "字型設定",
-    "layout-options": "排版設定",
+    "typesetting-options": "排版設定",
     "x-axis": "變數 X",
     "y-axis": "變數 Y",
     "weight": "字重",

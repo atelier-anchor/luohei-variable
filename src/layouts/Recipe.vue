@@ -1,7 +1,7 @@
 <template>
   <ColorContainer class="px-8 sm:px-16">
     <div class="mx-auto flex h-screen max-w-screen-2xl flex-col gap-8 pt-20 pb-6 md:flex-row">
-      <RecipeControls :options="options" class="w-64" />
+      <RecipeControls :options="options" class="md:w-64" />
       <RecipeText :options="options" class="flex-1" />
     </div>
   </ColorContainer>

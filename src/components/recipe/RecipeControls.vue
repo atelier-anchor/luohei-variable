@@ -1,11 +1,16 @@
 <template>
   <div class="flex flex-col gap-4">
     <div class="flex gap-4 md:hidden">
-      <button :class="{ 'font-bold': showFontOptions }" @click="toggleOptions">
-        {{ $t('recipe.font-options') }}
-      </button>
-      <button :class="{ 'font-bold': !showFontOptions }" @click="toggleOptions">
-        {{ $t('recipe.layout-options') }}
+      <button
+        v-for="[status, label] in [
+          [showFontOptions, 'font-options'],
+          [!showFontOptions, 'typesetting-options'],
+        ]"
+        class="whitespace-nowrap"
+        :class="{ 'font-bold': status }"
+        @click="toggleOptions"
+      >
+        {{ $t(`recipe.${label}`) }}
       </button>
     </div>
     <div class="md:block" :class="{ hidden: !showFontOptions }">
