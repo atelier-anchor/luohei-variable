@@ -1,6 +1,6 @@
 <template>
   <div :class="{ 'flex items-center gap-4': isLocaleZh }">
-    <label class="w-16">{{ label }}</label>
+    <label class="w-18">{{ label }}</label>
     <div class="flex gap-4" :class="{ 'ml-4': !isLocaleZh }">
       <RadioInput
         v-for="option in options"

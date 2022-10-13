@@ -3,7 +3,7 @@
     <label
       :for="name"
       :data-reset="option.reset"
-      :class="isLocaleZh ? 'w-16' : 'w-20'"
+      :class="isLocaleZh ? 'w-18' : 'w-20'"
       @click="reset"
     >
       {{ $t(option.label) }}
