@@ -38,6 +38,7 @@ onMounted(() => {
     const lang = navigator.language.toLowerCase()
     if (['hant', 'hk', 'tw'].some((s) => lang.indexOf(s) >= 0)) {
       locale.value = 'zh-hant'
+      document.querySelector('body').style = 'font-feature-settings: "ss01"'
     } else {
       locale.value = 'zh-hans'
     }

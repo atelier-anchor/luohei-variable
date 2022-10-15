@@ -6,7 +6,6 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n'
-import { fallbackLocale } from '@/i18n'
 
 const { locale, t } = useI18n()
 const toggleLocale = () => {
@@ -14,6 +13,6 @@ const toggleLocale = () => {
   document.title = t('header.title')
   document.documentElement.lang = locale.value
   document.querySelector('body').style =
-    fallbackLocale.value === 'zh-hant' ? 'font-feature-settings: "ss01"' : ''
+    locale.value === 'zh-hant' ? 'font-feature-settings: "ss01"' : ''
 }
 </script>
