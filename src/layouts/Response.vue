@@ -2,7 +2,6 @@
   <ColorContainer class="px-8 sm:px-16">
     <div
       class="relative mx-auto flex h-screen max-w-screen-2xl flex-col items-center justify-center gap-16 text-center"
-      @mousemove="handleMousemove"
     >
       <EditableText :xwgt="axes.xwgt" :ywgt="axes.ywgt" class="pt-8">永</EditableText>
       <div v-show="showValues" class="flex gap-16">
@@ -37,7 +36,7 @@
 </template>
 
 <script setup>
-import { onUnmounted, reactive, ref } from 'vue'
+import { onMounted, onUnmounted, reactive, ref } from 'vue'
 import { clamp, scale, HEADER_HEIGHT } from '@/utils'
 import ColorContainer from '@/components/ColorContainer.vue'
 import EditableText from '@/components/response/EditableText.vue'
@@ -51,14 +50,16 @@ const handleMousemove = (event) => {
   if (window.matchMedia('(pointer: fine)').matches) {
     if (!voiceControl.xwgt) {
       const x = event.clientX / window.innerWidth
-      axes.xwgt = scale(x)
+      axes.ywgt = scale(x)
     }
     if (!voiceControl.ywgt) {
       const y = (event.clientY - HEADER_HEIGHT) / (window.innerHeight - HEADER_HEIGHT)
-      axes.ywgt = scale(y)
+      axes.xwgt = scale(y)
     }
   }
 }
+
+onMounted(() => document.querySelector('main').addEventListener('mousemove', handleMousemove))
 
 const handleOrientation = (event) => {
   if (!voiceControl.xwgt) {
