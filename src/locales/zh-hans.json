@@ -55,7 +55,7 @@
   },
   "response": {
     "show-values": "显示值",
-    "enable-orientation": "点击这里开启方向感应…",
+    "enable-orientation": "点击这里开启方向感应",
     "voice-control-x": "声控 X",
     "voice-control-y": "声控 Y"
   },

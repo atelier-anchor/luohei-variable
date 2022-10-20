@@ -1,10 +1,10 @@
 <template>
   <ColorContainer class="px-8 sm:px-16">
     <div
-      class="relative mx-auto flex h-screen max-w-screen-2xl flex-col items-center justify-center gap-16 text-center"
+      class="relative mx-auto flex h-screen max-w-screen-2xl flex-col items-center justify-center gap-16 pt-14 text-center"
     >
-      <EditableText :xwgt="axes.xwgt" :ywgt="axes.ywgt" class="pt-8">永</EditableText>
-      <div v-show="showValues" class="flex gap-16">
+      <EditableText :xwgt="axes.xwgt" :ywgt="axes.ywgt">永</EditableText>
+      <div v-show="showValues" class="flex gap-8">
         <div>XWGT = {{ axes.xwgt }}</div>
         <div>YWGT = {{ axes.ywgt }}</div>
       </div>

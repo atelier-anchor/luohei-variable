@@ -55,7 +55,7 @@
   },
   "response": {
     "show-values": "Show values",
-    "enable-orientation": "Click here to enable orientation sensors…",
+    "enable-orientation": "Tap here to enable gyroscope",
     "voice-control-x": "Voice control X",
     "voice-control-y": "Voice control Y"
   },
