@@ -38,22 +38,49 @@ export const LUOHEI_CONTRASTS = Object.keys(LUOHEI_NAMED_INSTANCES.thin)
 
 export const HEADER_HEIGHT = 56
 
+/**
+ * @param {string} locale
+ * @param {boolean} excludeSimple
+ */
 export const randomChar = (locale, excludeSimple = false) => {
   const chars = LUOHEI_CHARS[locale] + (excludeSimple ? '' : '一二三')
   return chars[Math.floor(Math.random() * chars.length)]
 }
 
+/**
+ * @param {string} weight
+ * @param {string} contrast
+ */
 export const namedInstance = (weight, contrast) => LUOHEI_NAMED_INSTANCES[weight][contrast]
 
+/**
+ * @param {number} value
+ * @param {number} min
+ * @param {number} max
+ */
 export const clamp = (value, min, max) => Math.min(Math.max(value, min), max)
 
-export const scale = (x, min = 100, max = 900) => Math.round(x * (max - min) + min)
+/**
+ * @param {number} value
+ * @param {number} min
+ * @param {number} max
+ */
+export const scale = (value, min = 100, max = 900) => Math.round(value * (max - min) + min)
 
+/**
+ * @param {number} n
+ * @param {number} k
+ * @param {number} min
+ * @param {number} max
+ */
 export const expScale = (n, k, min = 100, max = 900) =>
   [...Array(n).keys()].map((i) =>
     Math.round(((Math.exp(k * i) - 1) / (Math.exp(k * n - k) - 1)) * (max - min) + min)
   )
 
+/**
+ * @param {string} str
+ */
 export const cjkKern = (str) =>
   str
     // Right puncts
@@ -71,5 +98,8 @@ export const cjkKern = (str) =>
     .replace(/([\u4e00-\u9fff])([。！？])$/g, '<span class="no-break">$1</span>$2')
     .replace(/([a-z0-9,]+ [a-z0-9,]+ [a-z0-9]+)([\.!?\)])$/gi, '<span class="no-break">$1</span>$2')
 
+/**
+ * @param {string} str
+ */
 export const fixWrap = (str) =>
   str.replace(/([a-z0-9]+ [a-z0-9]+)([\.!?\)])$/gi, '<span class="no-break">$1</span>$2')
