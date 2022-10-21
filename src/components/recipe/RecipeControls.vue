@@ -102,37 +102,59 @@ const controls = reactive({
 const showFontOptions = ref(true)
 const toggleOptions = () => (showFontOptions.value = !showFontOptions.value)
 
-const insertQuotes = (s, quoteProb) => {
-  if (Math.random() > quoteProb) return s
-  const a = Math.floor(Math.random() * (s.length - 1))
-  const b = Math.floor(Math.random() * (s.length - a)) + a + 1
-  return `${s.slice(0, a)}「${s.slice(a, b)}」${s.slice(b)}`
+const randomText = {
+  parNum: 2,
+  sentenceNum: 4,
+  sentenceMinLen: 5,
+  sentenceMaxLen: 15,
+  quoteProb: 0.2,
+  wordProb: 0.2,
+  wordMaxNum: 2,
+  puncts: '，，，，。。。！？'.split(''), // Manually set the weights of different puncts
+  // prettier-ignore
+  words:
+    ['Alex','and','AX','bad','bawds','baz','bed','big','blew','blow','blowzy','blue','bold','box','brave','brawny','brick','bright','brown','by','charged','chumps','cozy','daft','DJs','dog','dogs','dozy','driven','exchanged','fax','few','fight','five','flax','flick','flock','flummoxed','fog','fop','for','fowl','fowls','fox','fun','galvanized','game','gazed','get','ghost','gods','grab','graced','help','how','in','Iraq','is','Jack','Jay','jeopardy','jigs','Jim','jinx','jived','joaquin','job','jocks','jodhpurs','jog','jolt','jug','jump','jumping','jumps','jumpy','junk','jury','just','kvetching','lazy','luck','might','milk','mock','MTV','my','now','Nymph','nymphs','of','over','phoenix','pig','pled','prog','PyJamas','quack','quacking','quart','quartz','quick','quickly','quips','quiz','red','silk','sphinx','the','to','trebek','TV','two','veldt','very','vex','vexing','vixens','wafting','waltz','was','watch','waves','wax','Whangs','whelps','when','wizard','wolves','woven','zaps','zebra','zebras','zephyrs','zippy'],
+  insertQuotes(s) {
+    if (Math.random() > this.quoteProb) return s
+    const a = Math.floor(Math.random() * (s.length - 1))
+    const b = Math.floor(Math.random() * (s.length - a)) + a + 1
+    return `${s.slice(0, a)}「${s.slice(a, b)}」${s.slice(b)}`
+  },
+  insertWords(s) {
+    const words = [...Array(this.wordMaxNum)]
+      .map(() =>
+        Math.random() < this.wordProb
+          ? this.words[Math.floor(Math.random() * this.words.length, this.words.length)]
+          : undefined
+      )
+      .filter((e) => e)
+    const pos = [...Array(words.length)]
+      .map(() => Math.floor(Math.random() * s.length))
+      .sort((a, b) => a < b)
+    for (let i = 0; i < pos.length; i++) {
+      s = s.slice(0, pos[i]) + `~${words[i]}~` + s.slice(pos[i])
+    }
+    return s.replaceAll('~~', '-').replaceAll('~', '') // Add hyphens for successive words
+  },
+  generateSentence() {
+    const len = Math.floor(Math.random() * this.sentenceMaxLen) + this.sentenceMinLen
+    const sentence = [...Array(len).keys()].map(() => randomChar(fallbackLocale.value)).join('')
+    const punct = this.puncts[Math.floor(Math.random() * this.puncts.length)]
+    return this.insertWords(this.insertQuotes(sentence)) + punct
+  },
+  generatePar() {
+    return [...Array(this.sentenceNum).keys()]
+      .map(() => this.generateSentence())
+      .join('')
+      .replace(/.$/g, '。')
+      .replace(/(^|[。！？])[「（]?\w/g, (s) => s.toUpperCase())
+  },
+  generate() {
+    return [...Array(this.parNum).keys()].map(() => this.generatePar())
+  },
 }
 
-const generateRandomPar = (sentenceNum, sentenceMinLen, sentenceMaxLen, quoteProb, puncts) =>
-  [...Array(sentenceNum).keys()]
-    .map(() => {
-      const len = Math.floor(Math.random() * sentenceMaxLen) + sentenceMinLen
-      const sentence = [...Array(len).keys()].map(() => randomChar(fallbackLocale.value)).join('')
-      const punct = puncts[Math.floor(Math.random() * puncts.length)]
-      return insertQuotes(sentence, quoteProb) + punct
-    })
-    .join('')
-    .replace(/.$/g, '。')
-
-const generateRandomText = (
-  parNum = 3,
-  sentenceNum = 5,
-  sentenceMinLen = 5,
-  sentenceMaxLen = 15,
-  quoteProb = 0.2,
-  puncts = '，，，，。。。！？'.split('') // Manually set the weights of different puncts
-) =>
-  [...Array(parNum).keys()].map(() =>
-    generateRandomPar(sentenceNum, sentenceMinLen, sentenceMaxLen, quoteProb, puncts)
-  )
-
-const updateRandomText = () => (props.options.randomText = generateRandomText())
+const updateRandomText = () => (props.options.randomText = randomText.generate())
 
 watch(() => fallbackLocale.value, updateRandomText)
 
