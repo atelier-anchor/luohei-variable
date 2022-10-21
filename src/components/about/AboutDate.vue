@@ -1,11 +1,12 @@
 <template>
   <p>
-    {{ $t('about.last-updated') }}
-    <time :datetime="date.toISOString()">{{ addSpace($d(date, 'long')) }}</time>
+    {{ $t('about.last-updated') }}<span class="cjk-latin-glue"></span>
+    <time :datetime="date.toISOString()" v-html="cjkKern($d(date, 'long'))"></time>
   </p>
 </template>
 
 <script setup>
+import { cjkKern } from '@/utils'
+
 const date = new Date(import.meta.env.VITE_BUILD_DATE)
-const addSpace = (s) => s.replace(/([\u4e00-\u9fff])/g, ' $1 ').trim()
 </script>
