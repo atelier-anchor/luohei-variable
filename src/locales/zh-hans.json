@@ -16,8 +16,8 @@
   "recipe": {
     "font-options": "字体设置",
     "typesetting-options": "排版设置",
-    "x-axis": "变量 X",
-    "y-axis": "变量 Y",
+    "x-axis": "变量X",
+    "y-axis": "变量Y",
     "weight": "字重",
     "contrast": "对比",
     "font-size": "字号",
@@ -56,8 +56,8 @@
   "response": {
     "show-values": "显示值",
     "enable-orientation": "点击这里开启方向感应",
-    "voice-control-x": "声控 X",
-    "voice-control-y": "声控 Y"
+    "voice-control-x": "声控X",
+    "voice-control-y": "声控Y"
   },
   "about": {
     "commemoration": "谨以此设计纪念",
@@ -69,8 +69,8 @@
     "supervisor": "导师",
     "developer": "网页开发",
     "tongji-di": "（同济大学设计创意学院）",
-    "atelier-anchor": "（atelierAnchor 锚坞）",
-    "repository": "访问 GitHub 仓库",
+    "atelier-anchor": "（atelierAnchor锚坞）",
+    "repository": "访问GitHub仓库",
     "last-updated": "最后更新于"
   }
 }

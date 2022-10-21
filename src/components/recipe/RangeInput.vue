@@ -5,9 +5,8 @@
       :data-reset="option.reset"
       :class="isLocaleZh ? 'w-18' : 'w-20'"
       @click="reset"
-    >
-      {{ $t(option.label) }}
-    </label>
+      v-html="cjkKern($t(option.label))"
+    ></label>
     <input
       type="range"
       :id="name"
@@ -25,6 +24,7 @@
 <script setup>
 import { computed } from 'vue'
 import { isLocaleZh } from '@/i18n'
+import { cjkKern } from '@/utils'
 
 const name = computed(() => `range-${props.option.name}`)
 

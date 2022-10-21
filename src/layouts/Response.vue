@@ -23,12 +23,16 @@
           <label for="checkbox-show-values" :class="{ 'font-bold': showValues }">
             {{ $t('response.show-values') }}
           </label>
-          <button :class="{ 'font-bold': voiceControl.xwgt }" @click="toggleX">
-            {{ $t('response.voice-control-x') }}
-          </button>
-          <button :class="{ 'font-bold': voiceControl.ywgt }" @click="toggleY">
-            {{ $t('response.voice-control-y') }}
-          </button>
+          <button
+            v-html="cjkKern($t('response.voice-control-x'))"
+            :class="{ 'font-bold': voiceControl.xwgt }"
+            @click="toggleX"
+          ></button>
+          <button
+            v-html="cjkKern($t('response.voice-control-y'))"
+            :class="{ 'font-bold': voiceControl.ywgt }"
+            @click="toggleY"
+          ></button>
         </div>
       </div>
     </div>
@@ -37,7 +41,7 @@
 
 <script setup>
 import { onMounted, onUnmounted, reactive, ref } from 'vue'
-import { clamp, scale, HEADER_HEIGHT } from '@/utils'
+import { cjkKern, clamp, scale, HEADER_HEIGHT } from '@/utils'
 import ColorContainer from '@/components/ColorContainer.vue'
 import EditableText from '@/components/response/EditableText.vue'
 import InitializeButton from '@/components/response/InitializeButton.vue'

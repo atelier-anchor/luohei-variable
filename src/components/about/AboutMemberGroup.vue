@@ -13,9 +13,15 @@
       <AboutLink href="https://atelier-anchor.com" :text="$t('about.atelier-anchor')" />
     </p>
   </div>
+  <p>
+    <span v-html="cjkKern($t('about.repository'))"></span>
+    <br />
+    <a :href="repositoryUrl" target="_blank">{{ repositoryUrl }}</a>
+  </p>
 </template>
 
 <script setup>
+import { cjkKern } from '@/utils'
 import AboutLink from '@/components/about/AboutLink.vue'
 import AboutMember from '@/components/about/AboutMember.vue'
 
@@ -35,4 +41,5 @@ const members = [
     href: 'https://stone-zeng.github.io',
   },
 ]
+const repositoryUrl = 'https://github.com/atelier-anchor/luohei-variable'
 </script>

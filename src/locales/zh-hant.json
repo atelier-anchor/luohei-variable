@@ -16,8 +16,8 @@
   "recipe": {
     "font-options": "字型設定",
     "typesetting-options": "排版設定",
-    "x-axis": "變數 X",
-    "y-axis": "變數 Y",
+    "x-axis": "變數X",
+    "y-axis": "變數Y",
     "weight": "字重",
     "contrast": "反差",
     "font-size": "字級",
@@ -56,8 +56,8 @@
   "response": {
     "show-values": "顯示值",
     "enable-orientation": "點擊這裡開啟方位感應",
-    "voice-control-x": "聲控 X",
-    "voice-control-y": "聲控 Y"
+    "voice-control-x": "聲控X",
+    "voice-control-y": "聲控Y"
   },
   "about": {
     "commemoration": "謹以此設計紀念",
@@ -69,8 +69,8 @@
     "supervisor": "導師",
     "developer": "網頁開發",
     "tongji-di": "（同濟大學設計創意學院）",
-    "atelier-anchor": "（atelierAnchor 錨塢）",
-    "repository": "訪問 GitHub 倉儲",
+    "atelier-anchor": "（atelierAnchor錨塢）",
+    "repository": "訪問GitHub倉儲",
     "last-updated": "最後更新於"
   }
 }

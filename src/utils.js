@@ -70,3 +70,6 @@ export const cjkKern = (str) =>
     // Avoid orphans
     .replace(/([\u4e00-\u9fff])([。！？])$/g, '<span class="no-break">$1</span>$2')
     .replace(/([a-z0-9,]+ [a-z0-9,]+ [a-z0-9]+)([\.!?\)])$/gi, '<span class="no-break">$1</span>$2')
+
+export const fixWrap = (str) =>
+  str.replace(/([a-z0-9]+ [a-z0-9]+)([\.!?\)])$/gi, '<span class="no-break">$1</span>$2')
