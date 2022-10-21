@@ -57,7 +57,7 @@ const text = computed(() =>
 const cjkKernValues = {
   sm: { default: '0', kaiming: '0', full: '0.5em' },
   md: { default: '0', kaiming: '0.5em', full: '0.5em' },
-  latin: { default: '0', kaiming: '0.125em', full: '0.125em' },
+  latin: { default: '0', kaiming: 'calc(1em / 6)', full: 'calc(1em / 6)' },
 }
 
 const cjkKernSm = computed(() => cjkKernValues.sm[props.options.punct])

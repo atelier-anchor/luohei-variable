@@ -110,7 +110,7 @@
 }
 
 .cjk-latin-glue {
-  margin-inline-end: 0.125em;
+  margin-inline-end: calc(1em / 6);
 }
 
 .no-break {
