@@ -1,6 +1,6 @@
 <template>
   <div class="flex h-screen flex-col items-center justify-center gap-4 text-center">
-    <h1 class="tracking breathe-zh text-rfs-8xl">
+    <h1 class="breathe-zh tracking text-rfs-8xl">
       {{ $t('header.name', '', { locale: fallbackLocale }) }}
     </h1>
     <h2 class="breathe-en px-8 text-rfs-4xl sm:px-16">
@@ -19,11 +19,11 @@ import { fallbackLocale } from '@/i18n'
 
 <style scoped>
 .breathe-zh {
-  animation: breathe-zh 12s steps(120) infinite;
+  animation: breathe-zh 12s steps(60) infinite;
 }
 
 .breathe-en > * {
-  animation: breathe-en 12s steps(120) infinite;
+  animation: breathe-en 12s steps(60) infinite;
 }
 
 /* Kerning for `Va` */
