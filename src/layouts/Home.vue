@@ -19,11 +19,16 @@ import { fallbackLocale } from '@/i18n'
 
 <style scoped>
 .breathe-zh {
-  animation: breathe-zh 12s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  animation: breathe-zh 12s steps(120) infinite;
 }
 
 .breathe-en > * {
-  animation: breathe-en 12s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+  animation: breathe-en 12s steps(120) infinite;
+}
+
+/* Kerning for `Va` */
+.breathe-en > :nth-child(8) {
+  letter-spacing: -0.08em;
 }
 
 /* prettier-ignore */
