@@ -1,7 +1,7 @@
 <template>
   <div
     contenteditable
-    class="max-w-full overflow-x-clip overflow-y-visible whitespace-nowrap text-rfs-18xl leading-none"
+    class="-mb-16 max-w-full overflow-x-clip overflow-y-visible whitespace-nowrap text-rfs-18xl leading-tight"
     :style="{ 'font-variation-settings': `'XWGT' ${xwgt}, 'YWGT' ${ywgt}` }"
   >
     <slot></slot>
