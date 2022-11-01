@@ -44,14 +44,10 @@ input[type='range'] {
   --size: 16px;
   --border-width: 1.5px;
 
-  @apply appearance-none;
-  @apply bg-transparent;
+  @apply appearance-none bg-transparent;
 
   &::-webkit-slider-thumb {
-    @apply appearance-none;
-    @apply shadow-none;
-    @apply bg-white;
-    @apply dark:bg-dark;
+    @apply appearance-none bg-white shadow-none dark:bg-dark;
     width: var(--size);
     height: var(--size);
     margin-top: calc((var(--size) - var(--border-width)) * -0.5);
@@ -60,9 +56,7 @@ input[type='range'] {
   }
 
   &::-moz-range-thumb {
-    @apply shadow-none;
-    @apply bg-white;
-    @apply dark:bg-dark;
+    @apply bg-white shadow-none dark:bg-dark;
     width: calc(var(--size) - var(--border-width) * 2);
     height: calc(var(--size) - var(--border-width) * 2);
     border: var(--border-width) solid currentColor;
@@ -70,8 +64,7 @@ input[type='range'] {
   }
 
   &::-webkit-slider-runnable-track {
-    @apply appearance-none;
-    @apply bg-current;
+    @apply appearance-none bg-current;
     height: var(--border-width);
   }
 

@@ -81,25 +81,97 @@ export const expScale = (n, k, min = 100, max = 900) =>
 /**
  * @param {string} str
  */
-export const cjkKern = (str) =>
-  str
-    // Right puncts
-    .replace(/([，」）])([\u4e00-\u9fff])/g, '<span class="cjk-kern-sm">$1</span>$2')
-    .replace(/([。！？])([\u4e00-\u9fff])/g, '<span class="cjk-kern-md">$1</span>$2')
-    // Left puncts
-    .replace(/([\u4e00-\u9fff])([「（)])/g, '<span class="cjk-kern-sm">$1</span>$2')
-    // Inter-punct spacing
-    .replace(/([，」）])([「（)])/g, '<span class="cjk-kern-sm">$1</span>$2')
-    .replace(/([。！？])([「（)])/g, '<span class="cjk-kern-md">$1</span>$2')
-    // CJK and latin/digits spacing
-    .replace(/([\u4e00-\u9fff])([a-z0-9])/gi, '$1<span class="cjk-latin-glue"></span>$2')
-    .replace(/([a-z0-9])([\u4e00-\u9fff])/gi, '$1<span class="cjk-latin-glue"></span>$2')
-    // Avoid orphans
-    .replace(/([\u4e00-\u9fff])([。！？])$/g, '<span class="no-break">$1</span>$2')
-    .replace(/([a-z0-9,]+ [a-z0-9,]+ [a-z0-9]+)([\.!?\)])$/gi, '<span class="no-break">$1</span>$2')
+export const cjkKern = (str) => {
+  const charPattern = '[\\w\\u4e00-\\u9fff]'
+  const spanPattern = `<span class='[\\w\\s-]*'>${charPattern}<\/span>`
+  const span = (className, text) => `<span class='${className}'>${text}</span>`
+  const puncts = {
+    comma: '，',
+    fullstop: '。',
+    colon: '：；',
+    divide: '！？',
+    open: '「『（',
+    close: '」』）',
+  }
+  const kerns = [
+    {
+      // Single punctuations
+      keys: Object.keys(puncts),
+      searchFunc: (punct) => `(${charPattern})([${punct}])(?=${charPattern}|${spanPattern})`,
+      replaceFunc: (name) => span(`p-before-${name}`, '$1') + span(`p-${name}`, '$2'),
+    },
+    {
+      // Punctuations at the end of a line
+      keys: ['fullstop', 'divide', 'open'],
+      searchFunc: (punct) => `(${charPattern})([${punct}])$`,
+      replaceFunc: (name) => span(`p-before-${name}`, '$1') + span(`p-${name}`, '$2'),
+    },
+    {
+      // Punctuations before an open bracket
+      keys: ['comma', 'fullstop', 'colon', 'divide', 'open', 'close'],
+      searchFunc: (punct) => `(${charPattern})([${punct}])(?=[${puncts.open}])`,
+      replaceFunc: (name) => span(`p-before-${name}`, '$1') + span(`p-${name}`, '$2'),
+    },
+    {
+      // Punctuations before a close bracket
+      keys: ['comma', 'fullstop', 'colon', 'divide', 'close'],
+      searchFunc: (punct) => `(${charPattern})([${punct}])([${puncts.close}])`,
+      replaceFunc: (name) =>
+        span(`p-before-${name}`, '$1') +
+        span(`p-${name}-before-close`, '$2') +
+        span('p-close', '$3'),
+    },
+    {
+      // Punctuations after a close bracket
+      keys: ['comma', 'fullstop', 'colon', 'divide'],
+      searchFunc: (punct) => `(${charPattern})([${puncts.close}])([${punct}])`,
+      replaceFunc: (name) =>
+        span('p-before-close', '$1') +
+        span(`p-close-before-${name}`, '$2') +
+        span(`p-${name}`, '$3'),
+    },
+    {
+      // Punctuations after a close bracket, at the beginning of a line
+      keys: ['comma', 'fullstop', 'colon', 'divide'],
+      searchFunc: (punct) => `^([${puncts.close}])([${punct}])`,
+      replaceFunc: (name) => span(`p-close-before-${name}`, '$1') + span(`p-${name}`, '$2'),
+    },
+  ]
+  kerns.forEach(({ keys, searchFunc, replaceFunc }) =>
+    keys.forEach(
+      (name) => (str = str.replace(new RegExp(searchFunc(puncts[name]), 'g'), replaceFunc(name)))
+    )
+  )
+  // CJK and latin/digits glue
+  str = str
+    .replace(
+      /([\u4e00-\u9fff]|(?:<span class='[\w\s-]*'>[\u4e00-\u9fff]<\/span>))(?=\w)/g,
+      span('cjk-latin-glue', '$1')
+    )
+    .replace(
+      /(\w)(?=[\u4e00-\u9fff]|(?:<span class='[\w\s-]*'>[\u4e00-\u9fff]<\/span>))/g,
+      span('latin-cjk-glue', '$1')
+    )
+    .replace(
+      new RegExp(`<span class='(p-[\\w-]+)'>([，：；」』）])<\/span>(?=\\w)`, 'g'),
+      span('$1 cjk-latin-glue', '$2')
+    )
+    .replace(
+      new RegExp(`<span class='(p-before-open)'>(\\w+)<\/span>`, 'g'),
+      span('$1 latin-cjk-glue', '$2')
+    )
+  // Avoid orphans
+  str = str
+    .replace(/([\u4e00-\u9fff])$/g, `<span class='no-break'>$1</span>`)
+    .replace(
+      /<span class='([\w\s-]*)'>([\u4e00-\u9fff])<\/span>(?=<span class='[\w\s-]*'>[。！？]<\/span>$)/g,
+      `<span class='$1 no-break'>$2</span>`
+    )
+  return str
+}
 
 /**
  * @param {string} str
  */
 export const fixWrap = (str) =>
-  str.replace(/([a-z0-9]+ [a-z0-9]+)([\.!?\)])$/gi, '<span class="no-break">$1</span>$2')
+  str.replace(/(\w+ \w+)(?=[\.!?\)]$)/g, '<span class="no-break">$1</span>')

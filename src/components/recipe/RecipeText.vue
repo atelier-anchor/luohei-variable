@@ -1,15 +1,18 @@
 <template>
   <div
-    class="overflow-auto break-words"
+    class="overflow-auto break-words pr-4"
+    :class="[
+      options.direction === 'vertical-rl' ? 'pt-[0.2em]' : '',
+      options.textId === 'random' ? 'indent-[1em] lg:indent-[2em]' : '',
+    ]"
     :style="{
       fontSize: `${options.size}px`,
       fontVariationSettings: `'XWGT' ${options.xwgt}, 'YWGT' ${options.ywgt}`,
       writingMode: options.direction,
-      paddingTop: options.direction === 'vertical-rl' ? '0.2em' : '0',
       lineHeight: options.leading,
     }"
   >
-    <p v-for="line in text" v-html="cjkKern(line)"></p>
+    <p v-for="line in text(options)" v-html="cjkKern(line)"></p>
   </div>
 </template>
 
@@ -17,16 +20,37 @@
 import { computed } from 'vue'
 import { fallbackLocale } from '@/i18n'
 import { cjkKern } from '@/utils'
-import { cjkKernValues, recipeText } from '@/components/recipe/recipe-text'
+import {
+  glueValues,
+  kerningValues,
+  recipeText,
+  spacingValues,
+} from '@/components/recipe/recipe-text'
 
-const text = computed(() =>
-  props.options.textId === 'random'
-    ? props.options.randomText
-    : recipeText[fallbackLocale.value][props.options.textId]
-)
-const cjkKernSm = computed(() => cjkKernValues.sm[props.options.punct])
-const cjkKernMd = computed(() => cjkKernValues.md[props.options.punct])
-const cjkLatinGlue = computed(() => cjkKernValues.latin[props.options.punct])
+const text = ({ textId, randomText }) =>
+  textId === 'random' ? randomText : recipeText[fallbackLocale.value][textId]
+
+const spacing = computed(() => {
+  const data = spacingValues(props.options.direction === 'horizontal-tb')
+  const get = ([key, value]) => [
+    key,
+    value[fallbackLocale.value][props.options.punct] ?? ['0em', '0em'],
+  ]
+  return Object.fromEntries(Object.entries(data).map(get))
+})
+
+const kerning = computed(() => {
+  const data = kerningValues(props.options.direction === 'horizontal-tb')
+  const get = ([key, value]) => [key, value[fallbackLocale.value][props.options.punct]]
+  return Object.fromEntries(Object.entries(data).map(get))
+})
+
+const glue = computed(() => {
+  const data = glueValues(props.options.direction === 'horizontal-tb')
+  return Object.fromEntries(
+    Object.entries(data).map(([key, value]) => [key, value[props.options.punct] ?? '0em'])
+  )
+})
 
 const props = defineProps({
   options: Object,
@@ -34,19 +58,88 @@ const props = defineProps({
 </script>
 
 <style scoped>
-:deep([class^='cjk-kern']) {
+:deep([class^='p-']),
+:deep([class$='-glue']) {
   @apply transition-[letter-spacing];
 }
 
-:deep(.cjk-kern-sm) {
-  letter-spacing: v-bind(cjkKernSm);
+/* Comma */
+:deep(.p-before-comma),
+:deep(.p-close-before-comma) {
+  letter-spacing: v-bind('spacing.comma[0]');
+}
+:deep(.p-comma),
+:deep(.p-comma-before-close + .p-close) {
+  letter-spacing: v-bind('spacing.comma[1]');
 }
 
-:deep(.cjk-kern-md) {
-  letter-spacing: v-bind(cjkKernMd);
+/* Full stop */
+:deep(.p-before-fullstop),
+:deep(.p-close-before-fullstop) {
+  letter-spacing: v-bind('spacing.fullstop[0]');
+}
+:deep(.p-fullstop),
+:deep(.p-fullstop-before-close + .p-close) {
+  letter-spacing: v-bind('spacing.fullstop[1]');
 }
 
+/* Colon and semicolon */
+:deep(.p-before-colon),
+:deep(.p-close-before-colon) {
+  letter-spacing: v-bind('spacing.colon[0]');
+}
+:deep(.p-colon) {
+  letter-spacing: v-bind('spacing.colon[1]');
+}
+:deep(.p-colon-before-close + .p-close) {
+  letter-spacing: v-bind('kerning["colon-close"]');
+}
+
+/* Dividing marks (exclamation mark and question mark) */
+:deep(.p-before-divide),
+:deep(.p-close-before-divide) {
+  letter-spacing: v-bind('spacing.divide[0]');
+}
+:deep(.p-divide) {
+  letter-spacing: v-bind('spacing.divide[1]');
+}
+:deep(.p-divide-before-close + .p-close) {
+  letter-spacing: v-bind('kerning["divide-close"]');
+}
+
+/* Opening brackets */
+:deep(.p-before-open) {
+  letter-spacing: v-bind('spacing.open[0]');
+}
+:deep(.p-open) {
+  letter-spacing: v-bind('spacing.open[1]');
+}
+
+/* Closing brackets */
+:deep(.p-close) {
+  letter-spacing: v-bind('spacing.close[1]');
+}
+
+/* CJK and latin/digits glue */
 :deep(.cjk-latin-glue) {
-  margin-inline-end: v-bind(cjkLatinGlue);
+  letter-spacing: v-bind('glue.cjkLatin');
+}
+:deep(.latin-cjk-glue) {
+  letter-spacing: v-bind('glue.latinCjk');
+}
+:deep(.p-comma.cjk-latin-glue),
+:deep(.p-comma-before-close + .p-close.cjk-latin-glue) {
+  letter-spacing: max(v-bind('spacing.comma[1]'), v-bind('glue.cjkLatin'));
+}
+:deep(.p-colon.cjk-latin-glue),
+:deep(.p-colon-before-close + .p-close.cjk-latin-glue) {
+  letter-spacing: max(v-bind('spacing.colon[1]'), v-bind('glue.cjkLatin'));
+}
+:deep(:not(.p-fullstop-before-close, .p-divide-before-close) + .p-close.cjk-latin-glue),
+:deep(.p-close-before-close + .p-close.cjk-latin-glue) {
+  letter-spacing: max(v-bind('spacing.close[1]'), v-bind('glue.cjkLatin'));
+}
+:deep(.p-before-open.latin-cjk-glue) {
+  letter-spacing: max(v-bind('spacing.open[0]'), v-bind('glue.latinCjk'));
 }
 </style>

@@ -17,11 +17,7 @@
       --font-variation-bold: 'XWGT' 375, 'YWGT' 775;
     }
 
-    @apply text-white;
-    @apply bg-light;
-    @apply dark:text-light;
-    @apply dark:bg-dark;
-    @apply text-base;
+    @apply bg-light text-base text-white dark:bg-dark dark:text-light;
     font-family: 'LuoHei VF';
     font-variation-settings: var(--font-variation-normal);
   }
@@ -39,10 +35,7 @@
   label[for^='checkbox'],
   label[for^='radio'],
   label[data-reset] {
-    @apply cursor-pointer;
-    @apply select-none;
-    @apply transition-font-variation;
-    @apply pointer:hover:font-bold;
+    @apply cursor-pointer select-none transition-font-variation pointer:hover:font-bold;
   }
 
   button {
@@ -96,28 +89,20 @@
   }
 
   .tracking {
-    @apply tracking-[0.25em];
-    @apply -mr-[0.25em];
+    @apply -mr-[0.25em] tracking-[0.25em];
   }
-}
 
-.cjk-kern-sm {
-  letter-spacing: 0.25em;
-}
+  .no-break {
+    @apply whitespace-nowrap;
+    word-break: keep-all;
+  }
 
-.cjk-kern-md {
-  letter-spacing: 0.5em;
-}
+  .hyphens-auto {
+    hyphens: auto;
+  }
 
-.cjk-latin-glue {
-  margin-inline-end: calc(1em / 6);
-}
-
-.no-break {
-  @apply whitespace-nowrap;
-  word-break: keep-all;
-}
-
-.hyphens-auto {
-  hyphens: auto;
+  .cjk-latin-glue,
+  .latin-cjk-glue {
+    letter-spacing: calc(1em / 6);
+  }
 }

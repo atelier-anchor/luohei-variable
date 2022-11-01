@@ -101,7 +101,8 @@ const controls = reactive({
 
 const showFontOptions = ref(true)
 const toggleOptions = () => (showFontOptions.value = !showFontOptions.value)
-const updateRandomText = () => (props.options.randomText = randomText.generate(fallbackLocale.value))
+const updateRandomText = () =>
+  (props.options.randomText = randomText.generate(fallbackLocale.value))
 
 watch(() => fallbackLocale.value, updateRandomText)
 
