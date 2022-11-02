@@ -4,6 +4,6 @@
   </button>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { isLocaleZh } from '@/i18n'
 </script>

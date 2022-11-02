@@ -8,9 +8,9 @@
   </div>
 </template>
 
-<script setup>
-defineProps({
-  xwgt: Number,
-  ywgt: Number,
-})
+<script setup lang="ts">
+defineProps<{
+  xwgt: number
+  ywgt: number
+}>()
 </script>

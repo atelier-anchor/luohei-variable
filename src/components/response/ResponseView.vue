@@ -39,7 +39,7 @@
   </ColorContainer>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { onMounted, onUnmounted, reactive, ref } from 'vue'
 import { cjkKern, clamp, scale, HEADER_HEIGHT } from '@/utils'
 import ColorContainer from '@/components/ColorContainer.vue'
@@ -50,7 +50,7 @@ const axes = reactive({ xwgt: 250, ywgt: 500 })
 const voiceControl = reactive({ xwgt: false, ywgt: false })
 const showValues = ref(true)
 
-const handleMousemove = (event) => {
+const handleMousemove = (event: MouseEvent) => {
   if (window.matchMedia('(pointer: fine)').matches) {
     if (!voiceControl.xwgt) {
       const x = event.clientX / window.innerWidth
@@ -63,27 +63,27 @@ const handleMousemove = (event) => {
   }
 }
 
-onMounted(() => document.querySelector('main').addEventListener('mousemove', handleMousemove))
+onMounted(() => document.querySelector('main')?.addEventListener('mousemove', handleMousemove))
 
-const handleOrientation = (event) => {
+const handleOrientation = (event: DeviceOrientationEvent) => {
   if (!voiceControl.xwgt) {
-    const beta = clamp(event.beta, -90, 90)
+    const beta = clamp(event.beta ?? 0, -90, 90)
     const x = 1 - Math.cos((beta * Math.PI) / 180)
     axes.xwgt = scale(x)
   }
   if (!voiceControl.ywgt) {
-    const y = 1 - Math.cos((event.gamma * Math.PI) / 180)
+    const y = 1 - Math.cos(((event.gamma ?? 0) * Math.PI) / 180)
     axes.ywgt = scale(y)
   }
 }
 
-let requestID = null
-let audioContext = null
+let requestID: number | null = null
+let audioContext: AudioContext | null = null
 
-const rms = (data) => Math.sqrt(data.reduce((a, b) => a + b * b, 0) / data.length)
-const normalize = (x, min, max) => (clamp(x, min, max) - min) / (max - min)
+const rms = (data: Float32Array) => Math.sqrt(data.reduce((a, b) => a + b * b, 0) / data.length)
+const normalize = (x: number, min: number, max: number) => (clamp(x, min, max) - min) / (max - min)
 
-const handleMicrophone = async (e) => {
+const handleMicrophone = async () => {
   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     const stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false })
 
@@ -107,13 +107,11 @@ const handleMicrophone = async (e) => {
 }
 
 const stopMicrophone = () => {
-  if (audioContext && requestID) {
-    audioContext.close().then(() => {
-      window.cancelAnimationFrame(requestID)
-      audioContext = null
-      requestID = null
-    })
-  }
+  audioContext?.close().then(() => {
+    if (requestID) window.cancelAnimationFrame(requestID)
+    audioContext = null
+    requestID = null
+  })
 }
 
 const toggleMicrophone = () => {

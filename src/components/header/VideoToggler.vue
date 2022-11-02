@@ -13,12 +13,13 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { inject, provide, ref } from 'vue'
 import { isLocaleZh } from '@/i18n'
 import VideoPanel from '@/components/home/VideoPanel.vue'
+import type { Router } from '@/App.vue'
 
-const { isHome } = inject('router')
+const { isHome } = inject('router') as Router
 
 const videoShown = ref(false)
 provide('closeVideo', () => (videoShown.value = false))

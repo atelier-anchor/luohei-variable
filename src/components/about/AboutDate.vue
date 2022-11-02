@@ -6,10 +6,11 @@
   </p>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { isLocaleZh } from '@/i18n'
 import { cjkKern } from '@/utils'
 
 const date = new Date(import.meta.env.VITE_BUILD_DATE)
-const fixCjkGlue = (s) => s.slice(0, -1) + `<span class='cjk-latin-glue'>${s.slice(-1)}</span>`
+const fixCjkGlue = (s: string) =>
+  s.slice(0, -1) + `<span class='cjk-latin-glue'>${s.slice(-1)}</span>`
 </script>

@@ -15,28 +15,31 @@
       :max="option.max"
       :step="option.step"
       :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
       :class="isLocaleZh ? 'w-40' : 'w-36'"
     />
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 import { isLocaleZh } from '@/i18n'
 import { cjkKern } from '@/utils'
+import type { RangeInputOption } from '@/components/recipe/recipe'
 
 const name = computed(() => `range-${props.option.name}`)
 
 const reset = () => {
-  if (props.option.reset) emit('update:modelValue', props.option.default)
+  if (props.option.reset) emit('update:modelValue', props.option.default ?? props.option.min)
 }
 
-const props = defineProps({
-  option: Object, // name, label, min, max, step?, reset?, default?
-  modelValue: Number,
-})
-const emit = defineEmits(['update:modelValue'])
+const props = defineProps<{
+  option: RangeInputOption
+  modelValue: number
+}>()
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: number): void
+}>()
 </script>
 
 <style scoped>

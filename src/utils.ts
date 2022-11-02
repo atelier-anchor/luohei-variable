@@ -1,11 +1,20 @@
-const LUOHEI_CHARS = {
+export const weights = ['thin', 'light', 'medium', 'bold', 'heavy'] as const
+export const contrasts = ['none', 'normal', 'reverse'] as const
+export const axes = ['xwgt', 'ywgt'] as const
+
+export type Weight = typeof weights[number]
+export type Contrast = typeof contrasts[number]
+type Axis = typeof axes[number]
+type Instance = { [x in Axis]: number }
+
+const luoheiChars = {
   'zh-hans':
     '上不丙业东两个中乙书于产人今仓以任传位体作值全共关击划刘创动化十南占印反发取变可叶号叽同后向启品四国图土坞型声复夜大天始字学定家宽对导小山工差己师平年库应度开式录形念态恢意感我或技护持排控播支文新方於无日明春显更曾最月朝木本术机杜染标样格横正此比毕水永汉江济海涟源漪潮点然版王生用田由甲画白的目直看示祥空笔粗纛纤纪细织络维网置耳育自色花草行观警计认设访谨距转过这连逆速造酬里重量钦锚闭问间院随面页项风鹰黎黑默',
   'zh-hant':
     '上不丙中乙于人今以任位体作倉個值儲全兩共划創劉動化十南占印反取可同后向品問啟嘰四圖土型塢复夜大天始字學定家寬導小山工差己師平年度庫式形後念恢意感態應我或技持排控播擊支數文新方於日明春更書曾最月朝木本机杜東染格業標樣機橫欽正此比水永江海源漢漣漪潮濟無然版王生產用田由甲畢畫發白的目直看示祥空筆粗紀級細絡維網織纖纛网置耳聲育自色花草行裡觀計訪設認謹警護變距逆這速造連酬里重量錨閉開間關院隨面頁項順預顯體鬱鷹黎黑默點',
 }
 
-const LUOHEI_NAMED_INSTANCES = {
+const luoheiInstances = {
   thin: {
     none: { xwgt: 200, ywgt: 200 },
     normal: { xwgt: 100, ywgt: 300 },
@@ -33,58 +42,28 @@ const LUOHEI_NAMED_INSTANCES = {
   },
 }
 
-export const LUOHEI_WEIGHTS = Object.keys(LUOHEI_NAMED_INSTANCES)
-export const LUOHEI_CONTRASTS = Object.keys(LUOHEI_NAMED_INSTANCES.thin)
+export const getRandomChar = (locale: keyof typeof luoheiChars, excludeSimple = false) =>
+  randomChoice(luoheiChars[locale] + (excludeSimple ? '' : '一二三')) as string
+export const getInstance = (weight: Weight, contrast: Contrast) =>
+  luoheiInstances[weight][contrast] as Instance
 
-export const HEADER_HEIGHT = 56
+export const randomChoice = <T>(xs: string | T[] | readonly T[]) =>
+  xs[Math.floor(Math.random() * xs.length)]
 
-/**
- * @param {string} locale
- * @param {boolean} excludeSimple
- */
-export const randomChar = (locale, excludeSimple = false) => {
-  const chars = LUOHEI_CHARS[locale] + (excludeSimple ? '' : '一二三')
-  return chars[Math.floor(Math.random() * chars.length)]
-}
+export const clamp = (value: number, min: number, max: number) =>
+  Math.min(Math.max(value, min), max)
 
-/**
- * @param {string} weight
- * @param {string} contrast
- */
-export const namedInstance = (weight, contrast) => LUOHEI_NAMED_INSTANCES[weight][contrast]
+export const scale = (value: number, min = 100, max = 900) => Math.round(value * (max - min) + min)
 
-/**
- * @param {number} value
- * @param {number} min
- * @param {number} max
- */
-export const clamp = (value, min, max) => Math.min(Math.max(value, min), max)
-
-/**
- * @param {number} value
- * @param {number} min
- * @param {number} max
- */
-export const scale = (value, min = 100, max = 900) => Math.round(value * (max - min) + min)
-
-/**
- * @param {number} n
- * @param {number} k
- * @param {number} min
- * @param {number} max
- */
-export const expScale = (n, k, min = 100, max = 900) =>
+export const expScale = (n: number, k: number, min = 100, max = 900) =>
   [...Array(n).keys()].map((i) =>
     Math.round(((Math.exp(k * i) - 1) / (Math.exp(k * n - k) - 1)) * (max - min) + min)
   )
 
-/**
- * @param {string} str
- */
-export const cjkKern = (str) => {
+export const cjkKern = (str: string) => {
   const charPattern = '[\\w\\u4e00-\\u9fff]'
   const spanPattern = `<span class='[\\w\\s-]*'>${charPattern}<\/span>`
-  const span = (className, text) => `<span class='${className}'>${text}</span>`
+  const span = (className: string, text: string) => `<span class='${className}'>${text}</span>`
   const puncts = {
     comma: '，',
     fullstop: '。',
@@ -93,28 +72,34 @@ export const cjkKern = (str) => {
     open: '「『（',
     close: '」』）',
   }
-  const kerns = [
+  type PunctName = keyof typeof puncts
+  interface Kern {
+    names: PunctName[]
+    searchFunc: (punct: string) => string
+    replaceFunc: (name: PunctName) => string
+  }
+  const kerns: Kern[] = [
     {
       // Single punctuations
-      keys: Object.keys(puncts),
+      names: Object.keys(puncts) as PunctName[],
       searchFunc: (punct) => `(${charPattern})([${punct}])(?=${charPattern}|${spanPattern})`,
       replaceFunc: (name) => span(`p-before-${name}`, '$1') + span(`p-${name}`, '$2'),
     },
     {
       // Punctuations at the end of a line
-      keys: ['fullstop', 'divide', 'open'],
+      names: ['fullstop', 'divide', 'open'],
       searchFunc: (punct) => `(${charPattern})([${punct}])$`,
       replaceFunc: (name) => span(`p-before-${name}`, '$1') + span(`p-${name}`, '$2'),
     },
     {
       // Punctuations before an open bracket
-      keys: ['comma', 'fullstop', 'colon', 'divide', 'open', 'close'],
+      names: ['comma', 'fullstop', 'colon', 'divide', 'open', 'close'],
       searchFunc: (punct) => `(${charPattern})([${punct}])(?=[${puncts.open}])`,
       replaceFunc: (name) => span(`p-before-${name}`, '$1') + span(`p-${name}`, '$2'),
     },
     {
       // Punctuations before a close bracket
-      keys: ['comma', 'fullstop', 'colon', 'divide', 'close'],
+      names: ['comma', 'fullstop', 'colon', 'divide', 'close'],
       searchFunc: (punct) => `(${charPattern})([${punct}])([${puncts.close}])`,
       replaceFunc: (name) =>
         span(`p-before-${name}`, '$1') +
@@ -123,7 +108,7 @@ export const cjkKern = (str) => {
     },
     {
       // Punctuations after a close bracket
-      keys: ['comma', 'fullstop', 'colon', 'divide'],
+      names: ['comma', 'fullstop', 'colon', 'divide'],
       searchFunc: (punct) => `(${charPattern})([${puncts.close}])([${punct}])`,
       replaceFunc: (name) =>
         span('p-before-close', '$1') +
@@ -132,13 +117,13 @@ export const cjkKern = (str) => {
     },
     {
       // Punctuations after a close bracket, at the beginning of a line
-      keys: ['comma', 'fullstop', 'colon', 'divide'],
+      names: ['comma', 'fullstop', 'colon', 'divide'],
       searchFunc: (punct) => `^([${puncts.close}])([${punct}])`,
       replaceFunc: (name) => span(`p-close-before-${name}`, '$1') + span(`p-${name}`, '$2'),
     },
   ]
-  kerns.forEach(({ keys, searchFunc, replaceFunc }) =>
-    keys.forEach(
+  kerns.forEach(({ names, searchFunc, replaceFunc }) =>
+    names.forEach(
       (name) => (str = str.replace(new RegExp(searchFunc(puncts[name]), 'g'), replaceFunc(name)))
     )
   )
@@ -170,8 +155,7 @@ export const cjkKern = (str) => {
   return str
 }
 
-/**
- * @param {string} str
- */
-export const fixWrap = (str) =>
+export const fixWrap = (str: string) =>
   str.replace(/(\w+ \w+)(?=[\.!?\)]$)/g, '<span class="no-break">$1</span>')
+
+export const HEADER_HEIGHT = 56

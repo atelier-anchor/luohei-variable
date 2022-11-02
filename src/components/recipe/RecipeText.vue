@@ -16,33 +16,34 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 import { fallbackLocale } from '@/i18n'
 import { cjkKern } from '@/utils'
-import {
-  glueValues,
-  kerningValues,
-  recipeText,
-  spacingValues,
-} from '@/components/recipe/recipe-text'
+import { glueValues, kerningValues, recipeText, spacingValues } from '@/components/recipe/recipe'
+import type { RecipeOption } from '@/components/recipe/recipe'
 
-const text = ({ textId, randomText }) =>
+const text = ({ textId, randomText }: RecipeOption) =>
   textId === 'random' ? randomText : recipeText[fallbackLocale.value][textId]
 
 const spacing = computed(() => {
   const data = spacingValues(props.options.direction === 'horizontal-tb')
-  const get = ([key, value]) => [
-    key,
-    value[fallbackLocale.value][props.options.punct] ?? ['0em', '0em'],
-  ]
-  return Object.fromEntries(Object.entries(data).map(get))
+  return Object.fromEntries(
+    Object.entries(data).map(([key, value]) => [
+      key,
+      value[fallbackLocale.value][props.options.punct] ?? ['0em', '0em'],
+    ])
+  )
 })
 
 const kerning = computed(() => {
   const data = kerningValues(props.options.direction === 'horizontal-tb')
-  const get = ([key, value]) => [key, value[fallbackLocale.value][props.options.punct]]
-  return Object.fromEntries(Object.entries(data).map(get))
+  return Object.fromEntries(
+    Object.entries(data).map(([key, value]) => [
+      key,
+      value[fallbackLocale.value][props.options.punct],
+    ])
+  )
 })
 
 const glue = computed(() => {
@@ -52,9 +53,9 @@ const glue = computed(() => {
   )
 })
 
-const props = defineProps({
-  options: Object,
-})
+const props = defineProps<{
+  options: RecipeOption
+}>()
 </script>
 
 <style scoped>

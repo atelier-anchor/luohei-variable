@@ -9,7 +9,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import AboutCommemoration from '@/components/about/AboutCommemoration.vue'
 import AboutConcept from '@/components/about/AboutConcept.vue'
 import AboutDate from '@/components/about/AboutDate.vue'

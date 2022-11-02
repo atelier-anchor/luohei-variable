@@ -13,10 +13,10 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { inject } from 'vue'
 import { isLocaleZh } from '@/i18n'
 import videoSrc from '@/assets/luohei.webm'
 
-const closeVideo = inject('closeVideo')
+const closeVideo = inject('closeVideo') as () => boolean
 </script>

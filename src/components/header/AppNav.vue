@@ -14,10 +14,11 @@
   </nav>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { inject } from 'vue'
 import { isLocaleZh } from '@/i18n'
+import type { Router } from '@/App.vue'
 
-const { currentPath, routes } = inject('router')
+const { currentPath, routes } = inject('router') as Router
 defineEmits(['click-link'])
 </script>

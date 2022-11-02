@@ -4,7 +4,7 @@
   </ColorContainer>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import ColorContainer from '@/components/ColorContainer.vue'
 import RippleGrid from '@/components/ripple/RippleGrid.vue'
 </script>

@@ -2,13 +2,13 @@
   <div>
     <p class="mb-2">
       <ul class="inline-flex gap-4 sm:gap-8">
-        <li v-for="member in members.slice(0, 2)"><AboutMember :member="member" /></li>
+        <li v-for="member in members.slice(0, 2)"><AboutMember v-bind="member" /></li>
       </ul>
       <br />
       <AboutLink href="https://tjdi.tongji.edu.cn" :text="$t('about.tongji-di')" />
     </p>
     <p>
-      <AboutMember :member="members[2]" />
+      <AboutMember v-bind="members[2]" />
       <br />
       <AboutLink href="https://atelier-anchor.com" :text="$t('about.atelier-anchor')" />
     </p>
@@ -20,7 +20,7 @@
   </p>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { cjkKern } from '@/utils'
 import AboutLink from '@/components/about/AboutLink.vue'
 import AboutMember from '@/components/about/AboutMember.vue'

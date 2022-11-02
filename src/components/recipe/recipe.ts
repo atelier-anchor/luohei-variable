@@ -1,4 +1,47 @@
-import { randomChar } from '@/utils'
+import { getRandomChar, randomChoice } from '@/utils'
+import type { Contrast, Weight } from '@/utils'
+
+export interface RadioInputOption {
+  name: string
+  label: string
+  abbr?: boolean
+  value?: string
+}
+
+export interface RangeInputOption {
+  name: string
+  label: string
+  min: number
+  max: number
+  step?: number
+  reset?: boolean
+  default?: number
+}
+
+export interface RecipeOption {
+  showFontOptions: boolean
+  xwgt: number
+  ywgt: number
+  weight: Weight | ''
+  contrast: Contrast | ''
+  size: number
+  leading: number
+  direction: 'horizontal-tb' | 'vertical-rl'
+  punct: 'default' | 'kaiming' | 'full'
+  textId: 'a' | 'b' | 'c' | 'random'
+  randomText: string[]
+}
+
+type Locale = 'zh-hans' | 'zh-hant'
+type Punct = 'default' | 'kaiming' | 'full'
+type Spacing = {
+  [x in Locale]: {
+    [x in Punct]?: string | string[]
+  }
+}
+type Glue = {
+  [x in Punct]?: string | string[]
+}
 
 export const recipeText = {
   'zh-hans': {
@@ -21,8 +64,8 @@ export const recipeText = {
   },
 }
 
-export const spacingValues = (isHorizontal) => {
-  const horizontalValue = (val) => (isHorizontal ? val : '0em')
+export const spacingValues = (isHorizontal: boolean) => {
+  const horizontalValue = (val: string[]) => (isHorizontal ? val : '0em')
   return {
     comma: {
       'zh-hans': { full: ['0em', '0.5em'] },
@@ -54,10 +97,10 @@ export const spacingValues = (isHorizontal) => {
       'zh-hans': { full: ['0em', '0.5em'] },
       'zh-hant': { full: ['0em', '0.5em'] },
     },
-  }
+  } as { [x in string]: Spacing }
 }
 
-export const kerningValues = (isHorizontal) => {
+export const kerningValues = (isHorizontal: boolean) => {
   return {
     'colon-close': {
       'zh-hans': { full: isHorizontal ? '0.5em' : '0.25em' },
@@ -70,16 +113,17 @@ export const kerningValues = (isHorizontal) => {
       },
       'zh-hant': { kaiming: '0.25em', full: '0.25em' },
     },
-  }
+  } as { [x in string]: Spacing }
 }
 
-export const glueValues = (isHorizontal) => ({
-  cjkLatin: { kaiming: 'calc(1em / 6)', full: 'calc(1em / 6)' },
-  latinCjk: {
-    kaiming: isHorizontal ? 'calc(1em / 6)' : '0.25em',
-    full: isHorizontal ? 'calc(1em / 6)' : '0.25em',
-  },
-})
+export const glueValues = (isHorizontal: boolean) =>
+  ({
+    cjkLatin: { kaiming: 'calc(1em / 6)', full: 'calc(1em / 6)' },
+    latinCjk: {
+      kaiming: isHorizontal ? 'calc(1em / 6)' : '0.25em',
+      full: isHorizontal ? 'calc(1em / 6)' : '0.25em',
+    },
+  } as { [x in string]: Glue })
 
 export const randomText = {
   parNum: 2,
@@ -101,21 +145,17 @@ export const randomText = {
     if (p <= this.quoteTypesProb[1]) return this.quotes[1]
     return this.quotes[2]
   },
-  insertQuotes(s) {
+  insertQuotes(s: string) {
     if (Math.random() > this.quoteProb) return s
     const a = Math.floor(Math.random() * (s.length - 1))
     const b = Math.floor(Math.random() * (s.length - a)) + a + 1
     const quotes = this.getQuotes()
     return s.slice(0, a) + quotes[0] + s.slice(a, b) + quotes[1] + s.slice(b)
   },
-  insertWords(s) {
+  insertWords(s: string) {
     const words = [...Array(this.wordMaxNum)]
-      .map(() =>
-        Math.random() < this.wordProb
-          ? this.words[Math.floor(Math.random() * this.words.length, this.words.length)]
-          : undefined
-      )
-      .filter((e) => e)
+      .map(() => (Math.random() < this.wordProb ? randomChoice(this.words) : undefined))
+      .filter((e) => e) as string[]
     const pos = [...Array(words.length)]
       .map(() => Math.floor(Math.random() * s.length))
       .sort((a, b) => b - a)
@@ -124,20 +164,19 @@ export const randomText = {
     }
     return s.replace(/~~/g, '-').replace(/~/g, '') // Add hyphens for successive words
   },
-  generateSentence(locale) {
+  generateSentence(locale: Locale) {
     const len = Math.floor(Math.random() * this.sentenceMaxLen) + this.sentenceMinLen
-    const sentence = [...Array(len).keys()].map(() => randomChar(locale)).join('')
-    const punct = this.puncts[Math.floor(Math.random() * this.puncts.length)]
-    return this.insertWords(this.insertQuotes(sentence)) + punct
+    const sentence = [...Array(len).keys()].map(() => getRandomChar(locale)).join('')
+    return this.insertWords(this.insertQuotes(sentence)) + randomChoice(this.puncts)
   },
-  generatePar(locale) {
+  generatePar(locale: Locale) {
     return [...Array(this.sentenceNum).keys()]
       .map(() => this.generateSentence(locale))
       .join('')
       .replace(/.$/g, '。')
       .replace(/(^|[。！？])[「『（]?\w/g, (s) => s.toUpperCase())
   },
-  generate(locale) {
+  generate(locale: Locale) {
     return [...Array(this.parNum).keys()].map(() => this.generatePar(locale))
   },
 }

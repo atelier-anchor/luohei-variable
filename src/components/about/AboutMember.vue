@@ -1,14 +1,16 @@
 <template>
-  <span v-if="isLocaleZh" class="mr-2 sm:mr-4">{{ $t(`about.${member.title}`) }}</span>
-  <template v-else>{{ $t(`about.${member.title}`) }}: </template>
-  <a v-if="member.href" :href="member.href" target="_blank">{{ member.name[$i18n.locale] }}</a>
-  <template v-else>{{ member.name[$i18n.locale] }}</template>
+  <span v-if="isLocaleZh" class="mr-2 sm:mr-4">{{ $t(`about.${title}`) }}</span>
+  <template v-else>{{ $t(`about.${title}`) }}: </template>
+  <a v-if="href" :href="href" target="_blank">{{ name[$i18n.locale] }}</a>
+  <template v-else>{{ name[$i18n.locale] }}</template>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { isLocaleZh } from '@/i18n'
 
-defineProps({
-  member: Object,
-})
+defineProps<{
+  title: string
+  name: { [x in string]: string }
+  href?: string
+}>()
 </script>

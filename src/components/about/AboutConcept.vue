@@ -12,12 +12,12 @@
   ></p>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue'
 import { fallbackLocale, isLocaleZh } from '@/i18n'
 import { cjkKern, fixWrap } from '@/utils'
 
-const link = (href, text) => `<a href='${href}' target='_blank'>${text}</a>`
+const link = (href: string, text: string) => `<a href='${href}' target='_blank'>${text}</a>`
 const spacing = computed(() =>
   fallbackLocale.value === 'zh-hans'
     ? { comma: '0.25em' }

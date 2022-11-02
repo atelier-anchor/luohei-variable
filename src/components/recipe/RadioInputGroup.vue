@@ -12,14 +12,17 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { isLocaleZh } from '@/i18n'
 import RadioInput from '@/components/recipe/RadioInput.vue'
+import type { RadioInputOption } from '@/components/recipe/recipe'
 
-defineProps({
-  label: String,
-  options: Array,
-  modelValue: String,
-})
-defineEmits(['update:modelValue'])
+defineProps<{
+  label: string
+  options: RadioInputOption[]
+  modelValue: string
+}>()
+defineEmits<{
+  (e: 'update:modelValue', value: string): void
+}>()
 </script>

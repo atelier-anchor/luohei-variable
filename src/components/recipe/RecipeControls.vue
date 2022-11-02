@@ -49,12 +49,13 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { onMounted, reactive, ref, watch } from 'vue'
 import { fallbackLocale } from '@/i18n'
-import { randomText } from '@/components/recipe/recipe-text'
+import { randomText } from '@/components/recipe/recipe'
 import RadioInputGroup from '@/components/recipe/RadioInputGroup.vue'
 import RangeInput from '@/components/recipe/RangeInput.vue'
+import type { RecipeOption } from '@/components/recipe/recipe'
 
 const controls = reactive({
   xwgt: { name: 'xwgt', label: 'recipe.x-axis', min: 100, max: 900 },
@@ -112,7 +113,7 @@ onMounted(() =>
     ?.addEventListener('click', updateRandomText)
 )
 
-const props = defineProps({
-  options: Object,
-})
+const props = defineProps<{
+  options: RecipeOption
+}>()
 </script>

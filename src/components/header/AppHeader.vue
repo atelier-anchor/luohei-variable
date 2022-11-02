@@ -21,7 +21,7 @@
   </header>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { isLocaleZh } from '@/i18n'
 import AppNav from '@/components/header/AppNav.vue'
