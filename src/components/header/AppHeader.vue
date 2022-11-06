@@ -1,6 +1,6 @@
 <template>
   <header class="sticky top-0 z-10">
-    <div class="absolute w-full bg-light px-8 py-4 dark:bg-dark sm:px-16">
+    <div class="absolute w-full bg-light px-8 py-4 transition-colors dark:bg-dark sm:px-16">
       <div class="font-optical-size-sm mx-auto flex max-w-screen-2xl gap-4 text-sm">
         <VideoToggler class="grow sm:block" :class="{ hidden: showNav }" />
         <NavBar

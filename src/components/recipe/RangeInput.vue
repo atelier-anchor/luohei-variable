@@ -44,36 +44,30 @@ const emit = defineEmits<{
 
 <style scoped>
 input[type='range'] {
-  --size: 16px;
-  --border-width: 1.5px;
-
   @apply appearance-none bg-transparent;
+  --size: 1rem;
+  --border-width: 1.5px;
+  --webkit-mt: calc((var(--size) - var(--border-width)) * -0.5);
+  --moz-size: calc(var(--size) - var(--border-width) * 2);
+}
 
-  &::-webkit-slider-thumb {
-    @apply appearance-none bg-white shadow-none dark:bg-dark;
-    width: var(--size);
-    height: var(--size);
-    margin-top: calc((var(--size) - var(--border-width)) * -0.5);
-    border: var(--border-width) solid currentColor;
-    border-radius: 50%;
-  }
+/* The following rules for -webkit and -moz pesudo elements can't be merged. */
 
-  &::-moz-range-thumb {
-    @apply bg-white shadow-none dark:bg-dark;
-    width: calc(var(--size) - var(--border-width) * 2);
-    height: calc(var(--size) - var(--border-width) * 2);
-    border: var(--border-width) solid currentColor;
-    border-radius: 50%;
-  }
+input[type='range']::-webkit-slider-thumb {
+  @apply mt-[var(--webkit-mt)] h-[var(--size)] w-[var(--size)] appearance-none rounded-lg border-current bg-white shadow-none transition-colors dark:bg-dark;
+  border: var(--border-width) solid currentColor;
+}
 
-  &::-webkit-slider-runnable-track {
-    @apply appearance-none bg-current;
-    height: var(--border-width);
-  }
+input[type='range']::-moz-range-thumb {
+  @apply h-[var(--moz-size)] w-[var(--moz-size)] rounded-lg border-current bg-white shadow-none transition-colors dark:bg-dark;
+  border: var(--border-width) solid currentColor;
+}
 
-  &::-moz-range-track {
-    @apply bg-current;
-    height: var(--border-width);
-  }
+input[type='range']::-webkit-slider-runnable-track {
+  @apply h-[var(--border-width)] appearance-none bg-current;
+}
+
+input[type='range']::-moz-range-track {
+  @apply h-[var(--border-width)] bg-current;
 }
 </style>

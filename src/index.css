@@ -9,26 +9,25 @@
   }
 
   body {
+    @apply bg-light text-base text-white transition-colors dark:bg-dark dark:text-light;
     --font-variation-normal: 'XWGT' 250, 'YWGT' 500;
     --font-variation-bold: 'XWGT' 400, 'YWGT' 800;
-
-    @media (prefers-color-scheme: dark) {
-      --font-variation-normal: 'XWGT' 225, 'YWGT' 475;
-      --font-variation-bold: 'XWGT' 375, 'YWGT' 775;
-    }
-
-    @apply bg-light text-base text-white dark:bg-dark dark:text-light;
     font-family: 'LuoHei VF';
     font-variation-settings: var(--font-variation-normal);
   }
 
+  .dark body {
+    --font-variation-normal: 'XWGT' 225, 'YWGT' 475;
+    --font-variation-bold: 'XWGT' 375, 'YWGT' 775;
+  }
+
   a {
     @apply transition-[font-variation-settings];
+  }
 
-    &:hover,
-    &:active {
-      @apply font-bold;
-    }
+  a:hover,
+  a:active {
+    @apply font-bold;
   }
 
   button,
@@ -47,37 +46,34 @@
   .font-optical-size-sm {
     --font-variation-normal: 'XWGT' 300, 'YWGT' 600;
     --font-variation-bold: 'XWGT' 450, 'YWGT' 900;
-
-    @media (prefers-color-scheme: dark) {
-      --font-variation-normal: 'XWGT' 275, 'YWGT' 575;
-      --font-variation-bold: 'XWGT' 425, 'YWGT' 875;
-    }
-
     font-variation-settings: var(--font-variation-normal);
   }
 
   .font-optical-size-lg {
     --font-variation-normal: 'XWGT' 200, 'YWGT' 400;
     --font-variation-bold: 'XWGT' 400, 'YWGT' 800;
-
-    @media (prefers-color-scheme: dark) {
-      --font-variation-normal: 'XWGT' 175, 'YWGT' 375;
-      --font-variation-bold: 'XWGT' 375, 'YWGT' 775;
-    }
-
     font-variation-settings: var(--font-variation-normal);
   }
 
   .font-optical-size-noordzij {
     --font-variation-normal: 'XWGT' 450, 'YWGT' 500;
     --font-variation-bold: 'XWGT' 200, 'YWGT' 800;
-
-    @media (prefers-color-scheme: dark) {
-      --font-variation-normal: 'XWGT' 425, 'YWGT' 475;
-      --font-variation-bold: 'XWGT' 175, 'YWGT' 775;
-    }
-
     font-variation-settings: var(--font-variation-normal);
+  }
+
+  .dark .font-optical-size-sm {
+    --font-variation-normal: 'XWGT' 275, 'YWGT' 575;
+    --font-variation-bold: 'XWGT' 425, 'YWGT' 875;
+  }
+
+  .dark .font-optical-size-lg {
+    --font-variation-normal: 'XWGT' 175, 'YWGT' 375;
+    --font-variation-bold: 'XWGT' 375, 'YWGT' 775;
+  }
+
+  .dark .font-optical-size-noordzij {
+    --font-variation-normal: 'XWGT' 425, 'YWGT' 475;
+    --font-variation-bold: 'XWGT' 175, 'YWGT' 775;
   }
 
   .font-normal {

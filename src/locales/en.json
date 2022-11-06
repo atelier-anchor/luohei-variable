@@ -6,6 +6,8 @@
     "video": "Watch video",
     "close": "Close",
     "start": "Start",
+    "color-light": "Light",
+    "color-dark": "Dark",
     "visit-atelier-anchor": "Visit atelierAnchor"
   },
   "nav": {
