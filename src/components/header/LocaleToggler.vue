@@ -1,19 +1,17 @@
 <template>
-  <button @click="toggleLocale">
-    {{ { 'zh-hans': 'EN', 'zh-hant': '汉', en: '漢' }[locale] }}
-  </button>
+  <div class="flex gap-2">
+    <LocaleRadioInput v-for="option in localeOptions" :option="option" v-model="locale" />
+  </div>
 </template>
 
 <script setup lang="ts">
 import { useI18n } from 'vue-i18n'
+import LocaleRadioInput from '@/components/header/LocaleRadioInput.vue'
 
-const { locale, t } = useI18n()
-const toggleLocale = () => {
-  locale.value = { 'zh-hans': 'en', 'zh-hant': 'zh-hans', en: 'zh-hant' }[locale.value] as string
-  document.title = t('header.title')
-  document.documentElement.lang = locale.value
-  document
-    .querySelector('body')
-    ?.setAttribute('style', locale.value === 'zh-hant' ? 'font-feature-settings: "ss01"' : '')
-}
+const { locale } = useI18n()
+const localeOptions = [
+  { name: 'locale-zh-hans', label: '汉', value: 'zh-hans' },
+  { name: 'locale-zh-hant', label: '漢', value: 'zh-hant' },
+  { name: 'locale-en', label: 'EN', value: 'en' },
+]
 </script>

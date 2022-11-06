@@ -36,9 +36,6 @@ module.exports = {
       spacing: {
         18: '4.5rem',
       },
-      transitionProperty: {
-        'font-variation': 'font-variation-settings',
-      },
     },
   },
   plugins: [

@@ -20,8 +20,9 @@ import type { RadioInputOption } from '@/components/recipe/recipe'
 defineProps<{
   label: string
   options: RadioInputOption[]
-  modelValue: string
+  modelValue?: string
 }>()
+
 defineEmits<{
   (e: 'update:modelValue', value: string): void
 }>()

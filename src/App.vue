@@ -6,7 +6,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, provide, ref } from 'vue'
+import { computed, onMounted, provide, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
 import AppHeader from '@/components/header/AppHeader.vue'
 import AboutView from '@/components/about/AboutView.vue'
@@ -22,7 +22,6 @@ export interface Router {
   isHome: ComputedRef<boolean>
 }
 
-// type Routes = 'recipe' | 'response' | 'ripple' | 'about'
 const routes = {
   recipe: RecipeView,
   response: ResponseView,
@@ -41,21 +40,23 @@ provide('router', {
   isHome: computed(() => currentPath.value === '' || currentPath.value === '#/'),
 })
 
-onMounted(() => {
-  const { locale, t } = useI18n()
-  if (navigator.language.split('-')[0] === 'zh') {
-    const lang = navigator.language.toLowerCase()
-    if (['hant', 'hk', 'tw'].some((s) => lang.indexOf(s) >= 0)) {
-      locale.value = 'zh-hant'
-      document.querySelector('body')?.setAttribute('style', 'font-feature-settings: "ss01"')
-    } else {
-      locale.value = 'zh-hans'
-    }
-  } else {
-    locale.value = 'en'
-  }
+const { locale, t } = useI18n()
+const isZh = () => navigator.language.split('-')[0] === 'zh'
+const isZhHant = () =>
+  ['hant', 'hk', 'tw'].some((s) => navigator.language.toLowerCase().indexOf(s) >= 0)
+const updateDocumentLocale = () => {
   document.title = t('header.title')
   document.documentElement.lang = locale.value
+  document
+    .querySelector('body')
+    ?.setAttribute('style', locale.value === 'zh-hant' ? 'font-feature-settings: "ss01"' : '')
+}
+
+onMounted(() => {
+  locale.value = isZh() ? (isZhHant() ? 'zh-hant' : 'zh-hans') : 'en'
+  updateDocumentLocale()
   window.addEventListener('hashchange', () => (currentPath.value = window.location.hash))
 })
+
+watch(() => locale.value, updateDocumentLocale)
 </script>

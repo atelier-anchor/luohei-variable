@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <span>
     <label :for="name" :class="{ 'font-bold': checked }">
-      {{ option.abbr && !isLocaleZh && !checked ? $t(option.label)[0] : $t(option.label) }}
+      {{ option.label }}
     </label>
     <input
       type="radio"
@@ -12,16 +12,20 @@
       @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
       class="hidden appearance-none"
     />
-  </div>
+  </span>
 </template>
 
 <script setup lang="ts">
 import { computed } from 'vue'
-import { isLocaleZh } from '@/i18n'
-import type { RadioInputOption } from '@/components/recipe/recipe'
 
 const name = computed(() => `radio-${props.option.name}`)
 const checked = computed(() => props.modelValue === props.option.value)
+
+interface RadioInputOption {
+  name: string
+  label: string
+  value: string
+}
 
 const props = defineProps<{
   option: RadioInputOption

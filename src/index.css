@@ -23,7 +23,7 @@
   }
 
   a {
-    @apply transition-font-variation;
+    @apply transition-[font-variation-settings];
 
     &:hover,
     &:active {
@@ -35,7 +35,7 @@
   label[for^='checkbox'],
   label[for^='radio'],
   label[data-reset] {
-    @apply cursor-pointer select-none transition-font-variation pointer:hover:font-bold;
+    @apply cursor-pointer select-none transition-[font-variation-settings] pointer:hover:font-bold;
   }
 
   button {
