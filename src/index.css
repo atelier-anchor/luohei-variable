@@ -93,8 +93,7 @@
   }
 
   .no-break {
-    @apply whitespace-nowrap;
-    word-break: keep-all;
+    @apply whitespace-nowrap break-keep;
   }
 
   .hyphens-auto {
