@@ -17,14 +17,14 @@
           <NavMenuToggler ref="navMenuToggler" @click="showMenu = !showMenu" />
         </div>
       </div>
+      <Transition>
+        <div v-show="showMenu" class="relative mx-auto max-w-screen-2xl transition-opacity">
+          <div class="absolute top-3.5 right-0">
+            <NavMenu ref="navMenu" />
+          </div>
+        </div>
+      </Transition>
     </div>
-    <Transition>
-      <NavMenu
-        v-show="showMenu"
-        ref="navMenu"
-        class="absolute top-[54px] right-8 transition-opacity sm:right-16"
-      />
-    </Transition>
   </header>
 </template>
 
@@ -52,10 +52,10 @@ onMounted(() => {
     showMenu.value = false
   })
   document.addEventListener('click', (e) => {
-    const navMenuElem = navMenu.value?.$el as HTMLElement
-    const navMenuTogglerElem = navMenuToggler.value?.$el as HTMLElement
+    const navMenuElem = navMenu.value?.$el as HTMLElement | null
+    const navMenuTogglerElem = navMenuToggler.value?.$el as HTMLElement | null
     const target = e.target as Node
-    if (showMenu.value && !navMenuElem.contains(target) && !navMenuTogglerElem.contains(target)) {
+    if (showMenu.value && !navMenuElem?.contains(target) && !navMenuTogglerElem?.contains(target)) {
       showMenu.value = false
     }
   })
