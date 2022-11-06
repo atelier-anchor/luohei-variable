@@ -3,7 +3,7 @@
     <div class="absolute w-full bg-light px-8 py-4 dark:bg-dark sm:px-16">
       <div class="font-optical-size-sm mx-auto flex max-w-screen-2xl gap-4 text-sm">
         <VideoToggler class="grow sm:block" :class="{ hidden: showNav }" />
-        <AppNav
+        <NavBar
           class="grow sm:block sm:grow-0"
           :class="{ hidden: !showNav }"
           @click-link="onClickLink"
@@ -31,7 +31,7 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
 import { isLocaleZh } from '@/i18n'
-import AppNav from '@/components/header/AppNav.vue'
+import NavBar from '@/components/header/NavBar.vue'
 import NavMenu from '@/components/header/NavMenu.vue'
 import NavMenuToggler from '@/components/header//NavMenuToggler.vue'
 import NavToggler from '@/components/header/NavToggler.vue'
