@@ -14,10 +14,17 @@
             :class="{ 'font-bold': showNav }"
             @click="showNav = !showNav"
           />
-          <LocaleToggler />
+          <NavMenuToggler ref="navMenuToggler" @click="showMenu = !showMenu" />
         </div>
       </div>
     </div>
+    <Transition>
+      <NavMenu
+        v-show="showMenu"
+        ref="navMenu"
+        class="absolute top-[54px] right-8 transition-opacity sm:right-16"
+      />
+    </Transition>
   </header>
 </template>
 
@@ -25,14 +32,39 @@
 import { onMounted, ref } from 'vue'
 import { isLocaleZh } from '@/i18n'
 import AppNav from '@/components/header/AppNav.vue'
-import LocaleToggler from '@/components/header/LocaleToggler.vue'
+import NavMenu from '@/components/header/NavMenu.vue'
+import NavMenuToggler from '@/components/header//NavMenuToggler.vue'
 import NavToggler from '@/components/header/NavToggler.vue'
 import VideoToggler from '@/components/header/VideoToggler.vue'
 
+const navMenu = ref<InstanceType<typeof NavMenu> | null>(null)
+const navMenuToggler = ref<InstanceType<typeof NavMenuToggler> | null>(null)
+
 const showNav = ref(false)
+const showMenu = ref(false)
 const onClickLink = () => {
   if (!isLocaleZh.value && window.innerWidth < 480) showNav.value = false
 }
 
-onMounted(() => window.addEventListener('resize', () => (showNav.value = false)))
+onMounted(() => {
+  window.addEventListener('resize', () => {
+    showNav.value = false
+    showMenu.value = false
+  })
+  document.addEventListener('click', (e) => {
+    const navMenuElem = navMenu.value?.$el as HTMLElement
+    const navMenuTogglerElem = navMenuToggler.value?.$el as HTMLElement
+    const target = e.target as Node
+    if (showMenu.value && !navMenuElem.contains(target) && !navMenuTogglerElem.contains(target)) {
+      showMenu.value = false
+    }
+  })
+})
 </script>
+
+<style scoped>
+.v-enter-from,
+.v-leave-to {
+  @apply opacity-0;
+}
+</style>

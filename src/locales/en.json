@@ -5,7 +5,8 @@
     "title": "@:header.name",
     "video": "Watch video",
     "close": "Close",
-    "start": "Start"
+    "start": "Start",
+    "visit-atelier-anchor": "Visit atelierAnchor"
   },
   "nav": {
     "recipe": "Recipe",

@@ -5,7 +5,8 @@
     "title": "@:header.name @:header.name-en",
     "video": "观看动画",
     "close": "关闭",
-    "start": "开始"
+    "start": "开始",
+    "visit-atelier-anchor": "访问锚坞"
   },
   "nav": {
     "recipe": "字样",

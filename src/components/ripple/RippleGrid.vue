@@ -31,7 +31,7 @@ interface Grid {
   content: string[]
 }
 
-const gridContainer = ref<HTMLInputElement | null>(null)
+const gridContainer = ref<HTMLElement | null>(null)
 const grid: Grid = reactive({ size: 0, rows: 0, cols: 0, template: '', height: '', content: [] })
 
 const timeInterval = 40
