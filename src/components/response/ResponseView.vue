@@ -42,7 +42,7 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, reactive, ref } from 'vue'
 import { cjkKern, clamp, scale, HEADER_HEIGHT } from '@/utils'
-import ColorContainer from '@/components/ColorContainer.vue'
+import ColorContainer from '@/components/shared/ColorContainer.vue'
 import EditableText from '@/components/response/EditableText.vue'
 import InitializeButton from '@/components/response/InitializeButton.vue'
 
