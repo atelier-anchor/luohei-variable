@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-4">
-    <div class="flex gap-4 md:hidden">
+    <div class="flex gap-[var(--em)] md:hidden">
       <button
         v-for="[status, label] in [
           [showFontOptions, 'font-options'],

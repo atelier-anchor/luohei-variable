@@ -1,5 +1,5 @@
 <template>
-  <div class="flex gap-2">
+  <div class="flex gap-[var(--em)]">
     <LocaleRadioInput v-for="option in localeOptions" :option="option" v-model="locale" />
   </div>
 </template>

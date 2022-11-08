@@ -1,5 +1,5 @@
 <template>
-  <div class="flex items-center gap-4">
+  <div class="flex items-center gap-[var(--em)]">
     <label
       :for="name"
       :data-reset="option.reset"

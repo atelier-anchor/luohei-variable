@@ -1,7 +1,7 @@
 <template>
   <div>
     <p class="mb-2">
-      <ul class="inline-flex gap-4 sm:gap-8">
+      <ul class="inline-flex gap-[var(--em)] sm:gap-[calc(var(--em)*2)]">
         <li v-for="member in members.slice(0, 2)"><AboutMember v-bind="member" /></li>
       </ul>
       <br />

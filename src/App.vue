@@ -8,6 +8,7 @@
 <script setup lang="ts">
 import { computed, onMounted, provide, ref, watch } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { isLocaleZh } from '@/i18n'
 import AppHeader from '@/components/header/AppHeader.vue'
 import AboutView from '@/components/about/AboutView.vue'
 import HomeView from '@/components/home/HomeView.vue'
@@ -47,9 +48,9 @@ const isZhHant = () =>
 const updateDocumentLocale = () => {
   document.title = t('header.title')
   document.documentElement.lang = locale.value
-  document
-    .querySelector('body')
-    ?.setAttribute('style', locale.value === 'zh-hant' ? 'font-feature-settings: "ss01"' : '')
+  const body = document.querySelector('body')
+  body?.style.setProperty('font-feature-settings', locale.value === 'zh-hant' ? '"ss01"' : null)
+  body?.style.setProperty('--em', isLocaleZh.value ? '1.125rem' : '1rem')
 }
 
 onMounted(() => {
