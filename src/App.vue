@@ -15,15 +15,8 @@ import HomeView from '@/components/home/HomeView.vue'
 import RecipeView from '@/components/recipe/RecipeView.vue'
 import ResponseView from '@/components/response/ResponseView.vue'
 import RippleView from '@/components/ripple/RippleView.vue'
-import type { ComputedRef, Ref } from 'vue'
 
-export interface Router {
-  routes: any
-  currentPath: Ref<string>
-  isHome: ComputedRef<boolean>
-}
-
-const routes = {
+const routes: Routes = {
   recipe: RecipeView,
   response: ResponseView,
   ripple: RippleView,
@@ -60,4 +53,17 @@ onMounted(() => {
 })
 
 watch(() => locale.value, updateDocumentLocale)
+</script>
+
+<script lang="ts">
+import type { Component, ComputedRef, Ref } from 'vue'
+
+type Route = 'recipe' | 'response' | 'ripple' | 'about'
+type Routes = { [key in Route]: Component }
+
+export interface Router {
+  routes: Routes
+  currentPath: Ref<string>
+  isHome: ComputedRef<boolean>
+}
 </script>
