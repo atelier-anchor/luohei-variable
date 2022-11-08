@@ -57,10 +57,20 @@
     }
   },
   "response": {
-    "show-values": "显示值",
     "enable-orientation": "点击这里开启方向感应",
     "voice-control-x": "声控X",
-    "voice-control-y": "声控Y"
+    "voice-control-y": "声控Y",
+    "menu": {
+      "settings": "「@:{'nav.response'}」设置",
+      "show-values": "显示值",
+      "change-character": "更换字样",
+      "swap-axes": "交换轴"
+    }
+  },
+  "ripple": {
+    "menu": {
+      "settings": "「@:{'nav.ripple'}」设置"
+    }
   },
   "about": {
     "commemoration": "谨以此设计纪念",

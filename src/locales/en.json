@@ -57,10 +57,20 @@
     }
   },
   "response": {
-    "show-values": "Show values",
     "enable-orientation": "Tap here to enable gyroscope",
     "voice-control-x": "Voice control X",
-    "voice-control-y": "Voice control Y"
+    "voice-control-y": "Voice control Y",
+    "menu": {
+      "settings": "@:nav.response settings",
+      "show-values": "Show values",
+      "change-character": "Change character",
+      "swap-axes": "Swap axes"
+    }
+  },
+  "ripple": {
+    "menu": {
+      "settings": "@:nav.ripple settings"
+    }
   },
   "about": {
     "commemoration": "In Memory of",

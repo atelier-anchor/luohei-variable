@@ -21,7 +21,7 @@
             class="hidden appearance-none"
           />
           <label for="checkbox-show-values" :class="{ 'font-bold': showValues }">
-            {{ $t('response.show-values') }}
+            {{ $t('response.menu.show-values') }}
           </label>
           <button
             v-html="cjkKern($t('response.voice-control-x'))"

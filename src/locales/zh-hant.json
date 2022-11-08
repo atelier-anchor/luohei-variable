@@ -57,10 +57,20 @@
     }
   },
   "response": {
-    "show-values": "顯示值",
     "enable-orientation": "點擊這裡開啟方位感應",
     "voice-control-x": "聲控X",
-    "voice-control-y": "聲控Y"
+    "voice-control-y": "聲控Y",
+    "menu": {
+      "settings": "「@:{'nav.response'}」設定",
+      "show-values": "顯示值",
+      "change-character": "變更字樣",
+      "swap-axes": "交換軸"
+    }
+  },
+  "ripple": {
+    "menu": {
+      "settings": "「@:{'nav.ripple'}」設定"
+    }
   },
   "about": {
     "commemoration": "謹以此設計紀念",
