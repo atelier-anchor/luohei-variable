@@ -4,7 +4,10 @@
     <div class="flex gap-[var(--em)]" :class="{ 'ml-4': !isLocaleZh }">
       <RadioInput
         v-for="option in options"
-        :option="option"
+        :name="option.name"
+        :label="$t(option.label)"
+        :abbr="option.abbr"
+        :value="option.value"
         :modelValue="modelValue"
         @update:modelValue="$emit('update:modelValue', $event)"
       />
@@ -14,13 +17,17 @@
 
 <script setup lang="ts">
 import { isLocaleZh } from '@/i18n'
-import RadioInput from '@/components/recipe/RadioInput.vue'
-import type { RadioInputOption } from '@/components/recipe/recipe'
+import RadioInput from '@/components/shared/RadioInput.vue'
 
 defineProps<{
   label: string
-  options: RadioInputOption[]
-  modelValue?: string
+  options: {
+    name: string
+    label: string
+    abbr?: boolean
+    value: string
+  }[]
+  modelValue: string
 }>()
 
 defineEmits<{

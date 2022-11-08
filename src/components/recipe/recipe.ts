@@ -1,13 +1,6 @@
 import { getRandomChar, randomChoice } from '@/utils'
 import type { Contrast, Weight } from '@/utils'
 
-export interface RadioInputOption {
-  name: string
-  label: string
-  abbr?: boolean
-  value?: string
-}
-
 export interface RangeInputOption {
   name: string
   label: string
