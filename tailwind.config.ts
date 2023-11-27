@@ -1,8 +1,8 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
-const plugin = require('tailwindcss/plugin')
+import defaultTheme from 'tailwindcss/defaultTheme'
+import plugin from 'tailwindcss/plugin'
+import type { Config } from 'tailwindcss'
 
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+export default <Config>{
   content: ['./index.html', './src/**/*.vue'],
   darkMode: 'class',
   safelist: ['no-break'],
