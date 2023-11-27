@@ -5,10 +5,8 @@
   <input
     type="radio"
     :id="name"
-    :name="name"
-    :value="value"
-    :checked="checked"
-    @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+    v-bind="{ name, checked, value }"
+    v-model="modelValue"
     class="hidden appearance-none"
   />
 </template>
@@ -17,7 +15,7 @@
 import { computed } from 'vue'
 import { isLocaleZh } from '@/i18n'
 
-const checked = computed(() => props.modelValue === props.value)
+const checked = computed(() => modelValue.value === props.value)
 const name = computed(() => `radio-${props.name}`)
 
 const props = defineProps<{
@@ -25,10 +23,7 @@ const props = defineProps<{
   label: string
   abbr?: boolean
   value: string
-  modelValue: string
 }>()
 
-defineEmits<{
-  (e: 'update:modelValue', value: string): void
-}>()
+const modelValue = defineModel<string>()
 </script>

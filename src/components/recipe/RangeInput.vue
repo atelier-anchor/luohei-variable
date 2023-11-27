@@ -14,9 +14,8 @@
       :min="option.min"
       :max="option.max"
       :step="option.step"
-      :value="modelValue"
-      @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
       :class="isLocaleZh ? 'w-40' : 'w-36'"
+      v-model="modelValue"
     />
   </div>
 </template>
@@ -30,16 +29,16 @@ import type { RangeInputOption } from '@/components/recipe/recipe'
 const name = computed(() => `range-${props.option.name}`)
 
 const reset = () => {
-  if (props.option.reset) emit('update:modelValue', props.option.default ?? props.option.min)
+  if (props.option.reset) {
+    modelValue.value = props.option.default ?? props.option.min
+  }
 }
 
 const props = defineProps<{
   option: RangeInputOption
-  modelValue: number
 }>()
-const emit = defineEmits<{
-  (e: 'update:modelValue', value: number): void
-}>()
+
+const modelValue = defineModel<number>()
 </script>
 
 <style scoped>

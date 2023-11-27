@@ -19,7 +19,7 @@
       </div>
       <Transition>
         <div v-show="showMenu" class="relative mx-auto max-w-screen-2xl transition-opacity">
-          <div class="absolute top-3.5 right-0">
+          <div class="absolute right-0 top-3.5">
             <NavMenu ref="navMenu" />
           </div>
         </div>

@@ -10,7 +10,11 @@ export default defineConfig({
   css: {
     postcss: { plugins: [tailwindcssNesting, tailwindcss, autoprefixer] },
   },
-  plugins: [vue()],
+  plugins: [
+    vue({
+      script: { defineModel: true },
+    }),
+  ],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),

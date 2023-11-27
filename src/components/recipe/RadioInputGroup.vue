@@ -8,8 +8,7 @@
         :label="$t(option.label)"
         :abbr="option.abbr"
         :value="option.value"
-        :modelValue="modelValue"
-        @update:modelValue="$emit('update:modelValue', $event)"
+        v-model="modelValue"
       />
     </div>
   </div>
@@ -27,10 +26,7 @@ defineProps<{
     abbr?: boolean
     value: string
   }[]
-  modelValue: string
 }>()
 
-defineEmits<{
-  (e: 'update:modelValue', value: string): void
-}>()
+const modelValue = defineModel<string>()
 </script>

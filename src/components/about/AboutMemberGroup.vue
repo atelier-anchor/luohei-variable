@@ -38,7 +38,7 @@ const members = [
   {
     title: 'developer',
     name: { 'zh-hans': '曾祥东', 'zh-hant': '曾祥東', en: 'Xiangdong Zeng' },
-    href: 'https://stone-zeng.github.io',
+    href: 'https://stone-zeng.site',
   },
 ]
 const repositoryUrl = 'https://github.com/atelier-anchor/luohei-variable'
